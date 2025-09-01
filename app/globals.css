@@ -11,7 +11,9 @@
   --card-foreground: oklch(0.15 0 0);
   --popover: oklch(0.98 0 0);
   --popover-foreground: oklch(0.15 0 0);
-  --primary: oklch(0.7 0.15 85); /* Slightly darker golden accent for light mode */
+  --primary: oklch(
+    0.7 0.15 85
+  ); /* Slightly darker golden accent for light mode */
   --primary-foreground: oklch(0.1 0 0);
   --secondary: oklch(0.9 0 0);
   --secondary-foreground: oklch(0.15 0 0);
@@ -118,7 +120,10 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
-    transition: background-color 300ms ease, border-color 300ms ease, color 300ms ease;
+    transition:
+      background-color 300ms ease,
+      border-color 300ms ease,
+      color 300ms ease;
   }
   body {
     @apply bg-background text-foreground;
