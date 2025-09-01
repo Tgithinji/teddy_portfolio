@@ -22,7 +22,6 @@ import {
   Minus,
   ExternalLink,
   GraduationCap,
-  MessageSquare,
   Copy,
   Calendar,
   Download,
@@ -33,6 +32,8 @@ import {
   Settings,
   Workflow,
   Database,
+  MessageCircle,
+  Send,
 } from "lucide-react"
 
 const fadeInUp = {
@@ -200,6 +201,218 @@ const TabNavigation = ({ activeProjectTab, setActiveProjectTab }) => {
         </motion.button>
       </motion.div>
     </div>
+  )
+}
+
+const automationCaseStudies = [
+  {
+    id: 1,
+    title: "E-commerce Order Processing Automation",
+    thumbnail: "/automated-order-processing-dashboard.png",
+    problem: "Manual order processing taking 4+ hours daily, prone to errors",
+    solution:
+      "Built automated system using Python and APIs to process orders, update inventory, and send notifications in real-time.",
+    impact: "Reduced processing time by 95% and eliminated human errors, saving 20+ hours weekly.",
+    demoUrl: "#",
+  },
+  {
+    id: 2,
+    title: "Customer Support Ticket Routing",
+    thumbnail: "/customer-support-automation-system.png",
+    problem: "Support tickets manually assigned, causing delays and uneven workload",
+    solution:
+      "Developed intelligent routing system using NLP to categorize and assign tickets based on urgency and expertise.",
+    impact: "Improved response time by 60% and increased customer satisfaction scores by 40%.",
+    demoUrl: "#",
+  },
+  {
+    id: 3,
+    title: "Financial Report Generation",
+    thumbnail: "/automated-financial-reporting-dashboard.png",
+    problem: "Monthly reports required 2 days of manual data compilation and formatting",
+    solution:
+      "Created automated pipeline that pulls data from multiple sources, generates formatted reports, and distributes via email.",
+    impact: "Reduced report generation time from 2 days to 30 minutes, ensuring 100% accuracy.",
+    demoUrl: "#",
+  },
+  {
+    id: 4,
+    title: "Social Media Content Scheduler",
+    thumbnail: "/social-media-automation-dashboard.png",
+    problem: "Inconsistent posting schedule and manual content management across platforms",
+    solution: "Built multi-platform scheduler with AI-powered optimal timing and automated content optimization.",
+    impact: "Increased engagement by 75% and reduced content management time by 80%.",
+    demoUrl: "#",
+  },
+]
+
+const CaseStudyCard = ({ caseStudy, index }) => {
+  return (
+    <motion.div
+      className="bg-card border border-border rounded-xl p-4 shadow-md hover:shadow-lg transition-all duration-300"
+      variants={{
+        hidden: { opacity: 0, y: 20 },
+        visible: { opacity: 1, y: 0 },
+      }}
+      initial="hidden"
+      animate="visible"
+      transition={{ delay: index * 0.1 }}
+      whileHover={{
+        scale: 1.02,
+        y: -5,
+        transition: { type: "spring", stiffness: 300, damping: 20 },
+      }}
+    >
+      <div className="space-y-3">
+        <div className="aspect-video rounded-lg overflow-hidden bg-muted">
+          <img
+            src={caseStudy.thumbnail || "/placeholder.svg"}
+            alt={caseStudy.title}
+            className="w-full h-full object-cover"
+          />
+        </div>
+
+        <h3 className="font-bold text-lg text-foreground">{caseStudy.title}</h3>
+
+        <p className="text-sm italic text-muted-foreground">
+          <span className="font-medium">Problem:</span> {caseStudy.problem}
+        </p>
+
+        <p className="text-sm text-foreground">
+          <span className="font-medium">Solution:</span> {caseStudy.solution}
+        </p>
+
+        <div className="bg-primary/10 border border-primary/20 rounded-lg p-3">
+          <p className="text-sm text-foreground">
+            <span className="font-medium text-primary">Impact:</span> {caseStudy.impact}
+          </p>
+        </div>
+
+        {caseStudy.demoUrl && (
+          <button className="w-full sm:w-auto px-4 py-2 border border-primary text-primary rounded-lg text-sm font-medium hover:bg-primary hover:text-primary-foreground transition-colors duration-200">
+            View Demo
+          </button>
+        )}
+      </div>
+    </motion.div>
+  )
+}
+
+const CaseStudyGrid = ({ caseStudies }) => {
+  return (
+    <motion.div
+      className="grid grid-cols-1 md:grid-cols-2 gap-6"
+      variants={staggerContainer}
+      initial="initial"
+      animate="animate"
+    >
+      {caseStudies.map((caseStudy, index) => (
+        <CaseStudyCard key={caseStudy.id} caseStudy={caseStudy} index={index} />
+      ))}
+    </motion.div>
+  )
+}
+
+const SoftwareCaseStudyCard = ({ caseStudy, index }) => {
+  return (
+    <motion.div
+      className="bg-card border border-border rounded-2xl p-4 shadow-lg hover:shadow-2xl transition-all duration-300 group"
+      variants={{
+        hidden: { opacity: 0, y: 20 },
+        visible: { opacity: 1, y: 0 },
+      }}
+      initial="hidden"
+      animate="visible"
+      transition={{ delay: index * 0.1 }}
+      whileHover={{
+        scale: 1.02,
+        y: -8,
+        transition: { type: "spring", stiffness: 300, damping: 20 },
+      }}
+      style={{
+        boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+      }}
+      onHoverStart={() => {
+        // Add glow border effect on hover
+      }}
+    >
+      <div className="space-y-3 group-hover:ring-2 group-hover:ring-primary/20 rounded-2xl transition-all duration-300">
+        <div className="aspect-video rounded-xl overflow-hidden bg-muted">
+          <motion.img
+            src={caseStudy.thumbnail || "/placeholder.svg"}
+            alt={caseStudy.title}
+            className="w-full h-full object-cover"
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.3 }}
+          />
+        </div>
+
+        <h3 className="font-bold text-xl text-foreground group-hover:text-primary transition-colors">
+          {caseStudy.title}
+        </h3>
+
+        <p className="text-sm text-muted-foreground leading-relaxed">{caseStudy.description}</p>
+
+        <div className="flex flex-wrap gap-2">
+          {caseStudy.techStack.map((tech, techIndex) => (
+            <motion.span
+              key={tech}
+              className="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full border border-primary/20 hover:bg-primary hover:text-primary-foreground transition-colors cursor-default"
+              whileHover={{ scale: 1.05 }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: index * 0.1 + techIndex * 0.05 }}
+            >
+              {tech}
+            </motion.span>
+          ))}
+        </div>
+
+        <div className="flex flex-col sm:flex-row gap-2 pt-2">
+          {caseStudy.websiteUrl && (
+            <motion.button
+              className="flex-1 px-4 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors duration-200 flex items-center justify-center gap-2"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <ExternalLink className="w-4 h-4" />
+              View Website
+            </motion.button>
+          )}
+          {caseStudy.githubUrl && (
+            <motion.button
+              className="flex-1 px-4 py-2 border border-border text-foreground rounded-lg text-sm font-medium hover:bg-muted transition-colors duration-200 flex items-center justify-center gap-2"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <Github className="w-4 h-4" />
+              GitHub Repo
+            </motion.button>
+          )}
+        </div>
+
+        {caseStudy.impact && (
+          <p className="text-sm italic text-muted-foreground bg-muted/50 p-3 rounded-lg border-l-4 border-primary">
+            {caseStudy.impact}
+          </p>
+        )}
+      </div>
+    </motion.div>
+  )
+}
+
+const SoftwareCaseStudyGrid = ({ caseStudies }) => {
+  return (
+    <motion.div
+      className="grid grid-cols-1 md:grid-cols-2 gap-6"
+      variants={staggerContainer}
+      initial="initial"
+      animate="animate"
+    >
+      {caseStudies.map((caseStudy, index) => (
+        <SoftwareCaseStudyCard key={caseStudy.id} caseStudy={caseStudy} index={index} />
+      ))}
+    </motion.div>
   )
 }
 
@@ -386,48 +599,77 @@ export default function Page() {
     },
   ]
 
-  const pricingPlans = [
+  const automationPlans = [
     {
       name: "Starter",
-      price: "$2,500",
-      description: "Perfect for small businesses getting started with automation",
-      features: [
-        "Up to 3 automation workflows",
-        "Basic integrations (5 apps)",
-        "Email support",
-        "Setup & training included",
-        "30-day warranty",
-      ],
+      price: "KSh 7,500",
+      priceSubtext: "~$60",
+      description: "Simple 1–2 workflow automation",
+      features: ["Connection of up to 2 apps", "Basic monitoring", "Email support", "Setup included"],
       cta: "Get Started",
     },
     {
       name: "Growth",
-      price: "$5,000",
-      description: "Ideal for growing businesses with complex needs",
+      price: "KSh 20,000",
+      priceSubtext: "~$160",
+      description: "Multi-step workflows",
       features: [
-        "Up to 10 automation workflows",
-        "Advanced integrations (15+ apps)",
-        "Priority support & monitoring",
-        "Custom dashboards",
-        "90-day warranty",
-        "Monthly optimization calls",
+        "Connection of up to 5 apps",
+        "Advanced monitoring",
+        "Monthly support calls",
+        "Priority email support",
       ],
-      cta: "Scale Up",
+      cta: "Scale with Automation",
       isHighlighted: true,
     },
     {
       name: "Enterprise",
-      price: "Custom",
-      description: "For large organizations with enterprise requirements",
+      price: "Custom Quote",
+      priceSubtext: "",
+      description: "Unlimited workflows",
       features: [
-        "Unlimited automation workflows",
-        "Enterprise-grade integrations",
-        "24/7 dedicated support",
+        "Advanced integrations (APIs, AI agents)",
+        "Dedicated support",
         "Custom development",
         "SLA guarantees",
-        "Ongoing maintenance included",
       ],
-      cta: "Contact Sales",
+      cta: "Request Quote",
+    },
+  ]
+
+  const softwarePlans = [
+    {
+      name: "Starter Website",
+      price: "KSh 15,000",
+      priceSubtext: "~$120",
+      description: "Simple static site (up to 3 pages)",
+      features: ["Responsive design", "Fast delivery", "Basic SEO setup", "Contact form"],
+      cta: "Start Small",
+    },
+    {
+      name: "Business Website",
+      price: "KSh 35,000",
+      priceSubtext: "~$280",
+      description: "Full website (5–7 pages)",
+      features: ["Blog or CMS integration", "SEO & mobile optimization", "Analytics setup", "Social media integration"],
+      cta: "Build My Site",
+      isHighlighted: true,
+    },
+    {
+      name: "Web App",
+      price: "From KSh 65,000",
+      priceSubtext: "~$500",
+      description: "Custom web application",
+      features: ["Authentication + database", "APIs and integrations", "Admin dashboard", "User management"],
+      cta: "Get a Web App",
+    },
+    {
+      name: "Enterprise Solution",
+      price: "Custom",
+      priceSubtext: "",
+      description: "Complex dashboards / AI integration",
+      features: ["Multi-user support", "Dedicated infrastructure", "Advanced security", "Ongoing maintenance"],
+      cta: "Request Quote",
     },
   ]
 
@@ -467,6 +709,75 @@ export default function Page() {
       }, 100)
     }
   }
+
+  const softwareCaseStudies = [
+    {
+      id: 1,
+      title: "E-commerce Platform",
+      description:
+        "Full-stack e-commerce solution with payment integration, inventory management, and admin dashboard.",
+      thumbnail: "/modern-ecommerce-dashboard.png",
+      techStack: ["React", "Node.js", "PostgreSQL", "Stripe", "AWS"],
+      websiteUrl: "https://example-ecommerce.com",
+      githubUrl: "https://github.com/example/ecommerce",
+      impact: "Increased client sales by 150% and reduced order processing time by 60%",
+    },
+    {
+      id: 2,
+      title: "Task Management SaaS",
+      description:
+        "Collaborative project management platform with real-time updates, team collaboration, and advanced reporting.",
+      thumbnail: "/task-management-app.png",
+      techStack: ["Vue.js", "Express", "MongoDB", "Socket.io", "Docker"],
+      websiteUrl: "https://example-tasks.com",
+      githubUrl: "https://github.com/example/task-manager",
+      impact: "Helped 500+ teams improve productivity by 40% with streamlined workflows",
+    },
+    {
+      id: 3,
+      title: "Weather Analytics Dashboard",
+      description:
+        "Real-time weather monitoring with predictive analytics, custom alerts, and historical data visualization.",
+      thumbnail: "/weather-dashboard.png",
+      techStack: ["React", "Python", "FastAPI", "Redis", "Chart.js"],
+      websiteUrl: "https://example-weather.com",
+      githubUrl: "https://github.com/example/weather-dashboard",
+      impact: "Provides accurate weather insights to 10,000+ users daily with 99.9% uptime",
+    },
+    {
+      id: 4,
+      title: "AI Customer Support",
+      description:
+        "Intelligent chatbot with natural language processing, context awareness, and seamless human handoff.",
+      thumbnail: "/ai-chatbot-interface.png",
+      techStack: ["Python", "TensorFlow", "FastAPI", "WebSocket", "OpenAI"],
+      websiteUrl: "https://example-ai-support.com",
+      githubUrl: "https://github.com/example/ai-chatbot",
+      impact: "Reduced customer support response time by 80% while maintaining 95% satisfaction rate",
+    },
+    {
+      id: 5,
+      title: "Financial Portfolio Tracker",
+      description:
+        "Investment portfolio management with real-time market data, performance analytics, and risk assessment.",
+      thumbnail: "/financial-portfolio-dashboard.png",
+      techStack: ["Next.js", "TypeScript", "Prisma", "TradingView", "Vercel"],
+      websiteUrl: "https://example-portfolio.com",
+      githubUrl: "https://github.com/example/portfolio-tracker",
+      impact: "Manages $2M+ in tracked investments with real-time performance insights",
+    },
+    {
+      id: 6,
+      title: "Learning Management System",
+      description:
+        "Educational platform with course creation, progress tracking, interactive quizzes, and certification system.",
+      thumbnail: "/lms-interface.png",
+      techStack: ["React", "Django", "PostgreSQL", "AWS S3", "Stripe"],
+      websiteUrl: "https://example-lms.com",
+      githubUrl: "https://github.com/example/lms-platform",
+      impact: "Educated 5,000+ students with 90% course completion rate and positive feedback",
+    },
+  ]
 
   return (
     <div className="min-h-screen bg-background">
@@ -659,10 +970,29 @@ export default function Page() {
                       exit={{ opacity: 0, x: -20 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <ProjectGrid
-                        projects={activeProjectTab === "software" ? softwareProjects : automationProjects}
-                        type={activeProjectTab}
-                      />
+                      {activeProjectTab === "software" ? (
+                        <div>
+                          <motion.h2
+                            className="text-2xl font-bold text-foreground mb-4"
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                          >
+                            Projects
+                          </motion.h2>
+                          <SoftwareCaseStudyGrid caseStudies={softwareCaseStudies} />
+                        </div>
+                      ) : (
+                        <div>
+                          <motion.h2
+                            className="text-2xl font-bold text-foreground mb-4"
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                          >
+                            Projects
+                          </motion.h2>
+                          <CaseStudyGrid caseStudies={automationCaseStudies} />
+                        </div>
+                      )}
                     </motion.div>
                   </AnimatePresence>
                 </div>
@@ -702,28 +1032,62 @@ export default function Page() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.6 }}
                       >
-                        Pricing Plans
+                        Pricing
                       </motion.h2>
                       <motion.p
-                        className="text-muted-foreground text-lg max-w-2xl mx-auto"
+                        className="text-muted-foreground text-lg max-w-2xl mx-auto mb-8"
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.7 }}
                       >
-                        Choose the perfect plan for your automation needs.
+                        Choose the plan that fits your needs.
                       </motion.p>
                     </div>
 
-                    <motion.div
-                      className="grid grid-cols-1 md:grid-cols-3 gap-8"
-                      variants={staggerContainer}
-                      initial="initial"
-                      animate="animate"
-                    >
-                      {pricingPlans.map((plan, index) => (
-                        <PricingCard key={plan.name} plan={plan} index={index} isHighlighted={plan.isHighlighted} />
-                      ))}
-                    </motion.div>
+                    <Tabs defaultValue="automation" className="w-full max-w-6xl mx-auto">
+                      <TabsList className="grid w-full grid-cols-2 mb-8 bg-muted/50 p-1 rounded-lg">
+                        <TabsTrigger
+                          value="automation"
+                          className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground font-medium"
+                        >
+                          Automation
+                        </TabsTrigger>
+                        <TabsTrigger
+                          value="software"
+                          className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground font-medium"
+                        >
+                          Software & Web Development
+                        </TabsTrigger>
+                      </TabsList>
+
+                      <TabsContent value="automation">
+                        <motion.div
+                          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.5 }}
+                          variants={staggerContainer}
+                        >
+                          {automationPlans.map((plan, index) => (
+                            <PricingCard key={plan.name} plan={plan} index={index} isHighlighted={plan.isHighlighted} />
+                          ))}
+                        </motion.div>
+                      </TabsContent>
+
+                      <TabsContent value="software">
+                        <motion.div
+                          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.5 }}
+                          variants={staggerContainer}
+                        >
+                          {softwarePlans.map((plan, index) => (
+                            <PricingCard key={plan.name} plan={plan} index={index} isHighlighted={plan.isHighlighted} />
+                          ))}
+                        </motion.div>
+                      </TabsContent>
+                    </Tabs>
                   </div>
 
                   {/* FAQ Section */}
@@ -884,39 +1248,95 @@ export default function Page() {
                 </div>
               </TabsContent>
 
+              {/* Updated Contact tab layout to match specifications */}
               <TabsContent value="contact" className="space-y-4">
-                <div className="max-w-4xl mx-auto px-4 py-6">
+                <div className="max-w-3xl mx-auto px-4 py-6">
                   <motion.div
-                    className="text-center mb-4"
+                    className="text-center mb-6"
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                   >
-                    <h1 className="text-4xl font-bold text-foreground mb-4">Get In Touch</h1>
-                    <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                      Ready to start your next project? Let's discuss how I can help bring your ideas to life.
+                    <h1 className="text-4xl font-bold text-foreground mb-6">Let's Work Together</h1>
+                    <p className="text-muted-foreground text-lg">
+                      Have a project in mind? Fill out the form or reach me directly.
                     </p>
                   </motion.div>
 
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    {/* Contact Form */}
-                    <motion.div
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.2 }}
-                    >
-                      <h2 className="text-2xl font-semibold text-foreground mb-4">Send a Message</h2>
-                      <ContactForm />
-                    </motion.div>
+                  {/* Contact Form */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                    className="mb-12"
+                  >
+                    <ContactForm />
+                  </motion.div>
 
-                    {/* Contact Info */}
-                    <motion.div
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.3 }}
-                    >
-                      <ContactInfo copiedEmail={copiedEmail} copyEmail={copyEmail} />
-                    </motion.div>
-                  </div>
+                  {/* Direct Contact Links */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                  >
+                    <div className="bg-card/30 backdrop-blur-sm border border-border rounded-xl p-6">
+                      <h3 className="text-lg font-semibold text-foreground mb-4 text-center">Or reach me directly</h3>
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <motion.a
+                          href="mailto:alex.johnson@email.com"
+                          className="flex flex-col items-center gap-2 p-4 rounded-lg bg-card border border-border hover:border-primary/50 transition-all duration-300 group"
+                          whileHover={{ scale: 1.05, y: -2 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          <Mail className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />
+                          <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground">
+                            Email
+                          </span>
+                        </motion.a>
+
+                        <motion.a
+                          href="https://linkedin.com/in/alexjohnson"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex flex-col items-center gap-2 p-4 rounded-lg bg-card border border-border hover:border-primary/50 transition-all duration-300 group"
+                          whileHover={{ scale: 1.05, y: -2 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          <Linkedin className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />
+                          <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground">
+                            LinkedIn
+                          </span>
+                        </motion.a>
+
+                        <motion.a
+                          href="https://github.com/alexjohnson"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex flex-col items-center gap-2 p-4 rounded-lg bg-card border border-border hover:border-primary/50 transition-all duration-300 group"
+                          whileHover={{ scale: 1.05, y: -2 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          <Github className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />
+                          <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground">
+                            GitHub
+                          </span>
+                        </motion.a>
+
+                        <motion.a
+                          href="https://wa.me/15551234567"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex flex-col items-center gap-2 p-4 rounded-lg bg-card border border-border hover:border-primary/50 transition-all duration-300 group"
+                          whileHover={{ scale: 1.05, y: -2 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          <MessageCircle className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />
+                          <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground">
+                            WhatsApp
+                          </span>
+                        </motion.a>
+                      </div>
+                    </div>
+                  </motion.div>
                 </div>
               </TabsContent>
             </Tabs>
@@ -975,7 +1395,7 @@ const PricingCard = ({ plan, index, isHighlighted = false }) => {
       className="group"
     >
       <Card
-        className={`h-full bg-card border-border hover:border-primary/50 transition-all duration-300 rounded-xl shadow-lg hover:shadow-xl ${
+        className={`h-full bg-card border-border hover:border-primary/50 transition-all duration-300 rounded-xl shadow-md hover:shadow-xl ${
           isHighlighted ? "ring-2 ring-primary/50 bg-primary/5" : ""
         }`}
       >
@@ -987,8 +1407,11 @@ const PricingCard = ({ plan, index, isHighlighted = false }) => {
           )}
 
           <div className="text-center mb-6">
-            <h3 className="text-2xl font-bold text-foreground mb-2">{plan.name}</h3>
-            <div className="text-3xl font-bold text-primary mb-2">{plan.price}</div>
+            <h3 className="text-xl font-bold text-foreground mb-2">{plan.name}</h3>
+            <div className="mb-2">
+              <div className="text-2xl font-bold text-primary">{plan.price}</div>
+              {plan.priceSubtext && <div className="text-sm text-muted-foreground">{plan.priceSubtext}</div>}
+            </div>
             <p className="text-muted-foreground text-sm">{plan.description}</p>
           </div>
 
@@ -996,7 +1419,7 @@ const PricingCard = ({ plan, index, isHighlighted = false }) => {
             <ul className="space-y-3">
               {plan.features.map((feature, idx) => (
                 <li key={idx} className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                  <Check className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
                   <span className="text-muted-foreground text-sm">{feature}</span>
                 </li>
               ))}
@@ -1005,7 +1428,7 @@ const PricingCard = ({ plan, index, isHighlighted = false }) => {
 
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Button
-              className={`w-full font-medium ${
+              className={`w-full font-medium text-sm ${
                 isHighlighted
                   ? "bg-primary hover:bg-primary/90 text-primary-foreground"
                   : "bg-secondary hover:bg-secondary/80 text-secondary-foreground"
@@ -1223,53 +1646,51 @@ const ContactForm = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.3, duration: 0.5 }}
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <motion.div className="space-y-2" whileFocus={{ scale: 1.02 }}>
-          <label htmlFor="name" className="text-sm font-medium text-foreground">
-            Name
-          </label>
-          <motion.div
-            whileFocus={{
-              boxShadow: "0 0 0 2px rgba(var(--primary), 0.3)",
-              transition: { duration: 0.2 },
-            }}
-          >
-            <Input
-              id="name"
-              name="name"
-              type="text"
-              placeholder="Your full name"
-              value={formData.name}
-              onChange={handleChange}
-              className={`bg-background border-border transition-all duration-300 ${errors.name ? "border-red-500" : ""}`}
-            />
-          </motion.div>
-          {errors.name && <p className="text-red-500 text-xs">{errors.name}</p>}
+      <motion.div className="space-y-2" whileFocus={{ scale: 1.01 }}>
+        <label htmlFor="name" className="text-sm font-medium text-foreground">
+          Full Name
+        </label>
+        <motion.div
+          whileFocus={{
+            boxShadow: "0 0 0 2px rgba(var(--primary), 0.3)",
+            transition: { duration: 0.2 },
+          }}
+        >
+          <Input
+            id="name"
+            name="name"
+            type="text"
+            placeholder="Your full name"
+            value={formData.name}
+            onChange={handleChange}
+            className={`bg-background border-border rounded-xl transition-all duration-300 focus:ring-2 focus:ring-primary/20 ${errors.name ? "border-red-500" : ""}`}
+          />
         </motion.div>
+        {errors.name && <p className="text-red-500 text-xs">{errors.name}</p>}
+      </motion.div>
 
-        <motion.div className="space-y-2" whileFocus={{ scale: 1.02 }}>
-          <label htmlFor="email" className="text-sm font-medium text-foreground">
-            Email
-          </label>
-          <motion.div
-            whileFocus={{
-              boxShadow: "0 0 0 2px rgba(var(--primary), 0.3)",
-              transition: { duration: 0.2 },
-            }}
-          >
-            <Input
-              id="email"
-              name="email"
-              type="email"
-              placeholder="your.email@example.com"
-              value={formData.email}
-              onChange={handleChange}
-              className={`bg-background border-border transition-all duration-300 ${errors.email ? "border-red-500" : ""}`}
-            />
-          </motion.div>
-          {errors.email && <p className="text-red-500 text-xs">{errors.email}</p>}
+      <motion.div className="space-y-2" whileFocus={{ scale: 1.01 }}>
+        <label htmlFor="email" className="text-sm font-medium text-foreground">
+          Email
+        </label>
+        <motion.div
+          whileFocus={{
+            boxShadow: "0 0 0 2px rgba(var(--primary), 0.3)",
+            transition: { duration: 0.2 },
+          }}
+        >
+          <Input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="your.email@example.com"
+            value={formData.email}
+            onChange={handleChange}
+            className={`bg-background border-border rounded-xl transition-all duration-300 focus:ring-2 focus:ring-primary/20 ${errors.email ? "border-red-500" : ""}`}
+          />
         </motion.div>
-      </div>
+        {errors.email && <p className="text-red-500 text-xs">{errors.email}</p>}
+      </motion.div>
 
       <motion.div className="space-y-2" whileFocus={{ scale: 1.01 }}>
         <label htmlFor="message" className="text-sm font-medium text-foreground">
@@ -1288,7 +1709,7 @@ const ContactForm = () => {
             rows={6}
             value={formData.message}
             onChange={handleChange}
-            className={`bg-background border-border resize-none transition-all duration-300 ${errors.message ? "border-red-500" : ""}`}
+            className={`bg-background border-border rounded-xl resize-none transition-all duration-300 focus:ring-2 focus:ring-primary/20 ${errors.message ? "border-red-500" : ""}`}
           />
         </motion.div>
         {errors.message && <p className="text-red-500 text-xs">{errors.message}</p>}
@@ -1298,7 +1719,7 @@ const ContactForm = () => {
         <Button
           type="submit"
           disabled={isSubmitting}
-          className="w-full bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300"
+          className="w-full md:w-auto md:px-8 bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl"
         >
           {isSubmitting ? (
             <>
@@ -1307,7 +1728,7 @@ const ContactForm = () => {
             </>
           ) : (
             <>
-              <MessageSquare className="w-4 h-4 mr-2" />
+              <Send className="w-4 h-4 mr-2" />
               Send Message
             </>
           )}
