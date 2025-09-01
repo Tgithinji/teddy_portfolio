@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Geist, Manrope } from "next/font/google"
 import "./globals.css"
+import { ThemeProvider } from "@/components/theme-provider"
 
 const geist = Geist({
   subsets: ["latin"],
@@ -27,8 +28,12 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${geist.variable} ${manrope.variable} antialiased dark`}>
-      <body className="font-sans">{children}</body>
+    <html lang="en" className={`${geist.variable} ${manrope.variable} antialiased`}>
+      <body className="font-sans">
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange={false}>
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   )
 }

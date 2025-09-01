@@ -2,35 +2,36 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Card, CardContent } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import {
+  Mail,
+  Phone,
   MapPin,
   Building,
   Globe,
-  Mail,
-  Phone,
   Github,
   Linkedin,
   Twitter,
+  ExternalLink,
+  Download,
   Check,
+  Copy,
   Plus,
   Minus,
-  ExternalLink,
-  GraduationCap,
-  Copy,
-  Calendar,
-  Download,
+  MessageCircle,
   Code,
   Zap,
   Puzzle,
   Bot,
-  MessageCircle,
+  GraduationCap,
+  Calendar,
 } from "lucide-react"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -497,6 +498,8 @@ export default function Portfolio() {
 
   return (
     <div className="min-h-screen bg-background">
+      <ThemeToggle />
+
       <div className="flex flex-col lg:flex-row">
         {/* Sidebar */}
         <motion.div
