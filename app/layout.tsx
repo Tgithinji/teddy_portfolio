@@ -17,8 +17,44 @@ const manrope = Manrope({
 })
 
 export const metadata: Metadata = {
-  title: "Alex Johnson - Software Engineer",
-  description: "Modern developer portfolio showcasing full-stack projects and technical expertise",
+  title: "Teddy | Software Developer & Automation Engineer",
+  description: "Portfolio showcasing full-stack software projects and workflow automations.",
+  keywords: ["Software Developer", "Automation Engineer", "Full Stack", "React", "Next.js", "TypeScript"],
+  authors: [{ name: "Teddy Githinji" }],
+  creator: "Teddy Githinji",
+  openGraph: {
+    title: "Teddy | Software Developer & Automation Engineer",
+    description: "Portfolio showcasing full-stack software projects and workflow automations.",
+    url: "https://teddy-portfolio.vercel.app",
+    siteName: "Teddy's Portfolio",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Teddy's Portfolio - Software Developer & Automation Engineer",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Teddy | Software Developer & Automation Engineer",
+    description: "Portfolio showcasing full-stack software projects and workflow automations.",
+    images: ["/og-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   generator: "v0.app",
 }
 
