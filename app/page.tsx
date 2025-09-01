@@ -130,16 +130,30 @@ export default function Portfolio() {
     return errors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const errors = validateForm();
     if (Object.keys(errors).length > 0) {
       setFormErrors(errors);
       return;
     }
-    console.log("Form submitted:", formData);
-    setFormData({ name: "", email: "", message: "" });
-    setFormErrors({});
+  
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+  
+      if (!res.ok) throw new Error("Failed to send message");
+  
+      setFormData({ name: "", email: "", message: "" });
+      setFormErrors({});
+      alert("Message sent successfully!"); // or a nicer success UI
+    } catch (err) {
+      console.error(err);
+      alert("Something went wrong. Please try again.");
+    }
   };
 
   const softwareProjects = [
