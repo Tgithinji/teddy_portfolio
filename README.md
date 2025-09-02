@@ -1,30 +1,69 @@
-# Developer portfolio website
+# 🌐 Teddy’s Portfolio  
 
-_Automatically synced with your [v0.app](https://v0.app) deployments_
+A personal portfolio showcasing my **software development projects** and **workflow automations**.  
+Built with **Next.js, TailwindCSS, Framer Motion**, and deployed on **Vercel**.  
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/tgithinjis-projects/v0-developer-portfolio-website)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/projects/ebSRittWF6v)
+---
 
-## Overview
+## ✨ Features  
+- 📂 **Projects Showcase** — Software projects + automation demos (with GitHub & live links).  
+- 💼 **Services & Pricing** — Clear service breakdown with pricing tiers.  
+- 📑 **Resume Download** — PDF resume available directly from the site.  
+- 🌓 **Light/Dark Mode** — Smooth theme toggle with animations.  
+- 📬 **Contact Form** — Integrated with Resend for email delivery, includes loading + success/error states.  
+- 📱 **Responsive Design** — Optimized for desktop, tablet, and mobile.  
+- 🔍 **SEO Optimized** — OpenGraph + Twitter previews, metadata, and structured layout.  
 
-This repository will stay in sync with your deployed chats on [v0.app](https://v0.app).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.app](https://v0.app).
+---
 
-## Deployment
+## 🛠️ Tech Stack  
+- [Next.js](https://nextjs.org/) — React framework  
+- [TailwindCSS](https://tailwindcss.com/) — Styling  
+- [Framer Motion](https://www.framer.com/motion/) — Animations  
+- [shadcn/ui](https://ui.shadcn.com/) — UI components  
+- [Resend](https://resend.com/) — Email integration  
+- [Vercel](https://vercel.com/) — Deployment  
 
-Your project is live at:
+---
 
-**[https://vercel.com/tgithinjis-projects/v0-developer-portfolio-website](https://vercel.com/tgithinjis-projects/v0-developer-portfolio-website)**
+## 🚀 Getting Started  
 
-## Build your app
+### 1. Clone repo  
+```bash
+git clone https://github.com/Tgithinji/teddy_portfolio.git
+cd teddy_portfolio
+```
 
-Continue building your app on:
+### 2. Install dependencies
+```bash
+npm install
+# or
+pnpm install
+```
 
-**[https://v0.app/chat/projects/ebSRittWF6v](https://v0.app/chat/projects/ebSRittWF6v)**
+### 3. Run development server
+```bash
+npm run dev
+```
 
-## How It Works
+Your app will be live at http://localhost:3000
+.
 
-1. Create and modify your project using [v0.app](https://v0.app)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+## 📦 Build & Deploy
+npm run build
+npm run start
+
+
+Deployed on Vercel for production.
+
+## 📄 License
+
+This project is licensed under the MIT License.
+Feel free to use the code for inspiration but please give credit where due 🙌
+
+## 📬 Contact  
+
+- 📧 **Email:** [tedgithinji83@gmail.com](mailto:tedgithinji83@gmail.com)  
+- 🌍 **Portfolio:** [https://teddy-portfolio.vercel.app](https://teddy-portfolio.vercel.app)  
+- 💻 **GitHub:** [https://github.com/Tgithinji](https://github.com/Tgithinji)  
+- 🔗 **LinkedIn:** [https://www.linkedin.com/in/teddygithinji](https://www.linkedin.com/in/teddygithinji)  
