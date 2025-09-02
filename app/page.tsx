@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-
+import Image from "next/image";
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -118,10 +118,10 @@ export default function Portfolio() {
   const copyEmail = async () => {
     try {
       if (typeof navigator !== "undefined" && navigator.clipboard) {
-        // ✅ Modern browsers
+        // Modern browsers
         await navigator.clipboard.writeText("tedgithinji83@gmail.com")
       } else {
-        // ⚡ Fallback for older browsers
+        // Fallback for older browsers
         const textArea = document.createElement("textarea")
         textArea.value = "tedgithinji83@gmail.com"
         document.body.appendChild(textArea)
@@ -1305,11 +1305,14 @@ const ProjectCard = ({ project, type, index }) => {
               />
             ) : (
               // Case 3: Fallback image
-              <img
-                src={project.thumbnail || "/placeholder.svg"}
-                alt={project.title}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-              />
+              <Image
+              src={project.thumbnail || "/placeholder.svg"}
+              alt={project.title}
+              width={800}
+              height={450}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              priority={index === 0}
+            />
             )}
           </div>
           <CardContent className="p-4 space-y-3">
@@ -1376,7 +1379,7 @@ const ProjectCard = ({ project, type, index }) => {
     >
       <Card className="h-full bg-card border-border hover:border-primary/50 transition-all duration-300 rounded-xl shadow-md hover:shadow-lg">
         <div className="aspect-video overflow-hidden rounded-t-xl">
-          <img
+          <Image
             src={project.thumbnail || "/placeholder.svg"}
             alt={project.title}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
