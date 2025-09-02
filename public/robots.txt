@@ -1,0 +1,8 @@
+# robots.txt for Teddy's Portfolio
+User-agent: *
+Allow: /
+
+# Disallow sensitive routes (if any)
+Disallow: /api/
+
+Sitemap: https://teddygithinji.me/sitemap.xml
