@@ -24,17 +24,26 @@ export const metadata: Metadata = {
     "Software Developer",
     "Automation Engineer",
     "Full Stack",
-    "React",
-    "Next.js",
-    "TypeScript",
+    "Backend developer",
+    "PostgreSQL",
+    "Python",
+    "FastAPI",
+    "MySQL",
+    "n8n",
+    "SQL",
+    "Flask",
   ],
   authors: [{ name: "Teddy Githinji" }],
   creator: "Teddy Githinji",
+  alternates: {
+    canonical: "https://teddygithinji.me",
+  },
+  themeColor: "#0f172a",
   openGraph: {
     title: "Teddy | Software Developer & Automation Engineer",
     description:
       "Portfolio showcasing full-stack software projects and workflow automations.",
-    url: "https://teddy-portfolio.vercel.app",
+    url: "https://teddygithinji.me",
     siteName: "Teddy's Portfolio",
     images: [
       {
@@ -65,7 +74,11 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  generator: "v0.app",
+  icons: {
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
+  },
 };
 
 export default function RootLayout({
@@ -88,6 +101,22 @@ export default function RootLayout({
         >
           {children}
         </ThemeProvider>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: "Teddy Githinji",
+              url: "https://teddygithinji.me",
+              jobTitle: "Software Developer & Automation Engineer",
+              sameAs: [
+                "https://github.com/Tgithinji",
+                "https://www.linkedin.com/in/teddy-githinji",
+              ],
+            }),
+          }}
+        />
       </body>
     </html>
   );

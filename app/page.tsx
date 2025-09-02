@@ -137,16 +137,16 @@ export default function Portfolio() {
       setFormErrors(errors);
       return;
     }
-  
+
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-  
+
       if (!res.ok) throw new Error("Failed to send message");
-  
+
       setFormData({ name: "", email: "", message: "" });
       setFormErrors({});
       alert("Message sent successfully!"); // or a nicer success UI
@@ -515,8 +515,9 @@ export default function Portfolio() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.6 }}
               >
-                Passionate full-stack developer(specializing in Backend technologies) with 3+ years of experience
-                building scalable web applications and automation solutions.
+                Passionate full-stack developer(specializing in Backend
+                technologies) with 3+ years of experience building scalable web
+                applications and automation solutions.
               </motion.p>
             </div>
 
@@ -569,10 +570,10 @@ export default function Portfolio() {
               <div className="flex items-center gap-3 p-3">
                 <Globe className="w-4 h-4 text-primary" />
                 <a
-                  href="https://tedgithinji.dev"
+                  href="https://tedgithinji.me"
                   className="text-xs lg:text-sm text-foreground hover:text-primary transition-colors"
                 >
-                  tedgithinji.dev
+                  tedgithinji.me
                 </a>
               </div>
             </motion.div>
@@ -587,7 +588,7 @@ export default function Portfolio() {
               {[
                 {
                   icon: Github,
-                  href: "https://github.com/Tgithinji/blog_api",
+                  href: "https://github.com/Tgithinji/",
                   color: "hover:text-gray-400",
                 },
                 {
@@ -1028,10 +1029,17 @@ export default function Portfolio() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.2 }}
                           >
-                            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                              <Download className="w-4 h-4 mr-2" />
-                              Download PDF Resume
-                            </Button>
+                            <a
+                              href="/Teddy-resume.pdf"
+                              download
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                                <Download className="w-4 h-4 mr-2" />
+                                Download PDF Resume
+                              </Button>
+                            </a>
                           </motion.div>
 
                           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
