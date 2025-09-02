@@ -117,13 +117,26 @@ export default function Portfolio() {
 
   const copyEmail = async () => {
     try {
-      await navigator.clipboard.writeText("tedgithinji83@gmail.com")
+      if (typeof navigator !== "undefined" && navigator.clipboard) {
+        // ✅ Modern browsers
+        await navigator.clipboard.writeText("tedgithinji83@gmail.com")
+      } else {
+        // ⚡ Fallback for older browsers
+        const textArea = document.createElement("textarea")
+        textArea.value = "tedgithinji83@gmail.com"
+        document.body.appendChild(textArea)
+        textArea.select()
+        document.execCommand("copy")
+        document.body.removeChild(textArea)
+      }
+  
+      // Show success state
       setCopiedEmail(true)
       setTimeout(() => setCopiedEmail(false), 2000)
     } catch (err) {
       console.error("Failed to copy email:", err)
     }
-  }
+  }  
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
