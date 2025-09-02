@@ -1379,11 +1379,14 @@ const ProjectCard = ({ project, type, index }) => {
     >
       <Card className="h-full bg-card border-border hover:border-primary/50 transition-all duration-300 rounded-xl shadow-md hover:shadow-lg">
         <div className="aspect-video overflow-hidden rounded-t-xl">
-          <Image
-            src={project.thumbnail || "/placeholder.svg"}
-            alt={project.title}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-          />
+        <Image
+              src={project.thumbnail || "/placeholder.svg"}
+              alt={project.title}
+              width={800}
+              height={450}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              priority={index === 0}
+            />
         </div>
         <CardContent className="p-4 space-y-3">
           <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">

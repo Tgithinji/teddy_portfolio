@@ -17,6 +17,7 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://teddygithinji.me"),
   title: "Teddy | Software Developer & Automation Engineer",
   description:
     "Portfolio showcasing full-stack software projects and workflow automations.",
@@ -38,7 +39,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://teddygithinji.me",
   },
-  themeColor: "#0f172a",
   openGraph: {
     title: "Teddy | Software Developer & Automation Engineer",
     description:
@@ -78,9 +78,13 @@ export const metadata: Metadata = {
     icon: "/favicon.png",
     shortcut: "/favicon.png",
     apple: "/favicon.png",
-  },
-    generator: 'v0.app'
+  }
 };
+
+export const viewport = {
+  themeColor: "#0f172a",
+}
+
 
 export default function RootLayout({
   children,
