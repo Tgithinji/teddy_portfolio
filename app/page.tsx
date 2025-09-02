@@ -91,12 +91,12 @@ const tabTransition = {
 
 export default function Portfolio() {
   const [activeTab, setActiveTab] = useState("projects")
+  const [copiedEmail, setCopiedEmail] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [activeProjectTab, setActiveProjectTab] = useState("software")
   const [isTabLoading, setIsTabLoading] = useState(false)
-
-  const [copiedEmail, setCopiedEmail] = useState(false)
   const [openFAQ, setOpenFAQ] = useState(null)
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -150,6 +150,8 @@ export default function Portfolio() {
       return
     }
 
+    setIsLoading(true)
+
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -161,10 +163,12 @@ export default function Portfolio() {
 
       setFormData({ name: "", email: "", message: "" })
       setFormErrors({})
-      alert("Message sent successfully!") // or a nicer success UI
+      alert("Message sent successfully!")
     } catch (err) {
       console.error(err)
       alert("Something went wrong. Please try again.")
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -966,7 +970,18 @@ export default function Portfolio() {
                                 transition={{ delay: 1.8 }}
                                 aria-label="Contact Form"
                               >
-                                Get In Touch
+                                {isLoading ? (
+                                  <div className="flex items-center gap-2">
+                                    <motion.div
+                                      className="w-4 h-4 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full"
+                                      animate={{ rotate: 360 }}
+                                      transition={{ duration: 1, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+                                    />
+                                    Sending...
+                                  </div>
+                                ) : (
+                                  "Send Message"
+                                )}
                               </motion.button>
                             </div>
                           </div>
@@ -1151,10 +1166,21 @@ export default function Portfolio() {
                           <motion.div variants={buttonHover} whileHover="hover" whileTap="tap">
                             <Button
                               type="submit"
-                              disabled={Object.keys(formErrors).length > 0}
-                              className="w-full md:w-auto md:px-8 bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl"
+                              disabled={Object.keys(formErrors).length > 0 || isLoading}
+                              className="w-full md:w-auto md:px-8 bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed"
                             >
-                              Send Message
+                              {isLoading ? (
+                                <div className="flex items-center gap-2">
+                                  <motion.div
+                                    className="w-4 h-4 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full"
+                                    animate={{ rotate: 360 }}
+                                    transition={{ duration: 1, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+                                  />
+                                  Sending...
+                                </div>
+                              ) : (
+                                "Send Message"
+                              )}
                             </Button>
                           </motion.div>
                         </motion.form>
