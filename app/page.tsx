@@ -267,16 +267,16 @@ export default function Portfolio() {
 
   const education = [
     {
-      degree: "Bachelor of Science in Telecommunications & IT",
-      institution: "Kenyatta University",
-      year: "Ongiong",
-      description: "Focused on software engineering, algorithms, and web technologies.",
-    },
-    {
       degree: "Software Engineering & AI",
       institution: "ALX Africa",
       year: "2024",
       description: "Intensive 12-month program covering modern software development stack.",
+    },
+    {
+      degree: "Bachelor of Science in Telecommunications & IT",
+      institution: "Kenyatta University",
+      year: "Ongoing",
+      description: "Focused on algorithms, and modern technologies.",
     },
   ]
 

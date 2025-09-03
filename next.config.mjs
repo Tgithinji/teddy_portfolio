@@ -14,6 +14,9 @@ const withAnalyzer = withBundleAnalyzer({
 const nextConfig = {
   ...baseConfig,
   ...withAnalyzer,
+  images: {
+    formats: ['image/avif', 'image/webp'],
+  },
 };
 
 export default nextConfig;
