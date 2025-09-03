@@ -119,11 +119,11 @@ export default function Portfolio() {
     try {
       if (typeof navigator !== "undefined" && navigator.clipboard) {
         // Modern browsers
-        await navigator.clipboard.writeText("tedgithinji83@gmail.com")
+        await navigator.clipboard.writeText("teddy@teddygithinji.me")
       } else {
         // Fallback for older browsers
         const textArea = document.createElement("textarea")
-        textArea.value = "tedgithinji83@gmail.com"
+        textArea.value = "teddy@teddygithinji.me"
         document.body.appendChild(textArea)
         textArea.select()
         document.execCommand("copy")
@@ -605,7 +605,7 @@ export default function Portfolio() {
               >
                 <Mail className="w-4 h-4 text-primary" />
                 <span className="text-xs lg:text-sm text-foreground group-hover:text-accent-foreground transition-colors">
-                  tedgithinji83@gmail.com
+                  teddy@teddygithinji.me
                 </span>
                 {copiedEmail ? (
                   <Check className="w-3 h-3 text-green-500 ml-auto" />
@@ -1210,7 +1210,7 @@ export default function Portfolio() {
                             </h3>
                             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                               <motion.a
-                                href="mailto:tedgithinji83@gmail.com"
+                                href="mailto:teddy@teddygithinji.me"
                                 className="flex flex-col items-center gap-2 p-4 rounded-lg bg-card border border-border hover:border-primary/50 transition-all duration-300 group"
                                 variants={scaleOnHover}
                                 whileHover="hover"
