@@ -50,9 +50,10 @@ Your app will be live at http://localhost:3000
 .
 
 ## 📦 Build & Deploy
+```bash
 npm run build
 npm run start
-
+```
 
 Deployed on Vercel for production.
 
@@ -63,7 +64,7 @@ Feel free to use the code for inspiration but please give credit where due 🙌
 
 ## 📬 Contact  
 
-- 📧 **Email:** [tedgithinji83@gmail.com](mailto:tedgithinji83@gmail.com)  
-- 🌍 **Portfolio:** [https://teddy-portfolio.vercel.app](https://teddy-portfolio.vercel.app)  
+- 📧 **Email:** [tedgithinji83@gmail.com](mailto:teddy@teddygithinji.me)  
+- 🌍 **Portfolio:** [https://teddy-portfolio.vercel.app](https://teddygithinji.me)  
 - 💻 **GitHub:** [https://github.com/Tgithinji](https://github.com/Tgithinji)  
 - 🔗 **LinkedIn:** [https://www.linkedin.com/in/teddygithinji](https://www.linkedin.com/in/teddygithinji)  
