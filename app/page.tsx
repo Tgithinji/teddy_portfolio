@@ -616,7 +616,7 @@ export default function Portfolio() {
 
               <div className="flex items-center gap-3 p-3">
                 <Phone className="w-4 h-4 text-primary" />
-                <span className="text-xs lg:text-sm text-foreground">+254 743844111</span>
+                <span className="text-xs lg:text-sm text-foreground">+254 702783943</span>
               </div>
 
               <div className="flex items-center gap-3 p-3">
