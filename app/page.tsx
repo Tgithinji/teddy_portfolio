@@ -34,61 +34,33 @@ import {
   Calendar,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
-
-const fadeInUp = {
-  initial: { opacity: 0, y: 30 },
-  animate: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: -20 },
-};
-
-const fadeInSlide = {
-  initial: { opacity: 0, x: -20 },
-  animate: { opacity: 1, x: 0 },
-  exit: { opacity: 0, x: 20 },
-};
-
-const staggerContainer = {
-  animate: {
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
-};
-
-const scaleOnHover = {
-  hover: {
-    scale: 1.03,
-    y: -6,
-    transition: { type: "spring", stiffness: 400, damping: 25 },
-  },
-};
-
-const glowOnHover = {
-  hover: {
-    boxShadow:
-      "0 20px 25px -5px rgba(var(--primary), 0.4), 0 10px 10px -5px rgba(var(--primary), 0.2)",
-    borderColor: "rgba(var(--primary), 0.6)",
-    transition: { duration: 0.3 },
-  },
-};
-
-const buttonHover = {
-  hover: {
-    scale: 1.05,
-    boxShadow: "0 0 0 3px rgba(var(--primary), 0.3)",
-    transition: { type: "spring", stiffness: 400, damping: 20 },
-  },
-  tap: {
-    scale: 0.95,
-  },
-};
-
-const tabTransition = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: -20 },
-  transition: { duration: 0.4, ease: "easeInOut" },
-};
+import { ProjectCard } from "@/components/portfolio/ProjectCard";
+import { ServiceCard } from "@/components/portfolio/ServiceCard";
+import { PricingCard } from "@/components/portfolio/PricingCard";
+import { FAQItem } from "@/components/portfolio/FAQItem";
+import { SkillsGrid } from "@/components/portfolio/SkillsGrid";
+import { EducationItem } from "@/components/portfolio/EducationItem";
+import { ExperienceItem } from "@/components/portfolio/ExperienceItem";
+import {
+  fadeInUp,
+  fadeInSlide,
+  staggerContainer,
+  scaleOnHover,
+  glowOnHover,
+  buttonHover,
+  tabTransition,
+} from "@/components/portfolio/animations";
+import {
+  softwareProjects,
+  automationProjects,
+  experiences,
+  education,
+  skills,
+  services,
+  automationPricing,
+  softwarePricing,
+  faqData,
+} from "@/data/portfolio";
 
 export default function Portfolio() {
   const [activeTab, setActiveTab] = useState("projects");
@@ -96,7 +68,7 @@ export default function Portfolio() {
   const [isLoading, setIsLoading] = useState(false);
   const [activeProjectTab, setActiveProjectTab] = useState("software");
   const [isTabLoading, setIsTabLoading] = useState(false);
-  const [openFAQ, setOpenFAQ] = useState(null);
+  const [openFAQ, setOpenFAQ] = useState<number | null>(null);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -139,21 +111,24 @@ export default function Portfolio() {
     }
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    if (formErrors[name]) {
+    if ((formErrors as any)[name]) {
       setFormErrors((prev) => ({ ...prev, [name]: "" }));
     }
   };
 
   const validateForm = () => {
     const errors = {};
-    if (!formData.name.trim()) errors.name = "Name is required";
-    if (!formData.email.trim()) errors.email = "Email is required";
+    if (!formData.name.trim()) (errors as any).name = "Name is required";
+    if (!formData.email.trim()) (errors as any).email = "Email is required";
     else if (!/\S+@\S+\.\S+/.test(formData.email))
-      errors.email = "Email is invalid";
-    if (!formData.message.trim()) errors.message = "Message is required";
+      (errors as any).email = "Email is invalid";
+    if (!formData.message.trim())
+      (errors as any).message = "Message is required";
     return errors;
   };
 
@@ -187,304 +162,6 @@ export default function Portfolio() {
     }
   };
 
-  const softwareProjects = [
-    {
-      id: 1,
-      title: "Fondation Marie Mwape",
-      description:
-        "A bilingual (French/English) NGO website highlighting the mission, leadership, and initiatives of Fondation Marie Mwape pour le Progrès Social.",
-      thumbnail: "/fondationmwape.webp",
-      techStack: ["Next.js", "React", "Tailwind CSS", "Vercel"],
-      websiteUrl: "https://fondation-mwape.vercel.app/",
-      githubUrl: "https://github.com/Tgithinji/fondation-mwape",
-      impact:
-        "Designed and deployed a professional NGO website aligned with brand identity, improving outreach and credibility for fundraising and social impact.",
-    },
-    {
-      id: 2,
-      title: "Booking Wheels",
-      description:
-        "A car rental platform that lets users browse vehicles, book online, and manage reservations with a modern stack",
-      thumbnail: "/Bookingwheels.webp",
-      techStack: ["Flask", "MySQL", "HTML", "CSS", "JavaScript"],
-      websiteUrl: "https://githinjiguru.pythonanywhere.com/",
-      githubUrl: "https://github.com/Tgithinji/Booking_wheels",
-      impact:
-        "Developed an end-to-end e-commerce workflow with user authentication, cart, and booking flow.",
-    },
-    {
-      id: 3,
-      title: "Blog API",
-      description:
-        "API with endpoints for blogging functionality — user auth, posts, comments, likes, follows.",
-      thumbnail: "/blog_api.webp",
-      techStack: ["Python", "FastAPI", "PostgrSQL", "SQLAlchemy", "JWT"],
-      websiteUrl: "",
-      githubUrl: "https://github.com/Tgithinji/blog_api",
-      impact:
-        "The structured endpoints for pagination, following, and comment management solidified my understanding of scalable API design",
-    },
-  ];
-
-  const automationProjects = [
-    {
-      id: 1,
-      title: "Delivery Chat & Rider Assignment",
-      problem:
-        "The delivery company faced delays and miscommunication between customers, dispatchers, and riders.",
-      solution:
-        "Created a multi-stage chat automation: (1) Customer order intake, (2) Rider assignment with accept/decline + timeout logic, (3) Real-time updates synced with Airtable and customer notifications.",
-      impact:
-        "Reduced order assignment delays, improved customer transparency with live updates, and streamlined communication across operations.",
-      tech: ["n8n", "Airtable", "WhatsApp API", "OpenAI intergration"],
-      thumbnail: "/Nai_del.webp",
-      demo: "https://drive.google.com/drive/folders/1eE4IKj9B3DhORzfXi7ZO-pv--H-KBkdL?usp=sharing",
-    },
-    {
-      id: 2,
-      title: "Document Uploader & CRM Autofill",
-      problem:
-        "Manual document handling was time-consuming and error-prone, requiring staff to upload PDFs and manually copy data into the CRM.",
-      solution:
-        "Built an automation that allows PDF/document uploads, extracts key information using OCR/AI, and automatically fills CRM fields through API integration.",
-      impact:
-        "Eliminated repetitive manual data entry, reduced human error, and saved hours of administrative work per week.",
-      thumbnail: "/Document-crm.webp",
-      tech: ["n8n", "OpenAI API", "API integration"],
-      demo: "https://drive.google.com/drive/folders/1K6BxNrc6Bx7WNkYs5pljUpaz__xpjLFv?usp=sharing",
-    },
-  ];
-
-  const experiences = [
-    {
-      title: "Software Engineer",
-      company: "Rahisisha Tech",
-      location: "Nairobi, Kenya",
-      duration: "2025 - Present",
-      description:
-        "Contributing to the development of scalable web applications and supporting junior developers.",
-      achievements: [
-        "Designed and implemented modular backend services to improve maintainability",
-        "Optimized database queries and caching, reducing page load times noticeably",
-        "Collaborated with a team of 5 developers to deliver new product features on schedule",
-      ],
-    },
-    {
-      title: "Intern Backend Engineer",
-      company: "ALX",
-      location: "Remote",
-      duration: "2024 - 2025",
-      description:
-        "Assisted in building backend systems and supporting product development for startup projects.",
-      achievements: [
-        "Developed core modules for an MVP used in initial user testing",
-        "Wrote automated tests that improved code reliability and reduced recurring bugs",
-      ],
-    },
-  ];
-
-  const education = [
-    {
-      degree: "Software Engineering & AI",
-      institution: "ALX Africa",
-      year: "",
-      description:
-        "Intensive 12-month program covering modern software development stack.",
-    },
-    {
-      degree: "Bachelor of Science in Telecommunications & IT",
-      institution: "Kenyatta University",
-      year: "",
-      description: "Focused on algorithms, and modern technologies.",
-    },
-  ];
-
-  const skills = [
-    "JavaScript",
-    "TypeScript",
-    "React",
-    "Next.js",
-    "Node.js",
-    "Python",
-    "PostgreSQL",
-    "MySQL",
-    "FastAPI",
-    "Django",
-    "Flask",
-    "AWS",
-    "Azure",
-    "Docker",
-    "Git",
-    "n8n",
-    "make.com",
-    "Tailwind CSS",
-    "GraphQL",
-    "REST APIs",
-    "Microservices",
-  ];
-
-  const services = [
-    {
-      icon: Code,
-      title: "Custom Software Development",
-      description:
-        "Full-stack web applications, mobile apps, and enterprise solutions tailored to your business needs.",
-      cta: "Start Project",
-      features: [],
-    },
-    {
-      icon: Zap,
-      title: "Process Automation",
-      description:
-        "Streamline your workflows with intelligent automation that saves time and reduces manual errors.",
-      cta: "Automate Now",
-      features: [],
-    },
-    {
-      icon: Puzzle,
-      title: "System Integration",
-      description:
-        "Connect your existing tools and platforms for seamless data flow and improved efficiency.",
-      cta: "Integrate Systems",
-      features: [],
-    },
-    {
-      icon: Bot,
-      title: "AI Assistant Development",
-      description:
-        "Custom AI chatbots and intelligent assistants to enhance customer experience and support.",
-      cta: "Build AI Solution",
-      features: [],
-    },
-  ];
-
-  const automationPlans = [
-    {
-      name: "Starter",
-      price: "KSh 7,500",
-      priceSubtext: "~$60",
-      description: "Simple 1–2 workflow automation",
-      features: [
-        "Connection of up to 2 apps",
-        "Basic monitoring",
-        "Email support",
-        "Setup included",
-      ],
-      cta: "Get Started",
-    },
-    {
-      name: "Growth",
-      price: "KSh 20,000",
-      priceSubtext: "~$160",
-      description: "Multi-step workflows",
-      features: [
-        "Connection of up to 5 apps",
-        "Advanced monitoring",
-        "Monthly support calls",
-        "Priority email support",
-      ],
-      cta: "Scale with Automation",
-      isHighlighted: true,
-    },
-    {
-      name: "Enterprise",
-      price: "Custom Quote",
-      priceSubtext: "",
-      description: "Unlimited workflows",
-      features: [
-        "Advanced integrations (APIs, AI agents)",
-        "Dedicated support",
-        "Custom development",
-        "SLA guarantees",
-      ],
-      cta: "Request Quote",
-    },
-  ];
-
-  const softwarePlans = [
-    {
-      name: "Starter Website",
-      price: "KSh 15,000",
-      priceSubtext: "~$120",
-      description: "Simple static site (up to 3 pages)",
-      features: [
-        "Responsive design",
-        "Fast delivery",
-        "Basic SEO setup",
-        "Contact form",
-      ],
-      cta: "Start Small",
-    },
-    {
-      name: "Business Website",
-      price: "KSh 35,000",
-      priceSubtext: "~$280",
-      description: "Full website (5–7 pages)",
-      features: [
-        "Blog or CMS integration",
-        "SEO & mobile optimization",
-        "Analytics setup",
-        "Social media integration",
-      ],
-      cta: "Build My Site",
-      isHighlighted: true,
-    },
-    {
-      name: "Web App",
-      price: "From KSh 65,000",
-      priceSubtext: "~$500",
-      description: "Custom web application",
-      features: [
-        "Authentication + database",
-        "APIs and integrations",
-        "Admin dashboard",
-        "User management",
-      ],
-      cta: "Get a Web App",
-    },
-    {
-      name: "Enterprise Solution",
-      price: "Custom",
-      priceSubtext: "",
-      description: "Complex dashboards / AI integration",
-      features: [
-        "Multi-user support",
-        "Dedicated infrastructure",
-        "Advanced security",
-        "Ongoing maintenance",
-      ],
-      cta: "Request Quote",
-    },
-  ];
-
-  const faqData = [
-    {
-      question: "How long does setup take?",
-      answer:
-        "Most starter automations can be set up in 2–3 days. Larger, custom workflows may take 1–2 weeks depending on complexity.",
-    },
-    {
-      question: "Which tools do you use for automation?",
-      answer:
-        "I primarily use Make (Integromat), n8n, and Zapier. For advanced projects, I also integrate AI agents and custom APIs.",
-    },
-    {
-      question: "Can you integrate with my existing tools?",
-      answer:
-        "Yes. I can connect CRMs, payment systems (like Mpesa), Google Workspace, WhatsApp, and most major apps.",
-    },
-    {
-      question: "What if I need ongoing support?",
-      answer:
-        "My Growth and Enterprise plans include monitoring and support. For Starter plans, you can upgrade anytime if you need more.",
-    },
-    {
-      question: "How do payments work?",
-      answer:
-        "For Starter and Growth, payment is upfront. For Enterprise, we agree on a custom plan and billing cycle.",
-    },
-  ];
-
   const handleContactClick = () => {
     setIsTabLoading(true);
     setActiveTab("contact");
@@ -505,103 +182,6 @@ export default function Portfolio() {
       }, 100);
     }
   };
-
-  const automationPricing = [
-    {
-      name: "Starter",
-      price: "7,500",
-      usdPrice: 60,
-      description: "Simple 1–2 workflow automation",
-      features: [
-        "Connection of up to 2 apps",
-        "Basic monitoring",
-        "Email support",
-        "Setup included",
-      ],
-      popular: false,
-    },
-    {
-      name: "Growth",
-      price: "20,000",
-      usdPrice: 160,
-      description: "Multi-step workflows",
-      features: [
-        "Connection of up to 5 apps",
-        "Advanced monitoring",
-        "Monthly support calls",
-        "Priority email support",
-      ],
-      popular: true,
-    },
-    {
-      name: "Enterprise",
-      price: "Custom",
-      usdPrice: "Custom",
-      description: "Unlimited workflows",
-      features: [
-        "Advanced integrations (APIs, AI agents)",
-        "Dedicated support",
-        "Custom development",
-        "SLA guarantees",
-      ],
-      popular: false,
-    },
-  ];
-
-  const softwarePricing = [
-    {
-      name: "Starter Website",
-      price: "15,000",
-      usdPrice: 120,
-      description: "Simple static site (up to 3 pages)",
-      features: [
-        "Responsive design",
-        "Fast delivery",
-        "Basic SEO setup",
-        "Contact form",
-      ],
-      popular: false,
-    },
-    {
-      name: "Business Website",
-      price: "35,000",
-      usdPrice: 280,
-      description: "Full website (5–7 pages)",
-      features: [
-        "Blog or CMS integration",
-        "SEO & mobile optimization",
-        "Analytics setup",
-        "Social media integration",
-      ],
-      popular: true,
-    },
-    {
-      name: "Web App",
-      price: "From 65,000",
-      usdPrice: 500,
-      description: "Custom web application",
-      features: [
-        "Authentication + database",
-        "APIs and integrations",
-        "Admin dashboard",
-        "User management",
-      ],
-      popular: false,
-    },
-    {
-      name: "Enterprise Solution",
-      price: "Custom",
-      usdPrice: "Custom",
-      description: "Complex dashboards / AI integration",
-      features: [
-        "Multi-user support",
-        "Dedicated infrastructure",
-        "Advanced security",
-        "Ongoing maintenance",
-      ],
-      popular: false,
-    },
-  ];
 
   return (
     <div className="min-h-screen bg-background">
@@ -950,14 +530,37 @@ export default function Portfolio() {
                           animate={{ opacity: 1 }}
                           transition={{ delay: 0.2, duration: 0.6 }}
                         >
-                          {services.map((service, index) => (
-                            <ServiceCard
-                              key={service.title}
-                              {...service}
-                              index={index}
-                              onCTAClick={handleCTAClick}
-                            />
-                          ))}
+                          {services.map((service, index) => {
+                            let IconComponent;
+                            switch (service.icon) {
+                              case "Code":
+                                IconComponent = Code;
+                                break;
+                              case "Zap":
+                                IconComponent = Zap;
+                                break;
+                              case "Puzzle":
+                                IconComponent = Puzzle;
+                                break;
+                              case "Bot":
+                                IconComponent = Bot;
+                                break;
+                              default:
+                                IconComponent = Code;
+                            }
+
+                            return (
+                              <ServiceCard
+                                key={service.title}
+                                icon={IconComponent}
+                                title={service.title}
+                                description={service.description}
+                                features={service.features}
+                                index={index}
+                                onCTAClick={handleCTAClick}
+                              />
+                            );
+                          })}
                         </motion.div>
 
                         {/* Pricing Section */}
@@ -996,7 +599,12 @@ export default function Portfolio() {
                                 {automationPricing.map((plan, index) => (
                                   <PricingCard
                                     key={plan.name}
-                                    {...plan}
+                                    name={plan.name}
+                                    price={plan.price}
+                                    usdPrice={plan.usdPrice}
+                                    description={plan.description}
+                                    features={plan.features}
+                                    popular={plan.popular}
                                     index={index}
                                     onCTAClick={handleCTAClick}
                                   />
@@ -1014,7 +622,12 @@ export default function Portfolio() {
                                 {softwarePricing.map((plan, index) => (
                                   <PricingCard
                                     key={plan.name}
-                                    {...plan}
+                                    name={plan.name}
+                                    price={plan.price}
+                                    usdPrice={plan.usdPrice}
+                                    description={plan.description}
+                                    features={plan.features}
+                                    popular={plan.popular}
                                     index={index}
                                     onCTAClick={handleCTAClick}
                                   />
@@ -1286,16 +899,16 @@ export default function Portfolio() {
                                 placeholder="Your full name"
                                 value={formData.name}
                                 onChange={handleInputChange}
-                                className={`bg-background border-border rounded-xl transition-all duration-300 focus:ring-2 focus:ring-primary/20 ${formErrors.name ? "border-red-500" : ""}`}
+                                className={`bg-background border-border rounded-xl transition-all duration-300 focus:ring-2 focus:ring-primary/20 ${(formErrors as any).name ? "border-red-500" : ""}`}
                               />
                             </motion.div>
-                            {formErrors.name && (
+                            {(formErrors as any).name && (
                               <p
                                 id="name-error"
                                 className="text-red-500 text-xs"
                                 role="alert"
                               >
-                                {formErrors.name}
+                                {(formErrors as any).name}
                               </p>
                             )}
                           </motion.div>
@@ -1324,16 +937,16 @@ export default function Portfolio() {
                                 placeholder="your.email@example.com"
                                 value={formData.email}
                                 onChange={handleInputChange}
-                                className={`bg-background border-border rounded-xl transition-all duration-300 focus:ring-2 focus:ring-primary/20 ${formErrors.email ? "border-red-500" : ""}`}
+                                className={`bg-background border-border rounded-xl transition-all duration-300 focus:ring-2 focus:ring-primary/20 ${(formErrors as any).email ? "border-red-500" : ""}`}
                               />
                             </motion.div>
-                            {formErrors.email && (
+                            {(formErrors as any).email && (
                               <p
                                 id="email-error"
                                 className="text-red-500 text-xs"
                                 role="alert"
                               >
-                                {formErrors.email}
+                                {(formErrors as any).email}
                               </p>
                             )}
                           </motion.div>
@@ -1362,16 +975,16 @@ export default function Portfolio() {
                                 rows={6}
                                 value={formData.message}
                                 onChange={handleInputChange}
-                                className={`bg-background border-border rounded-xl resize-none transition-all duration-300 focus:ring-2 focus:ring-primary/20 ${formErrors.message ? "border-red-500" : ""}`}
+                                className={`bg-background border-border rounded-xl resize-none transition-all duration-300 focus:ring-2 focus:ring-primary/20 ${(formErrors as any).message ? "border-red-500" : ""}`}
                               />
                             </motion.div>
-                            {formErrors.message && (
+                            {(formErrors as any).message && (
                               <p
                                 id="message-error"
                                 className="text-red-500 text-xs"
                                 role="alert"
                               >
-                                {formErrors.message}
+                                {(formErrors as any).message}
                               </p>
                             )}
                           </motion.div>
@@ -1493,210 +1106,7 @@ export default function Portfolio() {
   );
 }
 
-const ProjectCard = ({ project, type, index }) => {
-  if (type === "software") {
-    return (
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: index * 0.15, duration: 0.6 }}
-        variants={scaleOnHover}
-        whileHover="hover"
-        className="group"
-      >
-        <Card className="h-full bg-card border-border hover:border-primary/50 transition-all duration-300 rounded-2xl shadow-lg hover:shadow-xl overflow-hidden">
-          <div className="aspect-video overflow-hidden">
-            {project.video ? (
-              // Case 1: Self-hosted video
-              <video
-                src={project.video}
-                controls
-                className="w-full h-full object-cover"
-              />
-            ) : project.embed ? (
-              // Case 2: External embed (YouTube, Google Drive, Loom, etc.)
-              <iframe
-                src={project.embed}
-                title={project.title}
-                className="w-full h-full rounded-md"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            ) : (
-              // Case 3: Fallback image
-              <Image
-                src={project.thumbnail || "/placeholder.svg"}
-                alt={project.title}
-                width={800}
-                height={450}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                priority={index === 0}
-              />
-            )}
-          </div>
-          <CardContent className="p-4 space-y-3">
-            <h3 className="text-lg lg:text-xl font-bold text-foreground group-hover:text-primary transition-colors">
-              {project.title}
-            </h3>
-            <p className="text-muted-foreground text-sm leading-relaxed">
-              {project.description}
-            </p>
-
-            <div className="flex flex-wrap gap-2">
-              {project.techStack.map((tech) => (
-                <Badge key={tech} variant="secondary" className="text-xs">
-                  {tech}
-                </Badge>
-              ))}
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-2 pt-2">
-              {/* Live Website */}
-              <motion.div
-                variants={buttonHover}
-                whileHover="hover"
-                whileTap="tap"
-                className="flex-1"
-              >
-                {project.websiteUrl ? (
-                  <a
-                    href={project.websiteUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full"
-                    aria-label={`View ${project.title} website`}
-                  >
-                    <Button size="sm" className="w-full text-xs">
-                      <ExternalLink className="w-3 h-3 mr-1" />
-                      View Website
-                    </Button>
-                  </a>
-                ) : (
-                  <Button
-                    size="sm"
-                    disabled
-                    className="w-full text-xs"
-                    aria-label={`${project.title} website coming soon`}
-                  >
-                    <ExternalLink className="w-3 h-3 mr-1" />
-                    Coming Soon 🚧
-                  </Button>
-                )}
-              </motion.div>
-
-              {/* GitHub Repo */}
-              <motion.div
-                variants={buttonHover}
-                whileHover="hover"
-                whileTap="tap"
-                className="flex-1"
-              >
-                <a
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full"
-                  aria-label={`View ${project.title} GitHub repository`}
-                >
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    className="w-full text-xs bg-transparent"
-                  >
-                    <Github className="w-3 h-3 mr-1" />
-                    GitHub Repo
-                  </Button>
-                </a>
-              </motion.div>
-            </div>
-
-            {project.impact && (
-              <p className="text-xs italic text-primary/80 bg-primary/10 p-2 rounded-lg">
-                {project.impact}
-              </p>
-            )}
-          </CardContent>
-        </Card>
-      </motion.div>
-    );
-  }
-
-  // Automation project card
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.15, duration: 0.6 }}
-      variants={scaleOnHover}
-      whileHover="hover"
-      className="group"
-    >
-      <Card className="h-full bg-card border-border hover:border-primary/50 transition-all duration-300 rounded-xl shadow-md hover:shadow-lg">
-        <div className="aspect-video overflow-hidden rounded-t-xl">
-          <Image
-            src={project.thumbnail || "/placeholder.svg"}
-            alt={project.title}
-            width={800}
-            height={450}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-            priority={index === 0}
-          />
-        </div>
-        <CardContent className="p-4 space-y-3">
-          <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">
-            {project.title}
-          </h3>
-          <div className="space-y-2">
-            <p className="text-xs italic text-muted-foreground">
-              <strong>Problem:</strong> {project.problem}
-            </p>
-            <p className="text-sm text-foreground">
-              <strong>Solution:</strong> {project.solution}
-            </p>
-            <div className="bg-primary/10 p-2 rounded-lg">
-              <p className="text-xs font-medium text-primary">
-                <strong>Impact:</strong> {project.impact}
-              </p>
-            </div>
-          </div>
-          <motion.div
-            variants={buttonHover}
-            whileHover="hover"
-            whileTap="tap"
-            className="flex-1"
-          >
-            {project.demo ? (
-              <a
-                href={project.demo}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full"
-                aria-label={`View ${project.title} demo`}
-              >
-                <Button size="sm" className="w-full text-xs">
-                  <ExternalLink className="w-3 h-3 mr-1" />
-                  View Demo
-                </Button>
-              </a>
-            ) : (
-              <Button
-                size="sm"
-                disabled
-                className="w-full text-xs"
-                aria-label={`${project.title} demo not available`}
-              >
-                <ExternalLink className="w-3 h-3 mr-1" />
-                No Demo Available
-              </Button>
-            )}
-          </motion.div>
-        </CardContent>
-      </Card>
-    </motion.div>
-  );
-};
-
-const SoftwareCaseStudyGrid = ({ projects }) => {
+const SoftwareCaseStudyGrid = ({ projects }: { projects: any[] }) => {
   return (
     <motion.div
       className="grid grid-cols-1 md:grid-cols-2 gap-6"
@@ -1704,7 +1114,7 @@ const SoftwareCaseStudyGrid = ({ projects }) => {
       initial="initial"
       animate="animate"
     >
-      {projects.map((project, index) => (
+      {projects.map((project: any, index: number) => (
         <ProjectCard
           key={project.id}
           project={project}
@@ -1716,7 +1126,7 @@ const SoftwareCaseStudyGrid = ({ projects }) => {
   );
 };
 
-const AutomationCaseStudyGrid = ({ projects }) => {
+const AutomationCaseStudyGrid = ({ projects }: { projects: any[] }) => {
   return (
     <motion.div
       className="grid grid-cols-1 md:grid-cols-2 gap-6"
@@ -1724,7 +1134,7 @@ const AutomationCaseStudyGrid = ({ projects }) => {
       initial="initial"
       animate="animate"
     >
-      {projects.map((project, index) => (
+      {projects.map((project: any, index: number) => (
         <ProjectCard
           key={project.id}
           project={project}
@@ -1736,7 +1146,13 @@ const AutomationCaseStudyGrid = ({ projects }) => {
   );
 };
 
-const TabNavigation = ({ activeProjectTab, setActiveProjectTab }) => {
+const TabNavigation = ({
+  activeProjectTab,
+  setActiveProjectTab,
+}: {
+  activeProjectTab: string;
+  setActiveProjectTab: (tab: string) => void;
+}) => {
   return (
     <div className="flex justify-center mb-6">
       <motion.div
@@ -1787,294 +1203,5 @@ const TabNavigation = ({ activeProjectTab, setActiveProjectTab }) => {
         </motion.button>
       </motion.div>
     </div>
-  );
-};
-
-const FAQItem = ({ question, answer, isOpen, onToggle }) => {
-  return (
-    <motion.div
-      className="bg-card/50 backdrop-blur-sm border border-border rounded-lg overflow-hidden hover:shadow-lg hover:shadow-primary/10 transition-all duration-300"
-      variants={scaleOnHover}
-      whileHover="hover"
-      layout
-    >
-      <button
-        onClick={onToggle}
-        className="w-full p-4 lg:p-6 text-left flex items-center justify-between hover:bg-accent/20 transition-colors duration-200"
-        aria-expanded={isOpen}
-        aria-controls={`faq-answer-${question.toLowerCase().replace(/\s+/g, "-")}`}
-      >
-        <h3 className="text-lg font-semibold text-foreground pr-4">
-          {question}
-        </h3>
-        <motion.div
-          animate={{ rotate: isOpen ? 180 : 0 }}
-          transition={{ duration: 0.2 }}
-          className="flex-shrink-0"
-        >
-          {isOpen ? (
-            <Minus className="h-5 w-5 text-primary" />
-          ) : (
-            <Plus className="h-5 w-5 text-primary" />
-          )}
-        </motion.div>
-      </button>
-
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="overflow-hidden"
-            id={`faq-answer-${question.toLowerCase().replace(/\s+/g, "-")}`}
-          >
-            <div className="px-4 lg:px-6 pb-4 lg:pb-6 pt-0">
-              <div className="border-t border-border/50 pt-4">
-                <p className="text-muted-foreground leading-relaxed">
-                  {answer}
-                </p>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
-  );
-};
-
-// ServiceCard component
-const ServiceCard = ({
-  icon: Icon,
-  title,
-  description,
-  features,
-  index,
-  onCTAClick,
-}) => {
-  const getServiceMessage = (title: string) => {
-    const messages = {
-      "Custom Software Development":
-        "Hi Teddy, I'm interested in custom software development services.",
-      "Process Automation":
-        "Hi Teddy, I'd like to learn more about process automation solutions.",
-      "System Integration":
-        "Hi Teddy, I need help with system integration for my business.",
-      "AI Assistant Development":
-        "Hi Teddy, I'm interested in AI assistant development services.",
-    };
-    return (
-      messages[title] ||
-      `Hi Teddy, I'm interested in ${title.toLowerCase()} services.`
-    );
-  };
-
-  return (
-    <motion.div
-      className="bg-card border border-border rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 group hover:scale-[1.02]"
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.1, duration: 0.5 }}
-      whileHover={{
-        boxShadow:
-          "0 20px 40px rgba(0,0,0,0.1), 0 0 0 1px rgba(var(--primary), 0.1)",
-      }}
-    >
-      <div className="flex items-center mb-4">
-        <div className="p-3 bg-primary/10 rounded-xl mr-4 group-hover:bg-primary/20 transition-colors duration-300">
-          <Icon className="h-6 w-6 text-primary" />
-        </div>
-        <h3 className="text-xl font-bold text-foreground">{title}</h3>
-      </div>
-      <p className="text-muted-foreground mb-4 leading-relaxed">
-        {description}
-      </p>
-      <ul className="space-y-2 mb-6">
-        {features.map((feature, idx) => (
-          <li
-            key={idx}
-            className="flex items-center text-sm text-muted-foreground"
-          >
-            <Check className="h-4 w-4 text-primary mr-2 flex-shrink-0" />
-            {feature}
-          </li>
-        ))}
-      </ul>
-      <motion.div variants={buttonHover} whileHover="hover" whileTap="tap">
-        <Button
-          onClick={() => onCTAClick(getServiceMessage(title))}
-          className="w-full bg-primary hover:bg-primary/90 text-primary-foreground shadow-md hover:shadow-lg transition-all duration-300"
-        >
-          Get Started
-        </Button>
-      </motion.div>
-    </motion.div>
-  );
-};
-
-// PricingCard component
-const PricingCard = ({
-  name,
-  price,
-  usdPrice,
-  description,
-  features,
-  popular,
-  index,
-  onCTAClick,
-}) => {
-  const getPricingMessage = (planName: string) => {
-    return `Hi Teddy, I'd like to start with the ${planName} plan. Can we discuss the details?`;
-  };
-
-  return (
-    <motion.div
-      className={`relative bg-card border rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 group hover:scale-[1.02] ${
-        popular ? "border-primary ring-2 ring-primary/20" : "border-border"
-      }`}
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.1, duration: 0.5 }}
-      whileHover={{
-        boxShadow: popular
-          ? "0 20px 40px rgba(var(--primary), 0.15), 0 0 0 1px rgba(var(--primary), 0.2)"
-          : "0 20px 40px rgba(0,0,0,0.1), 0 0 0 1px rgba(var(--primary), 0.1)",
-      }}
-    >
-      {popular && (
-        <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-          <span className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-medium">
-            Most Popular
-          </span>
-        </div>
-      )}
-
-      <div className="text-center mb-6">
-        <h3 className="text-xl font-bold text-foreground mb-2">{name}</h3>
-        <div className="mb-2">
-          <span className="text-3xl font-bold text-foreground">{price}</span>
-          <span className="text-muted-foreground ml-1">KSh</span>
-        </div>
-        <p className="text-sm text-muted-foreground">≈ ${usdPrice} USD</p>
-        <p className="text-muted-foreground mt-2">{description}</p>
-      </div>
-
-      <ul className="space-y-3 mb-6">
-        {features.map((feature, idx) => (
-          <li key={idx} className="flex items-start text-sm">
-            <Check className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0" />
-            <span className="text-muted-foreground">{feature}</span>
-          </li>
-        ))}
-      </ul>
-
-      <motion.div variants={buttonHover} whileHover="hover" whileTap="tap">
-        <Button
-          onClick={() => onCTAClick(getPricingMessage(name))}
-          className={`w-full shadow-md hover:shadow-lg transition-all duration-300 ${
-            popular
-              ? "bg-primary hover:bg-primary/90 text-primary-foreground"
-              : "bg-secondary hover:bg-secondary/80 text-secondary-foreground"
-          }`}
-        >
-          Choose Plan
-        </Button>
-      </motion.div>
-    </motion.div>
-  );
-};
-
-const ExperienceItem = ({ experience }) => {
-  return (
-    <div className="relative pl-8 pb-8 last:pb-0">
-      <div className="absolute left-0 top-0 w-3 h-3 bg-primary rounded-full border-2 border-background"></div>
-      <div className="absolute left-1.5 top-3 w-0.5 bg-border h-full last:hidden"></div>
-      <div className="space-y-2">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-          <h4 className="font-semibold text-foreground">{experience.title}</h4>
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Calendar className="w-4 h-4" />
-            <span>{experience.duration}</span>
-          </div>
-        </div>
-        <div className="flex items-center gap-2 text-primary text-sm">
-          <Building className="w-4 h-4" />
-          <span>{experience.company}</span>
-          <span className="text-muted-foreground">• {experience.location}</span>
-        </div>
-        <p className="text-muted-foreground text-sm leading-relaxed">
-          {experience.description}
-        </p>
-        {experience.achievements && (
-          <ul className="text-sm text-muted-foreground space-y-1 mt-3">
-            {experience.achievements.map((achievement, index) => (
-              <li key={index} className="flex items-start gap-2">
-                <span className="text-primary mt-1.5">•</span>
-                <span>{achievement}</span>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-    </div>
-  );
-};
-
-const EducationItem = ({ education }) => {
-  return (
-    <div className="relative pl-8 pb-8 last:pb-0">
-      <div className="absolute left-0 top-0 w-3 h-3 bg-primary rounded-full border-2 border-background"></div>
-      <div className="absolute left-1.5 top-3 w-0.5 bg-border h-full last:hidden"></div>
-      <div className="space-y-2">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-          <h4 className="font-semibold text-foreground">{education.degree}</h4>
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Calendar className="w-4 h-4" />
-            <span>{education.year}</span>
-          </div>
-        </div>
-        <div className="flex items-center gap-2 text-primary text-sm">
-          <GraduationCap className="w-4 h-4" />
-          <span>{education.institution}</span>
-        </div>
-        {education.description && (
-          <p className="text-muted-foreground text-sm leading-relaxed">
-            {education.description}
-          </p>
-        )}
-      </div>
-    </div>
-  );
-};
-
-const SkillsGrid = ({ skills }) => {
-  return (
-    <motion.div
-      className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3"
-      variants={staggerContainer}
-      initial="initial"
-      animate="animate"
-    >
-      {skills.map((skill, index) => (
-        <motion.div
-          key={skill}
-          variants={fadeInUp}
-          whileHover={{
-            scale: 1.05,
-            boxShadow: "0 0 0 2px rgba(var(--primary), 0.4)",
-            transition: { type: "spring", stiffness: 400, damping: 10 },
-          }}
-          transition={{ delay: index * 0.05 }}
-        >
-          <Badge
-            variant="secondary"
-            className="justify-center py-2 px-4 hover:bg-primary hover:text-primary-foreground transition-all duration-300 cursor-default w-full"
-          >
-            {skill}
-          </Badge>
-        </motion.div>
-      ))}
-    </motion.div>
   );
 };
