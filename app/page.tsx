@@ -190,6 +190,18 @@ export default function Portfolio() {
   const softwareProjects = [
     {
       id: 1,
+      title: "Fondation Marie Mwape",
+      description:
+        "A bilingual (French/English) NGO website highlighting the mission, leadership, and initiatives of Fondation Marie Mwape pour le Progrès Social.",
+      thumbnail: "/fondationmwape.webp",
+      techStack: ["Next.js", "React", "Tailwind CSS", "Vercel"],
+      websiteUrl: "https://fondation-mwape.vercel.app/",
+      githubUrl: "https://github.com/Tgithinji/fondation-mwape",
+      impact:
+        "Designed and deployed a professional NGO website aligned with brand identity, improving outreach and credibility for fundraising and social impact.",
+    },
+    {
+      id: 2,
       title: "Booking Wheels",
       description:
         "A car rental platform that lets users browse vehicles, book online, and manage reservations with a modern stack",
@@ -610,7 +622,7 @@ export default function Portfolio() {
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 <motion.img
-                  src="/Teddy.png"
+                  src="/Teddy.webp"
                   alt="Teddy Githinji Muraguri"
                   className="w-full h-full rounded-full object-cover border-4 border-primary/20"
                   whileHover={{ borderColor: "rgba(var(--primary), 0.5)" }}
@@ -1453,7 +1465,7 @@ export default function Portfolio() {
                               </motion.a>
 
                               <motion.a
-                                href="https://wa.me/254743844111"
+                                href="https://wa.me/254702783943"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex flex-col items-center gap-2 p-4 rounded-lg bg-card border border-border hover:border-primary/50 transition-all duration-300 group"

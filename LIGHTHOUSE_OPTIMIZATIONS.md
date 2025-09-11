@@ -8,6 +8,7 @@ This document summarizes all the optimizations made to improve Lighthouse perfor
 
 | Image | Original PNG | Optimized WebP | Savings | Reduction |
 |-------|-------------|---------------|---------|-----------|
+| fondationmwape.png | 2.2MB | 224KB | 2.0MB | 90% |
 | Bookingwheels.png | 2.3MB | 172KB | 2.1MB | 93% |
 | Teddy.png | 1.7MB | 102KB | 1.6MB | 94% |
 | og-image.png | 1.6MB | 29KB | 1.5MB | 98% |
@@ -16,7 +17,7 @@ This document summarizes all the optimizations made to improve Lighthouse perfor
 | Document-crm.png | 175KB | 33KB | 142KB | 81% |
 | Nai_del.png | 148KB | 54KB | 94KB | 64% |
 
-**Total Savings: ~7.4MB → ~648KB (91% reduction)**
+**Total Savings: ~9.6MB → ~872KB (91% reduction)**
 
 ### Changes Made
 - Converted all oversized PNGs to WebP format using 85-90% quality
@@ -127,6 +128,6 @@ The build shows `chunks/684-c72da7197f1a3749.js` (45.3kB) which contains:
 ---
 
 **Optimization completed on**: $(date)
-**Total file size reduction**: 91% (~6.8MB saved)
+**Total file size reduction**: 91% (~8.8MB saved)
 **Estimated Lighthouse score improvement**: +20-40 points
 **Breaking changes**: None
