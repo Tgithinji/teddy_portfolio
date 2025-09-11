@@ -4,12 +4,8 @@ import type React from "react";
 import Image from "next/image";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import {
   Mail,
   Phone,
@@ -19,74 +15,32 @@ import {
   Github,
   Linkedin,
   Twitter,
-  ExternalLink,
-  Download,
   Check,
   Copy,
-  Plus,
-  Minus,
-  MessageCircle,
-  Code,
-  Zap,
-  Puzzle,
-  Bot,
-  GraduationCap,
-  Calendar,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { ProjectCard } from "@/components/portfolio/ProjectCard";
-import { ServiceCard } from "@/components/portfolio/ServiceCard";
-import { PricingCard } from "@/components/portfolio/PricingCard";
-import { FAQItem } from "@/components/portfolio/FAQItem";
-import { SkillsGrid } from "@/components/portfolio/SkillsGrid";
-import { EducationItem } from "@/components/portfolio/EducationItem";
-import { ExperienceItem } from "@/components/portfolio/ExperienceItem";
-import {
-  fadeInUp,
-  fadeInSlide,
-  staggerContainer,
-  scaleOnHover,
-  glowOnHover,
-  buttonHover,
-  tabTransition,
-} from "@/components/portfolio/animations";
-import {
-  softwareProjects,
-  automationProjects,
-  experiences,
-  education,
-  skills,
-  services,
-  automationPricing,
-  softwarePricing,
-  faqData,
-} from "@/data/portfolio";
+import { ProjectsSection } from "@/components/sections/ProjectsSection";
+import { ServicesSection } from "@/components/sections/ServicesSection";
+import { ResumeSection } from "@/components/sections/ResumeSection";
+import { ContactSection } from "@/components/sections/ContactSection";
+import { useContactForm } from "@/hooks/useContactForm";
+import { buttonHover } from "@/components/portfolio/animations";
 
 export default function Portfolio() {
   const [activeTab, setActiveTab] = useState("projects");
   const [copiedEmail, setCopiedEmail] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const [activeProjectTab, setActiveProjectTab] = useState("software");
   const [isTabLoading, setIsTabLoading] = useState(false);
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
 
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-  const [formErrors, setFormErrors] = useState({});
-
-  const handleCTAClick = (message: string) => {
-    setFormData((prev) => ({ ...prev, message }));
-    setActiveTab("contact");
-    setTimeout(() => {
-      const contactForm = document.getElementById("contact-form");
-      if (contactForm) {
-        contactForm.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    }, 300);
-  };
+  const {
+    isLoading,
+    formData,
+    formErrors,
+    handleCTAClick,
+    handleInputChange,
+    handleSubmit,
+  } = useContactForm();
 
   const copyEmail = async () => {
     try {
@@ -111,63 +65,23 @@ export default function Portfolio() {
     }
   };
 
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-    if ((formErrors as any)[name]) {
-      setFormErrors((prev) => ({ ...prev, [name]: "" }));
-    }
-  };
-
-  const validateForm = () => {
-    const errors = {};
-    if (!formData.name.trim()) (errors as any).name = "Name is required";
-    if (!formData.email.trim()) (errors as any).email = "Email is required";
-    else if (!/\S+@\S+\.\S+/.test(formData.email))
-      (errors as any).email = "Email is invalid";
-    if (!formData.message.trim())
-      (errors as any).message = "Message is required";
-    return errors;
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const errors = validateForm();
-    if (Object.keys(errors).length > 0) {
-      setFormErrors(errors);
-      return;
-    }
-
-    setIsLoading(true);
-
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-
-      if (!res.ok) throw new Error("Failed to send message");
-
-      setFormData({ name: "", email: "", message: "" });
-      setFormErrors({});
-      alert("Message sent successfully!");
-    } catch (err) {
-      console.error(err);
-      alert("Something went wrong. Please try again.");
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   const handleContactClick = () => {
     setIsTabLoading(true);
     setActiveTab("contact");
     setTimeout(() => {
       setIsTabLoading(false);
       window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 300);
+  };
+
+  const handleCTAClickAndNavigate = (message: string) => {
+    handleCTAClick(message);
+    setActiveTab("contact");
+    setTimeout(() => {
+      const contactForm = document.getElementById("contact-form");
+      if (contactForm) {
+        contactForm.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
     }, 300);
   };
 
@@ -424,677 +338,28 @@ export default function Portfolio() {
               <AnimatePresence mode="wait">
                 {!isTabLoading && (
                   <>
-                    <TabsContent value="projects" className="mt-0">
-                      <motion.div
-                        key="projects-content"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
-                        className="max-w-6xl mx-auto px-4 lg:px-6 py-6 lg:py-8"
-                      >
-                        <div className="text-center mb-6">
-                          <motion.h1
-                            className="text-3xl lg:text-4xl font-bold text-foreground mb-3 text-balance"
-                            initial={{ opacity: 0, y: -20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.1 }}
-                          >
-                            Projects
-                          </motion.h1>
-                          <motion.p
-                            className="text-muted-foreground text-base lg:text-lg max-w-2xl mx-auto text-pretty"
-                            initial={{ opacity: 0, y: -20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.2 }}
-                          >
-                            Showcasing innovative solutions and technical
-                            expertise across various domains.
-                          </motion.p>
-                        </div>
+                    <ProjectsSection
+                      activeProjectTab={activeProjectTab}
+                      setActiveProjectTab={setActiveProjectTab}
+                    />
 
-                        <TabNavigation
-                          activeProjectTab={activeProjectTab}
-                          setActiveProjectTab={setActiveProjectTab}
-                        />
+                    <ServicesSection
+                      openFAQ={openFAQ}
+                      setOpenFAQ={setOpenFAQ}
+                      onCTAClick={handleCTAClickAndNavigate}
+                      onContactClick={handleContactClick}
+                      isLoading={isLoading}
+                    />
 
-                        <AnimatePresence mode="wait">
-                          {activeProjectTab === "software" && (
-                            <motion.div
-                              key="software"
-                              variants={tabTransition}
-                              initial="initial"
-                              animate="animate"
-                              exit="exit"
-                            >
-                              <div className="mb-6">
-                                <h2 className="text-xl lg:text-2xl font-bold text-foreground mb-2">
-                                  Projects
-                                </h2>
-                              </div>
-                              <SoftwareCaseStudyGrid
-                                projects={softwareProjects}
-                              />
-                            </motion.div>
-                          )}
+                    <ResumeSection />
 
-                          {activeProjectTab === "automation" && (
-                            <motion.div
-                              key="automation"
-                              variants={tabTransition}
-                              initial="initial"
-                              animate="animate"
-                              exit="exit"
-                            >
-                              <div className="mb-6">
-                                <h2 className="text-xl lg:text-2xl font-bold text-foreground mb-2">
-                                  Projects
-                                </h2>
-                              </div>
-                              <AutomationCaseStudyGrid
-                                projects={automationProjects}
-                              />
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </motion.div>
-                    </TabsContent>
-
-                    {/* Services Section */}
-                    <TabsContent value="services" className="mt-0">
-                      <motion.div
-                        className="max-w-6xl mx-auto px-4 py-8"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
-                      >
-                        <motion.div
-                          className="text-center mb-4"
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.6 }}
-                        >
-                          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4 text-balance">
-                            Services & Solutions
-                          </h1>
-                          <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
-                            Comprehensive development and automation services
-                            tailored to your business needs
-                          </p>
-                        </motion.div>
-
-                        {/* Services Grid */}
-                        <motion.div
-                          className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          transition={{ delay: 0.2, duration: 0.6 }}
-                        >
-                          {services.map((service, index) => {
-                            let IconComponent;
-                            switch (service.icon) {
-                              case "Code":
-                                IconComponent = Code;
-                                break;
-                              case "Zap":
-                                IconComponent = Zap;
-                                break;
-                              case "Puzzle":
-                                IconComponent = Puzzle;
-                                break;
-                              case "Bot":
-                                IconComponent = Bot;
-                                break;
-                              default:
-                                IconComponent = Code;
-                            }
-
-                            return (
-                              <ServiceCard
-                                key={service.title}
-                                icon={IconComponent}
-                                title={service.title}
-                                description={service.description}
-                                features={service.features}
-                                index={index}
-                                onCTAClick={handleCTAClick}
-                              />
-                            );
-                          })}
-                        </motion.div>
-
-                        {/* Pricing Section */}
-                        <motion.div
-                          className="mb-8"
-                          initial={{ opacity: 0, y: 30 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.4, duration: 0.6 }}
-                        >
-                          <div className="text-center mb-6">
-                            <h2 className="text-3xl font-bold text-foreground mb-4">
-                              Pricing Plans
-                            </h2>
-                            <p className="text-muted-foreground max-w-2xl mx-auto">
-                              Choose the perfect plan for your project needs
-                            </p>
-                          </div>
-
-                          <Tabs defaultValue="automation" className="w-full">
-                            <TabsList className="grid w-full grid-cols-2 mb-6">
-                              <TabsTrigger value="automation">
-                                Automation
-                              </TabsTrigger>
-                              <TabsTrigger value="software">
-                                Software & Web Development
-                              </TabsTrigger>
-                            </TabsList>
-
-                            <TabsContent value="automation">
-                              <motion.div
-                                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ duration: 0.5 }}
-                              >
-                                {automationPricing.map((plan, index) => (
-                                  <PricingCard
-                                    key={plan.name}
-                                    name={plan.name}
-                                    price={plan.price}
-                                    usdPrice={plan.usdPrice}
-                                    description={plan.description}
-                                    features={plan.features}
-                                    popular={plan.popular}
-                                    index={index}
-                                    onCTAClick={handleCTAClick}
-                                  />
-                                ))}
-                              </motion.div>
-                            </TabsContent>
-
-                            <TabsContent value="software">
-                              <motion.div
-                                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ duration: 0.5 }}
-                              >
-                                {softwarePricing.map((plan, index) => (
-                                  <PricingCard
-                                    key={plan.name}
-                                    name={plan.name}
-                                    price={plan.price}
-                                    usdPrice={plan.usdPrice}
-                                    description={plan.description}
-                                    features={plan.features}
-                                    popular={plan.popular}
-                                    index={index}
-                                    onCTAClick={handleCTAClick}
-                                  />
-                                ))}
-                              </motion.div>
-                            </TabsContent>
-                          </Tabs>
-                        </motion.div>
-
-                        {/* FAQ Section */}
-                        <div className="mt-16">
-                          <div className="text-center mb-8">
-                            <motion.h2
-                              className="text-3xl font-bold text-foreground mb-4"
-                              initial={{ opacity: 0, y: -20 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ delay: 0.8 }}
-                            >
-                              Frequently Asked Questions
-                            </motion.h2>
-                            <motion.p
-                              className="text-muted-foreground text-lg max-w-2xl mx-auto"
-                              initial={{ opacity: 0, y: -20 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ delay: 0.9 }}
-                            >
-                              Answers to common questions about my services.
-                            </motion.p>
-                          </div>
-
-                          <motion.div
-                            className="max-w-3xl mx-auto space-y-4"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 1.0 }}
-                          >
-                            {faqData.map((faq, index) => (
-                              <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 1.1 + index * 0.1 }}
-                              >
-                                <FAQItem
-                                  question={faq.question}
-                                  answer={faq.answer}
-                                  isOpen={openFAQ === index}
-                                  onToggle={() =>
-                                    setOpenFAQ(openFAQ === index ? null : index)
-                                  }
-                                />
-                              </motion.div>
-                            ))}
-                          </motion.div>
-                        </div>
-
-                        {/* Call to Action */}
-                        <motion.div
-                          className="mt-20"
-                          initial={{ opacity: 0, y: 30 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 1.5, duration: 0.6 }}
-                        >
-                          <div className="max-w-3xl mx-auto">
-                            <div className="bg-card/30 backdrop-blur-sm border border-border rounded-xl p-12 text-center shadow-2xl shadow-primary/5">
-                              <motion.h2
-                                className="text-4xl font-bold text-foreground mb-6"
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 1.6 }}
-                              >
-                                Let's Automate Your Business
-                              </motion.h2>
-
-                              <motion.p
-                                className="text-muted-foreground text-lg mb-8 max-w-2xl mx-auto leading-relaxed"
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 1.7 }}
-                              >
-                                Whether you need custom software or smart
-                                automation, I can help streamline your workflow
-                                and save you time.
-                              </motion.p>
-
-                              <motion.button
-                                onClick={handleContactClick}
-                                className="bg-primary text-primary-foreground px-8 py-4 rounded-lg font-semibold text-lg hover:bg-primary/90 transition-all duration-300 hover:shadow-lg hover:shadow-primary/25"
-                                variants={buttonHover}
-                                whileHover="hover"
-                                whileTap="tap"
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 1.8 }}
-                                aria-label="Contact Form"
-                              >
-                                {isLoading ? (
-                                  <div className="flex items-center gap-2">
-                                    <motion.div
-                                      className="w-4 h-4 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full"
-                                      animate={{ rotate: 360 }}
-                                      transition={{
-                                        duration: 1,
-                                        repeat: Number.POSITIVE_INFINITY,
-                                        ease: "linear",
-                                      }}
-                                    />
-                                    Sending...
-                                  </div>
-                                ) : (
-                                  "Send Message"
-                                )}
-                              </motion.button>
-                            </div>
-                          </div>
-                        </motion.div>
-                      </motion.div>
-                    </TabsContent>
-
-                    {/* Resume Tab */}
-                    <TabsContent value="resume" className="mt-0">
-                      <motion.div
-                        key="resume-content"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
-                        className="max-w-3xl mx-auto px-4 lg:px-6 py-6 lg:py-8"
-                      >
-                        <div className="max-w-4xl mx-auto px-4 py-6">
-                          <motion.div
-                            className="text-center mb-4"
-                            initial={{ opacity: 0, y: -20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                          >
-                            <h1 className="text-4xl font-bold text-foreground mb-4">
-                              Resume
-                            </h1>
-                            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                              My professional journey, education, and technical
-                              expertise.
-                            </p>
-                          </motion.div>
-
-                          <motion.div
-                            className="flex justify-center mb-8"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.2 }}
-                          >
-                            <a
-                              href="/Teddy-resume.pdf"
-                              download
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                                <Download className="w-4 h-4 mr-2" />
-                                Download PDF Resume
-                              </Button>
-                            </a>
-                          </motion.div>
-
-                          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                            {/* Experience */}
-                            <motion.div
-                              initial={{ opacity: 0, x: -20 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: 0.3 }}
-                            >
-                              <h2 className="text-2xl font-bold text-foreground mb-4">
-                                Experience
-                              </h2>
-                              <div className="space-y-6">
-                                {experiences.map((experience, index) => (
-                                  <ExperienceItem
-                                    key={index}
-                                    experience={experience}
-                                  />
-                                ))}
-                              </div>
-                            </motion.div>
-
-                            {/* Education & Skills */}
-                            <motion.div
-                              className="space-y-8"
-                              initial={{ opacity: 0, x: 20 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: 0.4 }}
-                            >
-                              {/* Education */}
-                              <div>
-                                <h2 className="text-2xl font-bold text-foreground mb-4">
-                                  Education
-                                </h2>
-                                <div className="space-y-6">
-                                  {education.map((edu, index) => (
-                                    <EducationItem
-                                      key={index}
-                                      education={edu}
-                                    />
-                                  ))}
-                                </div>
-                              </div>
-
-                              {/* Skills */}
-                              <div>
-                                <h2 className="text-2xl font-bold text-foreground mb-4">
-                                  Technical Skills
-                                </h2>
-                                <SkillsGrid skills={skills} />
-                              </div>
-                            </motion.div>
-                          </div>
-                        </div>
-                      </motion.div>
-                    </TabsContent>
-
-                    {/* Contact Tab */}
-                    <TabsContent value="contact" className="mt-0">
-                      <motion.div
-                        key="contact-content"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
-                        className="max-w-3xl mx-auto px-4 lg:px-6 py-6 lg:py-8"
-                      >
-                        <div className="text-center mb-6">
-                          <h1 className="text-4xl font-bold text-foreground mb-6">
-                            Let's Work Together
-                          </h1>
-                          <p className="text-muted-foreground text-lg">
-                            Have a project in mind? Fill out the form or reach
-                            me directly.
-                          </p>
-                        </div>
-
-                        {/* Contact Form */}
-                        <motion.form
-                          id="contact-form"
-                          onSubmit={handleSubmit}
-                          className="space-y-6"
-                          initial={{ opacity: 0, y: 30 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.3, duration: 0.5 }}
-                        >
-                          <motion.div
-                            className="space-y-2"
-                            whileFocus={{ scale: 1.01 }}
-                          >
-                            <label
-                              htmlFor="name"
-                              className="text-sm font-medium text-foreground"
-                            >
-                              Full Name
-                            </label>
-                            <motion.div
-                              whileFocus={{
-                                boxShadow:
-                                  "0 0 0 2px rgba(var(--primary), 0.3)",
-                                transition: { duration: 0.2 },
-                              }}
-                            >
-                              <Input
-                                id="name"
-                                name="name"
-                                type="text"
-                                placeholder="Your full name"
-                                value={formData.name}
-                                onChange={handleInputChange}
-                                className={`bg-background border-border rounded-xl transition-all duration-300 focus:ring-2 focus:ring-primary/20 ${(formErrors as any).name ? "border-red-500" : ""}`}
-                              />
-                            </motion.div>
-                            {(formErrors as any).name && (
-                              <p
-                                id="name-error"
-                                className="text-red-500 text-xs"
-                                role="alert"
-                              >
-                                {(formErrors as any).name}
-                              </p>
-                            )}
-                          </motion.div>
-
-                          <motion.div
-                            className="space-y-2"
-                            whileFocus={{ scale: 1.01 }}
-                          >
-                            <label
-                              htmlFor="email"
-                              className="text-sm font-medium text-foreground"
-                            >
-                              Email
-                            </label>
-                            <motion.div
-                              whileFocus={{
-                                boxShadow:
-                                  "0 0 0 2px rgba(var(--primary), 0.3)",
-                                transition: { duration: 0.2 },
-                              }}
-                            >
-                              <Input
-                                id="email"
-                                name="email"
-                                type="email"
-                                placeholder="your.email@example.com"
-                                value={formData.email}
-                                onChange={handleInputChange}
-                                className={`bg-background border-border rounded-xl transition-all duration-300 focus:ring-2 focus:ring-primary/20 ${(formErrors as any).email ? "border-red-500" : ""}`}
-                              />
-                            </motion.div>
-                            {(formErrors as any).email && (
-                              <p
-                                id="email-error"
-                                className="text-red-500 text-xs"
-                                role="alert"
-                              >
-                                {(formErrors as any).email}
-                              </p>
-                            )}
-                          </motion.div>
-
-                          <motion.div
-                            className="space-y-2"
-                            whileFocus={{ scale: 1.01 }}
-                          >
-                            <label
-                              htmlFor="message"
-                              className="text-sm font-medium text-foreground"
-                            >
-                              Message
-                            </label>
-                            <motion.div
-                              whileFocus={{
-                                boxShadow:
-                                  "0 0 0 2px rgba(var(--primary), 0.3)",
-                                transition: { duration: 0.2 },
-                              }}
-                            >
-                              <Textarea
-                                id="message"
-                                name="message"
-                                placeholder="Tell me about your project or just say hello..."
-                                rows={6}
-                                value={formData.message}
-                                onChange={handleInputChange}
-                                className={`bg-background border-border rounded-xl resize-none transition-all duration-300 focus:ring-2 focus:ring-primary/20 ${(formErrors as any).message ? "border-red-500" : ""}`}
-                              />
-                            </motion.div>
-                            {(formErrors as any).message && (
-                              <p
-                                id="message-error"
-                                className="text-red-500 text-xs"
-                                role="alert"
-                              >
-                                {(formErrors as any).message}
-                              </p>
-                            )}
-                          </motion.div>
-
-                          <motion.div
-                            variants={buttonHover}
-                            whileHover="hover"
-                            whileTap="tap"
-                          >
-                            <Button
-                              type="submit"
-                              disabled={
-                                Object.keys(formErrors).length > 0 || isLoading
-                              }
-                              className="w-full md:w-auto md:px-8 bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed"
-                              aria-label={
-                                isLoading
-                                  ? "Sending message..."
-                                  : "Send message"
-                              }
-                            >
-                              {isLoading ? (
-                                <div className="flex items-center gap-2">
-                                  <motion.div
-                                    className="w-4 h-4 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full"
-                                    animate={{ rotate: 360 }}
-                                    transition={{
-                                      duration: 1,
-                                      repeat: Number.POSITIVE_INFINITY,
-                                      ease: "linear",
-                                    }}
-                                  />
-                                  Sending...
-                                </div>
-                              ) : (
-                                "Send Message"
-                              )}
-                            </Button>
-                          </motion.div>
-                        </motion.form>
-
-                        {/* Direct Contact Links */}
-                        <motion.div
-                          initial={{ opacity: 0, y: 30 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.4 }}
-                        >
-                          <div className="bg-card/30 backdrop-blur-sm border border-border rounded-xl p-6">
-                            <h3 className="text-lg font-semibold text-foreground mb-4 text-center">
-                              Or reach me directly
-                            </h3>
-                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                              <motion.a
-                                href="mailto:teddy@teddygithinji.me"
-                                className="flex flex-col items-center gap-2 p-4 rounded-lg bg-card border border-border hover:border-primary/50 transition-all duration-300 group"
-                                variants={scaleOnHover}
-                                whileHover="hover"
-                              >
-                                <Mail className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />
-                                <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground">
-                                  Email
-                                </span>
-                              </motion.a>
-
-                              <motion.a
-                                href="https://www.linkedin.com/in/teddy-muraguri/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex flex-col items-center gap-2 p-4 rounded-lg bg-card border border-border hover:border-primary/50 transition-all duration-300 group"
-                                variants={scaleOnHover}
-                                whileHover="hover"
-                              >
-                                <Linkedin className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />
-                                <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground">
-                                  LinkedIn
-                                </span>
-                              </motion.a>
-
-                              <motion.a
-                                href="https://github.com/Tgithinji"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex flex-col items-center gap-2 p-4 rounded-lg bg-card border border-border hover:border-primary/50 transition-all duration-300 group"
-                                variants={scaleOnHover}
-                                whileHover="hover"
-                              >
-                                <Github className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />
-                                <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground">
-                                  GitHub
-                                </span>
-                              </motion.a>
-
-                              <motion.a
-                                href="https://wa.me/254702783943"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex flex-col items-center gap-2 p-4 rounded-lg bg-card border border-border hover:border-primary/50 transition-all duration-300 group"
-                                variants={scaleOnHover}
-                                whileHover="hover"
-                              >
-                                <MessageCircle className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />
-                                <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground">
-                                  WhatsApp
-                                </span>
-                              </motion.a>
-                            </div>
-                          </div>
-                        </motion.div>
-                      </motion.div>
-                    </TabsContent>
+                    <ContactSection
+                      formData={formData}
+                      formErrors={formErrors}
+                      isLoading={isLoading}
+                      onInputChange={handleInputChange}
+                      onSubmit={handleSubmit}
+                    />
                   </>
                 )}
               </AnimatePresence>
@@ -1105,103 +370,3 @@ export default function Portfolio() {
     </div>
   );
 }
-
-const SoftwareCaseStudyGrid = ({ projects }: { projects: any[] }) => {
-  return (
-    <motion.div
-      className="grid grid-cols-1 md:grid-cols-2 gap-6"
-      variants={staggerContainer}
-      initial="initial"
-      animate="animate"
-    >
-      {projects.map((project: any, index: number) => (
-        <ProjectCard
-          key={project.id}
-          project={project}
-          type="software"
-          index={index}
-        />
-      ))}
-    </motion.div>
-  );
-};
-
-const AutomationCaseStudyGrid = ({ projects }: { projects: any[] }) => {
-  return (
-    <motion.div
-      className="grid grid-cols-1 md:grid-cols-2 gap-6"
-      variants={staggerContainer}
-      initial="initial"
-      animate="animate"
-    >
-      {projects.map((project: any, index: number) => (
-        <ProjectCard
-          key={project.id}
-          project={project}
-          type="automation"
-          index={index}
-        />
-      ))}
-    </motion.div>
-  );
-};
-
-const TabNavigation = ({
-  activeProjectTab,
-  setActiveProjectTab,
-}: {
-  activeProjectTab: string;
-  setActiveProjectTab: (tab: string) => void;
-}) => {
-  return (
-    <div className="flex justify-center mb-6">
-      <motion.div
-        className="bg-card border border-border rounded-lg p-1 inline-flex"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3 }}
-      >
-        <motion.button
-          onClick={() => setActiveProjectTab("software")}
-          className={`px-4 lg:px-6 py-2 rounded-md text-sm font-medium transition-all duration-300 relative ${
-            activeProjectTab === "software"
-              ? "text-primary-foreground"
-              : "text-muted-foreground hover:text-foreground hover:bg-muted"
-          }`}
-          variants={buttonHover}
-          whileHover="hover"
-          whileTap="tap"
-        >
-          {activeProjectTab === "software" && (
-            <motion.div
-              className="absolute inset-0 bg-primary rounded-md"
-              layoutId="activeTab"
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            />
-          )}
-          <span className="relative z-10">Software Projects</span>
-        </motion.button>
-        <motion.button
-          onClick={() => setActiveProjectTab("automation")}
-          className={`px-4 lg:px-6 py-2 rounded-md text-sm font-medium transition-all duration-300 relative ${
-            activeProjectTab === "automation"
-              ? "text-primary-foreground"
-              : "text-muted-foreground hover:text-foreground hover:bg-muted"
-          }`}
-          variants={buttonHover}
-          whileHover="hover"
-          whileTap="tap"
-        >
-          {activeProjectTab === "automation" && (
-            <motion.div
-              className="absolute inset-0 bg-primary rounded-md"
-              layoutId="activeTab"
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            />
-          )}
-          <span className="relative z-10">Automation Projects</span>
-        </motion.button>
-      </motion.div>
-    </div>
-  );
-};
