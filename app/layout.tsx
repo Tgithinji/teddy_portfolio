@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     siteName: "Teddy's Portfolio",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image.webp",
         width: 1200,
         height: 630,
         alt: "Teddy's Portfolio - Software Developer & Automation Engineer",
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     title: "Teddy | Software Developer & Automation Engineer",
     description:
       "Portfolio showcasing full-stack software projects and workflow automations.",
-    images: ["/og-image.png"],
+    images: ["/og-image.webp"],
   },
   robots: {
     index: true,
@@ -75,16 +75,15 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: "/favicon.png",
-    shortcut: "/favicon.png",
-    apple: "/favicon.png",
-  }
+    icon: "/favicon.webp",
+    shortcut: "/favicon.webp",
+    apple: "/favicon.webp",
+  },
 };
 
 export const viewport = {
   themeColor: "#0f172a",
-}
-
+};
 
 export default function RootLayout({
   children,
@@ -97,6 +96,37 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${geist.variable} ${manrope.variable} antialiased`}
     >
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin=""
+        />
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+        <link rel="preload" href="/Teddy.webp" as="image" type="image/webp" />
+        <link
+          rel="preload"
+          href="/og-image.webp"
+          as="image"
+          type="image/webp"
+        />
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+              /* Critical CSS for above-the-fold content */
+              .font-sans { font-family: var(--font-geist), ui-sans-serif, system-ui, sans-serif; }
+              .antialiased { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+              .min-h-screen { min-height: 100vh; }
+              .bg-background { background-color: hsl(var(--background)); }
+              .text-foreground { color: hsl(var(--foreground)); }
+              .hidden { display: none; }
+              @media (min-width: 1024px) { .lg\\:block { display: block; } .lg\\:hidden { display: none; } }
+            `,
+          }}
+        />
+      </head>
       <body className="font-sans">
         <ThemeProvider
           attribute="class"
