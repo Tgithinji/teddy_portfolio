@@ -12,6 +12,8 @@ interface PricingCardProps {
   usdPrice: number | string;
   description: string;
   features: string[];
+  range: string;
+  support: string;
   popular: boolean;
   index: number;
   onCTAClick: (message: string) => void;
@@ -23,6 +25,8 @@ export const PricingCard: React.FC<PricingCardProps> = ({
   usdPrice,
   description,
   features,
+  range,
+  support,
   popular,
   index,
   onCTAClick,
@@ -55,12 +59,15 @@ export const PricingCard: React.FC<PricingCardProps> = ({
 
       <div className="text-center mb-6">
         <h3 className="text-xl font-bold text-foreground mb-2">{name}</h3>
+        <p className="text-muted-foreground mb-4">{description}</p>
         <div className="mb-2">
           <span className="text-3xl font-bold text-foreground">{price}</span>
           <span className="text-muted-foreground ml-1">KSh</span>
         </div>
-        <p className="text-sm text-muted-foreground">≈ ${usdPrice} USD</p>
-        <p className="text-muted-foreground mt-2">{description}</p>
+        <p className="text-sm text-muted-foreground">≈ {usdPrice} USD</p>
+        <p className="text-sm text-muted-foreground mt-2">
+          <span className="font-medium">Range:</span> {range}
+        </p>
       </div>
 
       <ul className="space-y-3 mb-6">
@@ -71,6 +78,12 @@ export const PricingCard: React.FC<PricingCardProps> = ({
           </li>
         ))}
       </ul>
+
+      <div className="mb-4">
+        <p className="text-sm text-muted-foreground">
+          <span className="font-medium">Support:</span> {support}
+        </p>
+      </div>
 
       <motion.div variants={buttonHover} whileHover="hover" whileTap="tap">
         <Button

@@ -49,8 +49,8 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
             Services & Solutions
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
-            Comprehensive development and automation services
-            tailored to your business needs
+            Comprehensive development and automation services tailored to your
+            business needs
           </p>
         </motion.div>
 
@@ -112,9 +112,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
 
           <Tabs defaultValue="automation" className="w-full">
             <TabsList className="grid w-full grid-cols-2 mb-6">
-              <TabsTrigger value="automation">
-                Automation
-              </TabsTrigger>
+              <TabsTrigger value="automation">Automation</TabsTrigger>
               <TabsTrigger value="software">
                 Software & Web Development
               </TabsTrigger>
@@ -135,6 +133,8 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                     usdPrice={plan.usdPrice}
                     description={plan.description}
                     features={plan.features}
+                    range={plan.range}
+                    support={plan.support}
                     popular={plan.popular}
                     index={index}
                     onCTAClick={onCTAClick}
@@ -158,6 +158,8 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                     usdPrice={plan.usdPrice}
                     description={plan.description}
                     features={plan.features}
+                    range={plan.range}
+                    support={plan.support}
                     popular={plan.popular}
                     index={index}
                     onCTAClick={onCTAClick}
@@ -206,9 +208,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                   question={faq.question}
                   answer={faq.answer}
                   isOpen={openFAQ === index}
-                  onToggle={() =>
-                    setOpenFAQ(openFAQ === index ? null : index)
-                  }
+                  onToggle={() => setOpenFAQ(openFAQ === index ? null : index)}
                 />
               </motion.div>
             ))}
@@ -239,9 +239,8 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.7 }}
               >
-                Whether you need custom software or smart
-                automation, I can help streamline your workflow
-                and save you time.
+                Whether you need custom software or smart automation, I can help
+                streamline your workflow and save you time.
               </motion.p>
 
               <motion.button
