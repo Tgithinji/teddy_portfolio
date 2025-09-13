@@ -22,6 +22,11 @@ export const metadata: Metadata = {
   description:
     "Portfolio showcasing full-stack software projects and workflow automations.",
   keywords: [
+    "Teddy Githinji Muraguri",
+    "Teddy Githinji",
+    "Teddy",
+    "Software Developer Kenya",
+    "Automation Kenya",
     "Software Developer",
     "Automation Engineer",
     "Full Stack",
@@ -34,7 +39,7 @@ export const metadata: Metadata = {
     "SQL",
     "Flask",
   ],
-  authors: [{ name: "Teddy Githinji" }],
+
   creator: "Teddy Githinji",
   alternates: {
     canonical: "https://teddygithinji.me",
@@ -79,6 +84,12 @@ export const metadata: Metadata = {
     shortcut: "/favicon.webp",
     apple: "/favicon.webp",
   },
+  authors: [
+    {
+      name: "Teddy Githinji Muraguri",
+      url: "https://teddygithinji.me",
+    },
+  ],
 };
 
 export const viewport = {

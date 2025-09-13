@@ -296,29 +296,34 @@ export const softwarePricingKenya = [
 
 export const faqData = [
   {
-    question: "How long does setup take?",
+    question: "How long does a project take?",
     answer:
-      "Most starter automations can be set up in 2–3 days. Larger, custom workflows may take 1–2 weeks depending on complexity.",
+      "Simple websites or starter automations can be ready in 2–5 days. More complex websites (e-commerce, web apps) or advanced automation workflows usually take 2–4 weeks depending on scope.",
   },
   {
-    question: "Which tools do you use for automation?",
+    question: "Which technologies do you use?",
     answer:
-      "I primarily use Make (Integromat), n8n, and Zapier. For advanced projects, I also integrate AI agents and custom APIs.",
+      "For websites and apps, I use Next.js (React), Python (FastAPI, Django, Flask), and SQL databases. For automation, I use Make, Zapier, n8n, and also build custom Python-based API integrations.",
   },
   {
-    question: "Can you integrate with my existing tools?",
+    question: "Can you integrate with my existing tools and systems?",
     answer:
-      "Yes. I can connect CRMs, payment systems (like Mpesa), Google Workspace, WhatsApp, and most major apps.",
+      "Yes. I can connect CRMs, payment systems (like M-Pesa, Stripe, PayPal), Google Workspace, WhatsApp, and most major APIs or third-party services.",
   },
   {
-    question: "What if I need ongoing support?",
+    question: "Do you provide hosting and deployment?",
     answer:
-      "My Growth and Enterprise plans include monitoring and support. For Starter plans, you can upgrade anytime if you need more.",
+      "Yes. I can set up hosting on services like Vercel, Render, DigitalOcean, or AWS depending on your project needs. I also provide domain setup and configuration.",
+  },
+  {
+    question: "What kind of support is included?",
+    answer:
+      "All plans include post-delivery bug fixes for a set period. Growth and higher tiers include monitoring and support calls. For Enterprise solutions, I provide dedicated support with SLAs and optional retainer contracts.",
   },
   {
     question: "How do payments work?",
     answer:
-      "For Starter and Growth, payment is upfront. For Enterprise, we agree on a custom plan and billing cycle.",
+      "For Starter and Growth plans, payment is upfront. For larger projects (E-commerce, Web Apps, or Enterprise), we can split payments into milestones or set up a retainer contract.",
   },
 ];
 
