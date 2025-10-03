@@ -6,7 +6,7 @@ export const softwareProjects = [
       "A bilingual (French/English) NGO website highlighting the mission, leadership, and initiatives of Fondation Marie Mwape pour le Progrès Social.",
     thumbnail: "/fondationmwape.webp",
     techStack: ["Next.js", "React", "Tailwind CSS", "Vercel"],
-    websiteUrl: "https://fondation-mwape.vercel.app/",
+    websiteUrl: "https://fmmps.org",
     githubUrl: "https://github.com/Tgithinji/fondation-mwape",
     impact:
       "Designed and deployed a professional NGO website aligned with brand identity, improving outreach and credibility for fundraising and social impact.",
