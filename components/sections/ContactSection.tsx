@@ -225,7 +225,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <motion.a
-                href="mailto:teddy@teddygithinji.me"
+                href="mailto:ted@teddygithinji.me"
                 className="flex flex-col items-center gap-2 p-4 rounded-lg bg-card border border-border hover:border-primary/50 transition-all duration-300 group"
                 variants={scaleOnHover}
                 whileHover="hover"

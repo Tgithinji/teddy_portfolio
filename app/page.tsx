@@ -46,11 +46,11 @@ export default function Portfolio() {
     try {
       if (typeof navigator !== "undefined" && navigator.clipboard) {
         // Modern browsers
-        await navigator.clipboard.writeText("teddy@teddygithinji.me");
+        await navigator.clipboard.writeText("ted@teddygithinji.me");
       } else {
         // Fallback for older browsers
         const textArea = document.createElement("textarea");
-        textArea.value = "teddy@teddygithinji.me";
+        textArea.value = "ted@teddygithinji.me";
         document.body.appendChild(textArea);
         textArea.select();
         document.execCommand("copy");
@@ -173,7 +173,7 @@ export default function Portfolio() {
               >
                 <Mail className="w-4 h-4 text-primary" />
                 <span className="text-xs lg:text-sm text-foreground group-hover:text-accent-foreground transition-colors">
-                  teddy@teddygithinji.me
+                  ted@teddygithinji.me
                 </span>
                 {copiedEmail ? (
                   <Check className="w-3 h-3 text-green-500 ml-auto" />
