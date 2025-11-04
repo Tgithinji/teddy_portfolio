@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
 
     await resend.emails.send({
       from: "contact@teddygithinji.me", // Must be verified in Resend
-      to: "teddy@teddygithinji.me",
+      to: "ted@teddygithinji.me",
       subject: `New message from ${name}`,
       html: `
         <h2>New Contact Form Submission</h2>
