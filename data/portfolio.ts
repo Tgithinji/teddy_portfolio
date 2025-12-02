@@ -53,6 +53,16 @@ export const automationProjects = [
   },
   {
     id: 2,
+    title: "Slack Time-Tracking Automation",
+    problem: "The client spent excessive time manually tracking employee IN, OUT, BREAK, and RESUME messages, calculating hours, and generating payroll.",
+    solution: "Streamlined Slack time-tracking by automating message capture with n8n, logging data into Google Sheets, calculating hours, sending HR daily updates, and generating payroll PDFs automatically.",
+    impact: "Saved approximately 10 hours of manual work per week, improved accuracy of time tracking and payroll, and reduced administrative overhead without requiring additional software.",
+    tech: ["n8n", "Slack API", "Google Sheets", "PDF generation"],
+    thumbnail: "/Slack_time_tracking.webp",
+    demo: "https://drive.google.com/drive/folders/1vGOpVTHlRgCusIIUDvDS4POl2gu-ysSH?usp=sharing"
+  },
+  {
+    id: 3,
     title: "Document Uploader & CRM Autofill",
     problem:
       "Manual document handling was time-consuming and error-prone, requiring staff to upload PDFs and manually copy data into the CRM.",
