@@ -40,6 +40,16 @@ export const softwareProjects = [
 export const automationProjects = [
   {
     id: 1,
+    title: "WordPress Blog Automation with AI",
+    problem: "The client’s WordPress blog was rarely updated, causing low engagement and missed SEO opportunities. Manual content creation was slow, inconsistent, and resource-intensive.",
+    solution: "Built a fully automated WordPress content workflow using n8n and AI: topic research, SEO-optimized outlines, human-like article generation, and auto-publishing. The system normalizes AI output for structured, ready-to-publish posts.",
+    impact: "Transformed a stagnant blog into a 24/7 content engine, saving hours of manual work weekly, improving SEO performance, and maintaining high-quality, consistent posts without a dedicated content team.",
+    tech: ["n8n", "AI content generation", "WordPress", "SEO optimization"],
+    thumbnail: "/wordpress_blog_automation.webp",
+    demo: "https://drive.google.com/drive/folders/1BmIY0VVqck8lJFRAj3uHQbHaVd34FsIi?usp=sharing"
+  },
+  {
+    id: 2,
     title: "Delivery Chat & Rider Assignment",
     problem:
       "The delivery company faced delays and miscommunication between customers, dispatchers, and riders.",
@@ -52,7 +62,7 @@ export const automationProjects = [
     demo: "https://drive.google.com/drive/folders/1eE4IKj9B3DhORzfXi7ZO-pv--H-KBkdL?usp=sharing",
   },
   {
-    id: 2,
+    id: 3,
     title: "Slack Time-Tracking Automation",
     problem: "The client spent excessive time manually tracking employee IN, OUT, BREAK, and RESUME messages, calculating hours, and generating payroll.",
     solution: "Streamlined Slack time-tracking by automating message capture with n8n, logging data into Google Sheets, calculating hours, sending HR daily updates, and generating payroll PDFs automatically.",
@@ -62,7 +72,7 @@ export const automationProjects = [
     demo: "https://drive.google.com/drive/folders/1vGOpVTHlRgCusIIUDvDS4POl2gu-ysSH?usp=sharing"
   },
   {
-    id: 3,
+    id: 4,
     title: "Document Uploader & CRM Autofill",
     problem:
       "Manual document handling was time-consuming and error-prone, requiring staff to upload PDFs and manually copy data into the CRM.",
