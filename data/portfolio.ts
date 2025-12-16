@@ -59,7 +59,7 @@ export const automationProjects = [
       "Reduced order assignment delays, improved customer transparency with live updates, and streamlined communication across operations.",
     tech: ["n8n", "Airtable", "WhatsApp API", "OpenAI intergration"],
     thumbnail: "/Nai_del.webp",
-    demo: "https://drive.google.com/drive/folders/1eE4IKj9B3DhORzfXi7ZO-pv--H-KBkdL?usp=sharing",
+    demo: "https://www.loom.com/share/3c41787b7ead42629e67dd707597001c",
   },
   {
     id: 3,

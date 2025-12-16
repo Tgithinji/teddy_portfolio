@@ -43,7 +43,7 @@ export const ResumeSection: React.FC = () => {
             transition={{ delay: 0.2 }}
           >
             <a
-              href="/Teddy-resume.pdf"
+              href="#"
               download
               target="_blank"
               rel="noopener noreferrer"
