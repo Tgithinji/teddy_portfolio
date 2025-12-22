@@ -64,7 +64,7 @@ export const PricingCard: React.FC<PricingCardProps> = ({
           <span className="text-3xl font-bold text-foreground">{price}</span>
           <span className="text-muted-foreground ml-1">KSh</span>
         </div>
-        <p className="text-sm text-muted-foreground">≈ {usdPrice} USD</p>
+        <p className="text-sm text-muted-foreground">≈ {usdPrice}</p>
         <p className="text-sm text-muted-foreground mt-2">
           <span className="font-medium">Range:</span> {range}
         </p>

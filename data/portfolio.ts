@@ -205,7 +205,7 @@ export const services = [
 export const automationPricingKenya = [
   {
     name: "Starter",
-    price: "From KES 8,000",
+    price: "From 8,000",
     usdPrice: "From $60",
     description: "Simple 1–2 workflow automation for startups / freelancers",
     features: [
@@ -220,7 +220,7 @@ export const automationPricingKenya = [
   },
   {
     name: "Growth",
-    price: "From KES 25,000",
+    price: "From 25,000",
     usdPrice: "From $200",
     description: "Multi-step workflows for small businesses",
     features: [
@@ -253,7 +253,7 @@ export const automationPricingKenya = [
 export const softwarePricingKenya = [
   {
     name: "Static Website",
-    price: "From KES 15,000",
+    price: "From 15,000",
     usdPrice: "From $110",
     description: "Perfect for small businesses or startups",
     features: [
@@ -270,7 +270,7 @@ export const softwarePricingKenya = [
   },
   {
     name: "Dynamic Website",
-    price: "From KES 50,000",
+    price: "From 50,000",
     usdPrice: "From $370",
     description: "Ideal for growing businesses",
     features: [
@@ -289,7 +289,7 @@ export const softwarePricingKenya = [
   },
   {
     name: "E-Commerce Website",
-    price: "From KES 50,000",
+    price: "From 50,000",
     usdPrice: "From $370",
     description: "Complete online store solution",
     features: [
@@ -308,7 +308,7 @@ export const softwarePricingKenya = [
   },
   {
     name: "Corporate Website",
-    price: "From KES 200,000",
+    price: "From 200,000",
     usdPrice: "From $1,480",
     description: "Sophisticated solutions for large businesses",
     features: [
