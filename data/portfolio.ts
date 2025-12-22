@@ -40,6 +40,19 @@ export const softwareProjects = [
 export const automationProjects = [
   {
     id: 1,
+    title: "AI-Powered Shopify Order Processing & Support",
+    problem:
+      "The e-commerce business struggled with manual order handling, slow customer responses, and limited visibility into failed or pending payments, leading to operational inefficiencies and poor customer experience.",
+    solution:
+      "Designed and implemented an end-to-end automation that monitors new Shopify orders, centralizes order tracking for internal teams, and evaluates payment status in real time. Failed payments trigger immediate internal alerts, while successful orders automatically generate and send personalized, AI-powered confirmation and support messages to customers.",
+    impact:
+      "Reduced manual workload for operations teams, significantly improved customer response times, increased visibility into payment issues, and delivered a more consistent and professional post-purchase experience.",
+    tech: ["n8n", "Shopify API", "Google Sheets", "Slack API", "OpenAI"],
+    thumbnail: "/shopify-orders-automation.png",
+    demo: "https://vimeo.com/1148659395?share=copy&fl=sv&fe=ci",
+  },
+  {
+    id: 2,
     title: "WordPress Blog Automation with AI",
     problem: "The client’s WordPress blog was rarely updated, causing low engagement and missed SEO opportunities. Manual content creation was slow, inconsistent, and resource-intensive.",
     solution: "Built a fully automated WordPress content workflow using n8n and AI: topic research, SEO-optimized outlines, human-like article generation, and auto-publishing. The system normalizes AI output for structured, ready-to-publish posts.",
@@ -49,7 +62,7 @@ export const automationProjects = [
     demo: "https://drive.google.com/drive/folders/1BmIY0VVqck8lJFRAj3uHQbHaVd34FsIi?usp=sharing"
   },
   {
-    id: 2,
+    id: 3,
     title: "Delivery Chat & Rider Assignment",
     problem:
       "The delivery company faced delays and miscommunication between customers, dispatchers, and riders.",
@@ -62,7 +75,7 @@ export const automationProjects = [
     demo: "https://vimeo.com/1148629473?share=copy&fl=sv&fe=ci",
   },
   {
-    id: 3,
+    id: 4,
     title: "Slack Time-Tracking Automation",
     problem: "The client spent excessive time manually tracking employee IN, OUT, BREAK, and RESUME messages, calculating hours, and generating payroll.",
     solution: "Streamlined Slack time-tracking by automating message capture with n8n, logging data into Google Sheets, calculating hours, sending HR daily updates, and generating payroll PDFs automatically.",
@@ -72,7 +85,7 @@ export const automationProjects = [
     demo: "https://drive.google.com/drive/folders/1vGOpVTHlRgCusIIUDvDS4POl2gu-ysSH?usp=sharing"
   },
   {
-    id: 4,
+    id: 5,
     title: "Document Uploader & CRM Autofill",
     problem:
       "Manual document handling was time-consuming and error-prone, requiring staff to upload PDFs and manually copy data into the CRM.",
