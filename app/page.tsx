@@ -23,7 +23,6 @@ import { buttonHover } from "@/components/portfolio/animations";
 
 export default function Portfolio() {
   const [activeTab, setActiveTab] = useState("home");
-  const [activeProjectTab, setActiveProjectTab] = useState("software");
   const [isTabLoading, setIsTabLoading] = useState(false);
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
 
@@ -249,10 +248,7 @@ export default function Portfolio() {
                       onContactClick={handleContactClick}
                     />
 
-                    <CaseStudiesSection
-                      activeProjectTab={activeProjectTab}
-                      setActiveProjectTab={setActiveProjectTab}
-                    />
+                    <CaseStudiesSection />
 
                     <ServicesSection
                       openFAQ={openFAQ}

@@ -1,90 +1,112 @@
-export const softwareProjects = [
+export const caseStudies = [
   {
-    id: 1,
-    title: "Fondation Marie Mwape",
-    problem: "The foundation needed a professional digital presence to improve outreach, establish credibility, and facilitate fundraising, but lacked a centralized platform.",
-    solution: "Designed and deployed a bilingual (French/English) NGO website tailored to their brand identity and mission.",
-    result: "Improved outreach and credibility for fundraising and social impact, providing a professional hub for stakeholders.",
-    techStack: ["Next.js", "React", "Tailwind CSS", "Vercel"],
-    thumbnail: "/fondationmwape.webp",
-    websiteUrl: "https://fmmps.org",
-    githubUrl: "https://github.com/Tgithinji/fondation-mwape",
+    category: "Logistics & Travel",
+    projects: [
+      {
+        id: 1,
+        title: "Booking Wheels",
+        problem: "Manual car rental bookings were causing inefficiencies, lost leads, and poor customer experience.",
+        solution: "Developed an end-to-end e-commerce workflow with user authentication, inventory management, and an automated booking flow.",
+        result: "Reduced booking management time by automating customer requests and centralizing operations.",
+        techStack: ["Flask", "MySQL", "HTML", "CSS", "JavaScript"],
+        thumbnail: "/Bookingwheels.webp",
+        websiteUrl: "https://githinjiguru.pythonanywhere.com/",
+        githubUrl: "https://github.com/Tgithinji/Booking_wheels",
+      },
+      {
+        id: 2,
+        title: "Delivery Chat & Rider Assignment",
+        problem: "The delivery company faced delays and miscommunication between customers, dispatchers, and riders.",
+        solution: "Created a multi-stage chat automation handling customer order intake, rider assignment with timeout logic, and real-time updates synced with Airtable.",
+        result: "Reduced order assignment delays, improved customer transparency with live updates, and streamlined communication across operations.",
+        techStack: ["n8n", "Airtable", "WhatsApp API", "OpenAI integration"],
+        thumbnail: "/Nai_del.webp",
+        demo: "https://vimeo.com/1148629473?share=copy&fl=sv&fe=ci",
+      },
+    ]
   },
   {
-    id: 2,
-    title: "Booking Wheels",
-    problem: "Manual car rental bookings were causing inefficiencies, lost leads, and poor customer experience.",
-    solution: "Developed an end-to-end e-commerce workflow with user authentication, inventory management, and an automated booking flow.",
-    result: "Reduced booking management time by automating customer requests and centralizing operations.",
-    techStack: ["Flask", "MySQL", "HTML", "CSS", "JavaScript"],
-    thumbnail: "/Bookingwheels.webp",
-    websiteUrl: "https://githinjiguru.pythonanywhere.com/",
-    githubUrl: "https://github.com/Tgithinji/Booking_wheels",
+    category: "Non-Profits & NGOs",
+    projects: [
+      {
+        id: 3,
+        title: "Fondation Marie Mwape",
+        problem: "The foundation needed a professional digital presence to improve outreach, establish credibility, and facilitate fundraising, but lacked a centralized platform.",
+        solution: "Designed and deployed a bilingual (French/English) NGO website tailored to their brand identity and mission.",
+        result: "Improved outreach and credibility for fundraising and social impact, providing a professional hub for stakeholders.",
+        techStack: ["Next.js", "React", "Tailwind CSS", "Vercel"],
+        thumbnail: "/fondationmwape.webp",
+        websiteUrl: "https://fmmps.org",
+        githubUrl: "https://github.com/Tgithinji/fondation-mwape",
+      }
+    ]
   },
   {
-    id: 3,
-    title: "Blog API",
-    problem: "A content platform required a scalable backend to handle users, content moderation, and social interactions.",
-    solution: "Built a robust API with endpoints for pagination, following, and comment management with strict JWT-based security.",
-    result: "Created a scalable foundation that supports growing user bases and structured data flow for content-heavy applications.",
-    techStack: ["Python", "FastAPI", "PostgrSQL", "SQLAlchemy", "JWT"],
-    thumbnail: "/blog_api.webp",
-    websiteUrl: "",
-    githubUrl: "https://github.com/Tgithinji/blog_api",
-  },
-];
-
-export const automationProjects = [
-  {
-    id: 1,
-    title: "AI-Powered Shopify Order Processing & Support",
-    problem: "The e-commerce business struggled with manual order handling, slow customer responses, and limited visibility into failed or pending payments, leading to operational inefficiencies and poor customer experience.",
-    solution: "Designed and implemented an end-to-end automation that monitors new Shopify orders, centralizes order tracking, and evaluates payment status in real time. Failed payments trigger alerts, while successful orders automatically generate personalized AI support messages.",
-    result: "Reduced manual workload for operations teams, significantly improved customer response times, and delivered a more consistent post-purchase experience.",
-    techStack: ["n8n", "Shopify API", "Google Sheets", "Slack API", "OpenAI"],
-    thumbnail: "/shopify-orders-automation.png",
-    demo: "https://vimeo.com/1148659395?share=copy&fl=sv&fe=ci",
+    category: "E-commerce & Retail",
+    projects: [
+      {
+        id: 4,
+        title: "AI-Powered Shopify Order Processing & Support",
+        problem: "The e-commerce business struggled with manual order handling, slow customer responses, and limited visibility into failed or pending payments, leading to operational inefficiencies and poor customer experience.",
+        solution: "Designed and implemented an end-to-end automation that monitors new Shopify orders, centralizes order tracking, and evaluates payment status in real time. Failed payments trigger alerts, while successful orders automatically generate personalized AI support messages.",
+        result: "Reduced manual workload for operations teams, significantly improved customer response times, and delivered a more consistent post-purchase experience.",
+        techStack: ["n8n", "Shopify API", "Google Sheets", "Slack API", "OpenAI"],
+        thumbnail: "/shopify-orders-automation.png",
+        demo: "https://vimeo.com/1148659395?share=copy&fl=sv&fe=ci",
+      }
+    ]
   },
   {
-    id: 2,
-    title: "WordPress Blog Automation with AI",
-    problem: "The client’s blog was rarely updated due to slow, inconsistent, and resource-intensive manual content creation, causing missed SEO opportunities.",
-    solution: "Built a fully automated WordPress content workflow using n8n and AI: topic research, SEO-optimized outlines, article generation, and auto-publishing.",
-    result: "Transformed a stagnant blog into a 24/7 content engine, saving hours of manual work weekly and improving SEO performance without a dedicated content team.",
-    techStack: ["n8n", "AI content generation", "WordPress", "SEO optimization"],
-    thumbnail: "/wordpress_blog_automation.webp",
-    demo: "https://drive.google.com/drive/folders/1BmIY0VVqck8lJFRAj3uHQbHaVd34FsIi?usp=sharing"
+    category: "Internal Tools & Operations",
+    projects: [
+      {
+        id: 5,
+        title: "Slack Time-Tracking Automation",
+        problem: "The client spent excessive time manually tracking employee IN/OUT messages, calculating hours, and generating payroll.",
+        solution: "Streamlined Slack time-tracking by automating message capture with n8n, logging data into Google Sheets, calculating hours, and generating payroll PDFs automatically.",
+        result: "Saved approximately 10 hours of manual work per week, improved accuracy of time tracking, and reduced administrative overhead.",
+        techStack: ["n8n", "Slack API", "Google Sheets", "PDF generation"],
+        thumbnail: "/Slack_time_tracking.webp",
+        demo: "https://drive.google.com/drive/folders/1vGOpVTHlRgCusIIUDvDS4POl2gu-ysSH?usp=sharing"
+      },
+      {
+        id: 6,
+        title: "Document Uploader & CRM Autofill",
+        problem: "Manual document handling was time-consuming and error-prone, requiring staff to upload PDFs and manually copy data into the CRM.",
+        solution: "Built an automation that allows PDF uploads, extracts key information using OCR/AI, and automatically fills CRM fields through API integration.",
+        result: "Eliminated repetitive manual data entry, reduced human error, and saved hours of administrative work per week.",
+        techStack: ["n8n", "OpenAI API", "API integration"],
+        thumbnail: "/Document-crm.webp",
+        demo: "https://drive.google.com/drive/folders/1K6BxNrc6Bx7WNkYs5pljUpaz__xpjLFv?usp=sharing",
+      },
+      {
+        id: 7,
+        title: "Blog API",
+        problem: "A content platform required a scalable backend to handle users, content moderation, and social interactions.",
+        solution: "Built a robust API with endpoints for pagination, following, and comment management with strict JWT-based security.",
+        result: "Created a scalable foundation that supports growing user bases and structured data flow for content-heavy applications.",
+        techStack: ["Python", "FastAPI", "PostgrSQL", "SQLAlchemy", "JWT"],
+        thumbnail: "/blog_api.webp",
+        websiteUrl: "",
+        githubUrl: "https://github.com/Tgithinji/blog_api",
+      }
+    ]
   },
   {
-    id: 3,
-    title: "Delivery Chat & Rider Assignment",
-    problem: "The delivery company faced delays and miscommunication between customers, dispatchers, and riders.",
-    solution: "Created a multi-stage chat automation handling customer order intake, rider assignment with timeout logic, and real-time updates synced with Airtable.",
-    result: "Reduced order assignment delays, improved customer transparency with live updates, and streamlined communication across operations.",
-    techStack: ["n8n", "Airtable", "WhatsApp API", "OpenAI integration"],
-    thumbnail: "/Nai_del.webp",
-    demo: "https://vimeo.com/1148629473?share=copy&fl=sv&fe=ci",
-  },
-  {
-    id: 4,
-    title: "Slack Time-Tracking Automation",
-    problem: "The client spent excessive time manually tracking employee IN/OUT messages, calculating hours, and generating payroll.",
-    solution: "Streamlined Slack time-tracking by automating message capture with n8n, logging data into Google Sheets, calculating hours, and generating payroll PDFs automatically.",
-    result: "Saved approximately 10 hours of manual work per week, improved accuracy of time tracking, and reduced administrative overhead.",
-    techStack: ["n8n", "Slack API", "Google Sheets", "PDF generation"],
-    thumbnail: "/Slack_time_tracking.webp",
-    demo: "https://drive.google.com/drive/folders/1vGOpVTHlRgCusIIUDvDS4POl2gu-ysSH?usp=sharing"
-  },
-  {
-    id: 5,
-    title: "Document Uploader & CRM Autofill",
-    problem: "Manual document handling was time-consuming and error-prone, requiring staff to upload PDFs and manually copy data into the CRM.",
-    solution: "Built an automation that allows PDF uploads, extracts key information using OCR/AI, and automatically fills CRM fields through API integration.",
-    result: "Eliminated repetitive manual data entry, reduced human error, and saved hours of administrative work per week.",
-    techStack: ["n8n", "OpenAI API", "API integration"],
-    thumbnail: "/Document-crm.webp",
-    demo: "https://drive.google.com/drive/folders/1K6BxNrc6Bx7WNkYs5pljUpaz__xpjLFv?usp=sharing",
-  },
+    category: "Marketing & Content",
+    projects: [
+      {
+        id: 8,
+        title: "WordPress Blog Automation with AI",
+        problem: "The client’s blog was rarely updated due to slow, inconsistent, and resource-intensive manual content creation, causing missed SEO opportunities.",
+        solution: "Built a fully automated WordPress content workflow using n8n and AI: topic research, SEO-optimized outlines, article generation, and auto-publishing.",
+        result: "Transformed a stagnant blog into a 24/7 content engine, saving hours of manual work weekly and improving SEO performance without a dedicated content team.",
+        techStack: ["n8n", "AI content generation", "WordPress", "SEO optimization"],
+        thumbnail: "/wordpress_blog_automation.webp",
+        demo: "https://drive.google.com/drive/folders/1BmIY0VVqck8lJFRAj3uHQbHaVd34FsIi?usp=sharing"
+      }
+    ]
+  }
 ];
 
 export const experiences = [

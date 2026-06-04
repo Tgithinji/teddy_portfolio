@@ -42,7 +42,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, type, index }
       className="group h-full"
     >
       <Card className="h-full flex flex-col bg-card border-border hover:border-primary/50 transition-all duration-300 rounded-2xl shadow-lg hover:shadow-xl overflow-hidden">
-        <div className="aspect-video overflow-hidden shrink-0">
+        <div className="h-48 w-full overflow-hidden shrink-0">
           {project.video ? (
             <video
               src={project.video}
