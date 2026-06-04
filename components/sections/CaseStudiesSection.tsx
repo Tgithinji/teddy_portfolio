@@ -9,17 +9,17 @@ import { TabNavigation } from "@/components/portfolio/TabNavigation";
 import { tabTransition } from "@/components/portfolio/animations";
 import { softwareProjects, automationProjects } from "@/data/portfolio";
 
-interface ProjectsSectionProps {
+interface CaseStudiesSectionProps {
   activeProjectTab: string;
   setActiveProjectTab: (tab: string) => void;
 }
 
-export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
+export const CaseStudiesSection: React.FC<CaseStudiesSectionProps> = ({
   activeProjectTab,
   setActiveProjectTab,
 }) => {
   return (
-    <TabsContent value="projects" className="mt-0">
+    <TabsContent value="casestudies" className="mt-0">
       <motion.div
         key="projects-content"
         initial={{ opacity: 0, y: 20 }}
@@ -35,7 +35,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
           >
-            Projects
+            Case Studies
           </motion.h1>
           <motion.p
             className="text-muted-foreground text-base lg:text-lg max-w-2xl mx-auto text-pretty"
@@ -43,8 +43,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
-            Showcasing innovative solutions and technical
-            expertise across various domains.
+            Real-world business problems solved with custom software and automation.
           </motion.p>
         </div>
 
@@ -64,7 +63,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
             >
               <div className="mb-6">
                 <h2 className="text-xl lg:text-2xl font-bold text-foreground mb-2">
-                  Projects
+                  Software Solutions
                 </h2>
               </div>
               <SoftwareCaseStudyGrid
@@ -83,7 +82,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
             >
               <div className="mb-6">
                 <h2 className="text-xl lg:text-2xl font-bold text-foreground mb-2">
-                  Projects
+                  Automation Workflows
                 </h2>
               </div>
               <AutomationCaseStudyGrid

@@ -45,11 +45,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
       >
         <div className="text-center mb-6">
           <h1 className="text-4xl font-bold text-foreground mb-6">
-            Let's Work Together
+            Get a Free Automation Audit
           </h1>
           <p className="text-muted-foreground text-lg">
-            Have a project in mind? Fill out the form or reach
-            me directly.
+            Request an audit, book a discovery call, or just say hello.
           </p>
         </div>
 
@@ -158,7 +157,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
               <Textarea
                 id="message"
                 name="message"
-                placeholder="Tell me about your project or just say hello..."
+                placeholder="Tell me about your business workflow or request an audit..."
                 rows={6}
                 value={formData.message}
                 onChange={onInputChange}
@@ -207,7 +206,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                   Sending...
                 </div>
               ) : (
-                "Send Message"
+                "Request Audit / Send Message"
               )}
             </Button>
           </motion.div>

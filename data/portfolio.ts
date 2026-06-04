@@ -2,38 +2,35 @@ export const softwareProjects = [
   {
     id: 1,
     title: "Fondation Marie Mwape",
-    description:
-      "A bilingual (French/English) NGO website highlighting the mission, leadership, and initiatives of Fondation Marie Mwape pour le Progrès Social.",
-    thumbnail: "/fondationmwape.webp",
+    problem: "The foundation needed a professional digital presence to improve outreach, establish credibility, and facilitate fundraising, but lacked a centralized platform.",
+    solution: "Designed and deployed a bilingual (French/English) NGO website tailored to their brand identity and mission.",
+    result: "Improved outreach and credibility for fundraising and social impact, providing a professional hub for stakeholders.",
     techStack: ["Next.js", "React", "Tailwind CSS", "Vercel"],
+    thumbnail: "/fondationmwape.webp",
     websiteUrl: "https://fmmps.org",
     githubUrl: "https://github.com/Tgithinji/fondation-mwape",
-    impact:
-      "Designed and deployed a professional NGO website aligned with brand identity, improving outreach and credibility for fundraising and social impact.",
   },
   {
     id: 2,
     title: "Booking Wheels",
-    description:
-      "A car rental platform that lets users browse vehicles, book online, and manage reservations with a modern stack",
-    thumbnail: "/Bookingwheels.webp",
+    problem: "Manual car rental bookings were causing inefficiencies, lost leads, and poor customer experience.",
+    solution: "Developed an end-to-end e-commerce workflow with user authentication, inventory management, and an automated booking flow.",
+    result: "Reduced booking management time by automating customer requests and centralizing operations.",
     techStack: ["Flask", "MySQL", "HTML", "CSS", "JavaScript"],
+    thumbnail: "/Bookingwheels.webp",
     websiteUrl: "https://githinjiguru.pythonanywhere.com/",
     githubUrl: "https://github.com/Tgithinji/Booking_wheels",
-    impact:
-      "Developed an end-to-end e-commerce workflow with user authentication, cart, and booking flow.",
   },
   {
     id: 3,
     title: "Blog API",
-    description:
-      "API with endpoints for blogging functionality — user auth, posts, comments, likes, follows.",
-    thumbnail: "/blog_api.webp",
+    problem: "A content platform required a scalable backend to handle users, content moderation, and social interactions.",
+    solution: "Built a robust API with endpoints for pagination, following, and comment management with strict JWT-based security.",
+    result: "Created a scalable foundation that supports growing user bases and structured data flow for content-heavy applications.",
     techStack: ["Python", "FastAPI", "PostgrSQL", "SQLAlchemy", "JWT"],
+    thumbnail: "/blog_api.webp",
     websiteUrl: "",
     githubUrl: "https://github.com/Tgithinji/blog_api",
-    impact:
-      "The structured endpoints for pagination, following, and comment management solidified my understanding of scalable API design",
   },
 ];
 
@@ -41,60 +38,51 @@ export const automationProjects = [
   {
     id: 1,
     title: "AI-Powered Shopify Order Processing & Support",
-    problem:
-      "The e-commerce business struggled with manual order handling, slow customer responses, and limited visibility into failed or pending payments, leading to operational inefficiencies and poor customer experience.",
-    solution:
-      "Designed and implemented an end-to-end automation that monitors new Shopify orders, centralizes order tracking for internal teams, and evaluates payment status in real time. Failed payments trigger immediate internal alerts, while successful orders automatically generate and send personalized, AI-powered confirmation and support messages to customers.",
-    impact:
-      "Reduced manual workload for operations teams, significantly improved customer response times, increased visibility into payment issues, and delivered a more consistent and professional post-purchase experience.",
-    tech: ["n8n", "Shopify API", "Google Sheets", "Slack API", "OpenAI"],
+    problem: "The e-commerce business struggled with manual order handling, slow customer responses, and limited visibility into failed or pending payments, leading to operational inefficiencies and poor customer experience.",
+    solution: "Designed and implemented an end-to-end automation that monitors new Shopify orders, centralizes order tracking, and evaluates payment status in real time. Failed payments trigger alerts, while successful orders automatically generate personalized AI support messages.",
+    result: "Reduced manual workload for operations teams, significantly improved customer response times, and delivered a more consistent post-purchase experience.",
+    techStack: ["n8n", "Shopify API", "Google Sheets", "Slack API", "OpenAI"],
     thumbnail: "/shopify-orders-automation.png",
     demo: "https://vimeo.com/1148659395?share=copy&fl=sv&fe=ci",
   },
   {
     id: 2,
     title: "WordPress Blog Automation with AI",
-    problem: "The client’s WordPress blog was rarely updated, causing low engagement and missed SEO opportunities. Manual content creation was slow, inconsistent, and resource-intensive.",
-    solution: "Built a fully automated WordPress content workflow using n8n and AI: topic research, SEO-optimized outlines, human-like article generation, and auto-publishing. The system normalizes AI output for structured, ready-to-publish posts.",
-    impact: "Transformed a stagnant blog into a 24/7 content engine, saving hours of manual work weekly, improving SEO performance, and maintaining high-quality, consistent posts without a dedicated content team.",
-    tech: ["n8n", "AI content generation", "WordPress", "SEO optimization"],
+    problem: "The client’s blog was rarely updated due to slow, inconsistent, and resource-intensive manual content creation, causing missed SEO opportunities.",
+    solution: "Built a fully automated WordPress content workflow using n8n and AI: topic research, SEO-optimized outlines, article generation, and auto-publishing.",
+    result: "Transformed a stagnant blog into a 24/7 content engine, saving hours of manual work weekly and improving SEO performance without a dedicated content team.",
+    techStack: ["n8n", "AI content generation", "WordPress", "SEO optimization"],
     thumbnail: "/wordpress_blog_automation.webp",
     demo: "https://drive.google.com/drive/folders/1BmIY0VVqck8lJFRAj3uHQbHaVd34FsIi?usp=sharing"
   },
   {
     id: 3,
     title: "Delivery Chat & Rider Assignment",
-    problem:
-      "The delivery company faced delays and miscommunication between customers, dispatchers, and riders.",
-    solution:
-      "Created a multi-stage chat automation: (1) Customer order intake, (2) Rider assignment with accept/decline + timeout logic, (3) Real-time updates synced with Airtable and customer notifications.",
-    impact:
-      "Reduced order assignment delays, improved customer transparency with live updates, and streamlined communication across operations.",
-    tech: ["n8n", "Airtable", "WhatsApp API", "OpenAI intergration"],
+    problem: "The delivery company faced delays and miscommunication between customers, dispatchers, and riders.",
+    solution: "Created a multi-stage chat automation handling customer order intake, rider assignment with timeout logic, and real-time updates synced with Airtable.",
+    result: "Reduced order assignment delays, improved customer transparency with live updates, and streamlined communication across operations.",
+    techStack: ["n8n", "Airtable", "WhatsApp API", "OpenAI integration"],
     thumbnail: "/Nai_del.webp",
     demo: "https://vimeo.com/1148629473?share=copy&fl=sv&fe=ci",
   },
   {
     id: 4,
     title: "Slack Time-Tracking Automation",
-    problem: "The client spent excessive time manually tracking employee IN, OUT, BREAK, and RESUME messages, calculating hours, and generating payroll.",
-    solution: "Streamlined Slack time-tracking by automating message capture with n8n, logging data into Google Sheets, calculating hours, sending HR daily updates, and generating payroll PDFs automatically.",
-    impact: "Saved approximately 10 hours of manual work per week, improved accuracy of time tracking and payroll, and reduced administrative overhead without requiring additional software.",
-    tech: ["n8n", "Slack API", "Google Sheets", "PDF generation"],
+    problem: "The client spent excessive time manually tracking employee IN/OUT messages, calculating hours, and generating payroll.",
+    solution: "Streamlined Slack time-tracking by automating message capture with n8n, logging data into Google Sheets, calculating hours, and generating payroll PDFs automatically.",
+    result: "Saved approximately 10 hours of manual work per week, improved accuracy of time tracking, and reduced administrative overhead.",
+    techStack: ["n8n", "Slack API", "Google Sheets", "PDF generation"],
     thumbnail: "/Slack_time_tracking.webp",
     demo: "https://drive.google.com/drive/folders/1vGOpVTHlRgCusIIUDvDS4POl2gu-ysSH?usp=sharing"
   },
   {
     id: 5,
     title: "Document Uploader & CRM Autofill",
-    problem:
-      "Manual document handling was time-consuming and error-prone, requiring staff to upload PDFs and manually copy data into the CRM.",
-    solution:
-      "Built an automation that allows PDF/document uploads, extracts key information using OCR/AI, and automatically fills CRM fields through API integration.",
-    impact:
-      "Eliminated repetitive manual data entry, reduced human error, and saved hours of administrative work per week.",
+    problem: "Manual document handling was time-consuming and error-prone, requiring staff to upload PDFs and manually copy data into the CRM.",
+    solution: "Built an automation that allows PDF uploads, extracts key information using OCR/AI, and automatically fills CRM fields through API integration.",
+    result: "Eliminated repetitive manual data entry, reduced human error, and saved hours of administrative work per week.",
+    techStack: ["n8n", "OpenAI API", "API integration"],
     thumbnail: "/Document-crm.webp",
-    tech: ["n8n", "OpenAI API", "API integration"],
     demo: "https://drive.google.com/drive/folders/1K6BxNrc6Bx7WNkYs5pljUpaz__xpjLFv?usp=sharing",
   },
 ];
@@ -105,12 +93,11 @@ export const experiences = [
     company: "Rahisisha Tech",
     location: "Nairobi, Kenya",
     duration: "2025 - Present",
-    description:
-      "Contributing to the development of scalable web applications and supporting junior developers.",
+    description: "Building scalable web applications and implementing backend services that drive business operations.",
     achievements: [
-      "Designed and implemented modular backend services to improve maintainability",
-      "Optimized database queries and caching, reducing page load times noticeably",
-      "Collaborated with a team of 5 developers to deliver new product features on schedule",
+      "Designed and implemented modular backend services to improve system maintainability and scalability.",
+      "Optimized database queries and caching, reducing load times and improving the end-user experience.",
+      "Collaborated with cross-functional teams to deliver new product features focused on operational efficiency."
     ],
   },
   {
@@ -118,11 +105,10 @@ export const experiences = [
     company: "ALX",
     location: "Remote",
     duration: "2024 - 2025",
-    description:
-      "Assisted in building backend systems and supporting product development for startup projects.",
+    description: "Assisted in building backend systems and supporting product development for startup projects.",
     achievements: [
-      "Developed core modules for an MVP used in initial user testing",
-      "Wrote automated tests that improved code reliability and reduced recurring bugs",
+      "Developed core modules for an MVP used in initial user testing.",
+      "Wrote automated tests that improved code reliability and reduced recurring bugs."
     ],
   },
 ];
@@ -132,8 +118,7 @@ export const education = [
     degree: "Software Engineering & AI",
     institution: "ALX Africa",
     year: "",
-    description:
-      "Intensive 12-month program covering modern software development stack.",
+    description: "Intensive 12-month program covering modern software development stack.",
   },
   {
     degree: "Bachelor of Science in Telecommunications & IT",
@@ -144,222 +129,130 @@ export const education = [
 ];
 
 export const skills = [
-  "JavaScript",
-  "TypeScript",
-  "React",
-  "Next.js",
-  "Node.js",
   "Python",
-  "PostgreSQL",
-  "MySQL",
   "FastAPI",
-  "Django",
-  "Flask",
-  "AWS",
-  "Azure",
-  "Docker",
-  "Git",
+  "PostgreSQL",
+  "Node.js",
+  "Next.js",
+  "TypeScript",
   "n8n",
   "make.com",
-  "Tailwind CSS",
-  "GraphQL",
+  "Docker",
+  "AWS",
   "REST APIs",
   "Microservices",
 ];
 
+export const clientAchievements = [
+  "Eliminate repetitive manual work",
+  "Improve operational efficiency",
+  "Connect disconnected business systems",
+  "Reduce administrative workload",
+  "Improve customer response times",
+  "Build software tailored to business workflows",
+];
+
 export const services = [
+  {
+    icon: "Zap",
+    title: "Workflow Automation",
+    description: "Eliminate repetitive tasks and connect the tools your team already uses.",
+    cta: "Find Automation Opportunities",
+    features: [
+      "Lead follow-up automation",
+      "CRM updates",
+      "WhatsApp workflows",
+      "Reporting automation",
+    ],
+  },
   {
     icon: "Code",
     title: "Custom Software Development",
-    description:
-      "Full-stack web applications, mobile apps, and enterprise solutions tailored to your business needs.",
-    cta: "Start Project",
-    features: [],
-  },
-  {
-    icon: "Zap",
-    title: "Process Automation",
-    description:
-      "Streamline your workflows with intelligent automation that saves time and reduces manual errors.",
-    cta: "Automate Now",
-    features: [],
-  },
-  {
-    icon: "Puzzle",
-    title: "System Integration",
-    description:
-      "Connect your existing tools and platforms for seamless data flow and improved efficiency.",
-    cta: "Integrate Systems",
-    features: [],
+    description: "Build software tailored to your business instead of forcing your business into generic tools.",
+    cta: "Discuss Your Project",
+    features: [
+      "Internal dashboards",
+      "Booking systems",
+      "Client portals",
+      "Operations management tools",
+    ],
   },
   {
     icon: "Bot",
-    title: "AI Assistant Development",
-    description:
-      "Custom AI chatbots and intelligent assistants to enhance customer experience and support.",
-    cta: "Build AI Solution",
-    features: [],
+    title: "AI Solutions",
+    description: "Use AI to automate customer support, document processing, and business operations.",
+    cta: "Explore AI Solutions",
+    features: [
+      "AI chatbots",
+      "Knowledge assistants",
+      "Proposal generators",
+      "Document analysis",
+    ],
+  },
+  {
+    icon: "Puzzle",
+    title: "API & Systems Integration",
+    description: "Connect your systems so data flows automatically.",
+    cta: "Integrate Your Systems",
+    features: [
+      "CRM integration",
+      "Payment integration",
+      "ERP integration",
+      "Third-party APIs",
+    ],
   },
 ];
 
-export const automationPricingKenya = [
+export const industries = [
   {
-    name: "Starter",
-    price: "From 8,000",
-    usdPrice: "From $60",
-    description: "Simple 1–2 workflow automation for startups / freelancers",
+    title: "Travel Agencies",
     features: [
-      "Connect up to 2 apps",
-      "Basic monitoring & error alerts",
-      "Email support",
-      "Setup included",
+      "Flight inquiry automation",
+      "Booking workflow systems",
+      "Customer communication automation",
     ],
-    range: "KES 8,000 – 15,000",
-    support: "Email support only (up to 2 weeks after delivery)",
-    popular: false,
   },
   {
-    name: "Growth",
-    price: "From 25,000",
-    usdPrice: "From $200",
-    description: "Multi-step workflows for small businesses",
+    title: "Logistics & Delivery",
     features: [
-      "Connect up to 5 apps",
-      "Advanced monitoring / retries",
-      "Monthly check-in / support call",
-      "Priority email support",
+      "Delivery tracking systems",
+      "Operations dashboards",
+      "Workflow automation",
     ],
-    range: "KES 25,000 – 50,000",
-    support: "Setup + 1 month of monitoring, monthly call included",
-    popular: true,
   },
   {
-    name: "Enterprise",
-    price: "Custom Quote",
-    usdPrice: "Custom",
-    description: "Complex / large-scale automation solutions",
+    title: "NGOs & Foundations",
     features: [
-      "Custom integrations (APIs, internal tools, AI)",
-      "High reliability / SLAs",
-      "Dedicated support",
-      "Scalable & maintainable solution",
+      "Donor management systems",
+      "Reporting tools",
+      "Volunteer coordination solutions",
     ],
-    range: "KES 50,000+",
-    support: "Dedicated support with SLAs, ongoing retainer contract",
-    popular: false,
-  },
-];
-
-export const softwarePricingKenya = [
-  {
-    name: "Static Website",
-    price: "From 15,000",
-    usdPrice: "From $110",
-    description: "Perfect for small businesses or startups",
-    features: [
-      "Up to 5 informational pages",
-      "Responsive design",
-      "Contact form",
-      "Social media integration",
-      "Basic SEO setup",
-      "Fast turnaround",
-    ],
-    range: "KES 15,000 – 30,000",
-    support: "1 month of bug fixes after delivery (email support only)",
-    popular: false,
   },
   {
-    name: "Dynamic Website",
-    price: "From 50,000",
-    usdPrice: "From $370",
-    description: "Ideal for growing businesses",
+    title: "Service Businesses",
     features: [
-      "CMS integration",
-      "Blog functionality",
-      "Advanced contact forms",
-      "Social media integration",
-      "SEO optimization",
-      "Custom features",
-      "Content management system",
-      "Up to 2 revision rounds",
+      "Lead capture automation",
+      "Customer onboarding",
+      "Appointment management",
     ],
-    range: "KES 50,000 – 100,000",
-    support: "1 month bug fixes + 1 support call",
-    popular: true,
-  },
-  {
-    name: "E-Commerce Website",
-    price: "From 50,000",
-    usdPrice: "From $370",
-    description: "Complete online store solution",
-    features: [
-      "Product catalog",
-      "Shopping cart functionality",
-      "Payment gateway integration (M-PESA, cards, PayPal)",
-      "Customer accounts",
-      "Order management",
-      "Inventory tracking",
-      "SEO optimization",
-      "Mobile responsive design",
-    ],
-    range: "KES 50,000 – 150,000",
-    support: "1 month bug fixes + basic store management training",
-    popular: false,
-  },
-  {
-    name: "Corporate Website",
-    price: "From 200,000",
-    usdPrice: "From $1,480",
-    description: "Sophisticated solutions for large businesses",
-    features: [
-      "Custom design",
-      "Complex functionalities",
-      "System integration (CRM/ERP)",
-      "Enhanced security",
-      "Comprehensive support",
-      "Multi-user authentication",
-      "Advanced analytics",
-      "Custom dashboards",
-    ],
-    range: "KES 200,000+",
-    support: "Dedicated support with SLAs, ongoing retainer contract",
-    popular: false,
   },
 ];
 
 export const faqData = [
   {
-    question: "How long does a project take?",
-    answer:
-      "Simple websites or starter automations can be ready in 2–5 days. More complex websites (e-commerce, web apps) or advanced automation workflows usually take 2–4 weeks depending on scope.",
+    question: "How do you identify what processes to automate?",
+    answer: "We start with a Free Business Automation Audit. We map out your current workflows, identify bottlenecks and repetitive tasks, and prioritize automations that will save the most time or generate the most revenue.",
   },
   {
     question: "Which technologies do you use?",
-    answer:
-      "For websites and apps, I use Next.js (React), Python (FastAPI, Django, Flask), and SQL databases. For automation, I use Make, Zapier, n8n, and also build custom Python-based API integrations.",
+    answer: "I focus on the right tool for the job. For software, I use Python (FastAPI), React/Next.js, and SQL databases. For automation, I leverage n8n, Make, Zapier, and custom API scripts.",
   },
   {
-    question: "Can you integrate with my existing tools and systems?",
-    answer:
-      "Yes. I can connect CRMs, payment systems (like M-Pesa, Stripe, PayPal), Google Workspace, WhatsApp, and most major APIs or third-party services.",
+    question: "Can you integrate with my existing tools?",
+    answer: "Yes. I can connect CRMs, payment systems, Google Workspace, WhatsApp, and most major APIs or third-party services so you don't have to change your current toolset.",
   },
   {
-    question: "Do you provide hosting and deployment?",
-    answer:
-      "Yes. I can set up hosting on services like Vercel, Render, DigitalOcean, or AWS depending on your project needs. I also provide domain setup and configuration.",
-  },
-  {
-    question: "What kind of support is included?",
-    answer:
-      "All plans include post-delivery bug fixes for a set period. Growth and higher tiers include monitoring and support calls. For Enterprise solutions, I provide dedicated support with SLAs and optional retainer contracts.",
-  },
-  {
-    question: "How do payments work?",
-    answer:
-      "For Starter and Growth plans, payment is upfront. For larger projects (E-commerce, Web Apps, or Enterprise), we can split payments into milestones or set up a retainer contract.",
+    question: "What does an engagement look like?",
+    answer: "Every business has unique requirements. We begin with a discovery call, after which I propose a tailored solution—whether it's a one-off custom build or an ongoing automation partnership.",
   },
 ];
-
-// Aliases to match imports in components
-export const automationPricing = automationPricingKenya;
-export const softwarePricing = softwarePricingKenya;

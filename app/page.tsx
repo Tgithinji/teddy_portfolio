@@ -8,27 +8,21 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Mail,
-  Phone,
-  MapPin,
-  Building,
-  Globe,
   Github,
   Linkedin,
   Twitter,
-  Check,
-  Copy,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { ProjectsSection } from "@/components/sections/ProjectsSection";
+import { CaseStudiesSection } from "@/components/sections/CaseStudiesSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
-import { ResumeSection } from "@/components/sections/ResumeSection";
+import { AboutSection } from "@/components/sections/AboutSection";
 import { ContactSection } from "@/components/sections/ContactSection";
+import { HomeSection } from "@/components/sections/HomeSection";
 import { useContactForm } from "@/hooks/useContactForm";
 import { buttonHover } from "@/components/portfolio/animations";
 
 export default function Portfolio() {
-  const [activeTab, setActiveTab] = useState("projects");
-  const [copiedEmail, setCopiedEmail] = useState(false);
+  const [activeTab, setActiveTab] = useState("home");
   const [activeProjectTab, setActiveProjectTab] = useState("software");
   const [isTabLoading, setIsTabLoading] = useState(false);
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
@@ -41,29 +35,6 @@ export default function Portfolio() {
     handleInputChange,
     handleSubmit,
   } = useContactForm();
-
-  const copyEmail = async () => {
-    try {
-      if (typeof navigator !== "undefined" && navigator.clipboard) {
-        // Modern browsers
-        await navigator.clipboard.writeText("ted@teddygithinji.me");
-      } else {
-        // Fallback for older browsers
-        const textArea = document.createElement("textarea");
-        textArea.value = "ted@teddygithinji.me";
-        document.body.appendChild(textArea);
-        textArea.select();
-        document.execCommand("copy");
-        document.body.removeChild(textArea);
-      }
-
-      // Show success state
-      setCopiedEmail(true);
-      setTimeout(() => setCopiedEmail(false), 2000);
-    } catch (err) {
-      console.error("Failed to copy email:", err);
-    }
-  };
 
   const handleContactClick = () => {
     setIsTabLoading(true);
@@ -135,7 +106,7 @@ export default function Portfolio() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.6, ease: "easeOut" }}
               >
-                Teddy Githinji Muraguri
+                Teddy Githinji
               </motion.h1>
               <motion.p
                 className="text-primary font-medium mb-3 text-sm lg:text-base"
@@ -143,7 +114,7 @@ export default function Portfolio() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.6 }}
               >
-                Software Engineer & Automation Expert
+                Software Engineer & Automation Specialist
               </motion.p>
               <motion.p
                 className="text-muted-foreground text-xs lg:text-sm leading-relaxed text-pretty"
@@ -151,68 +122,11 @@ export default function Portfolio() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.6 }}
               >
-                Passionate full-stack developer(specializing in Backend
-                technologies) with 3+ years of experience building scalable web
-                applications and automation solutions.
+                I help businesses automate operations, connect systems, and build custom software that saves time and drives growth.
               </motion.p>
             </div>
 
-            {/* Contact Info */}
-            <motion.div
-              className="space-y-2"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-            >
-              <motion.button
-                onClick={copyEmail}
-                className="flex items-center gap-3 w-full p-3 rounded-lg hover:bg-accent transition-colors group"
-                variants={buttonHover}
-                whileHover="hover"
-                whileTap="tap"
-              >
-                <Mail className="w-4 h-4 text-primary" />
-                <span className="text-xs lg:text-sm text-foreground group-hover:text-accent-foreground transition-colors">
-                  ted@teddygithinji.me
-                </span>
-                {copiedEmail ? (
-                  <Check className="w-3 h-3 text-green-500 ml-auto" />
-                ) : (
-                  <Copy className="w-3 h-3 text-muted-foreground ml-auto" />
-                )}
-              </motion.button>
 
-              <div className="flex items-center gap-3 p-3">
-                <Phone className="w-4 h-4 text-primary" />
-                <span className="text-xs lg:text-sm text-foreground">
-                  +254 702783943
-                </span>
-              </div>
-
-              <div className="flex items-center gap-3 p-3">
-                <MapPin className="w-4 h-4 text-primary" />
-                <span className="text-xs lg:text-sm text-foreground">
-                  Nairobi, Kenya
-                </span>
-              </div>
-
-              <div className="flex items-center gap-3 p-3">
-                <Building className="w-4 h-4 text-primary" />
-                <span className="text-xs lg:text-sm text-foreground">
-                  Rahisisha Tech
-                </span>
-              </div>
-
-              <div className="flex items-center gap-3 p-3">
-                <Globe className="w-4 h-4 text-primary" />
-                <a
-                  href="https://teddygithinji.me"
-                  className="text-xs lg:text-sm text-foreground hover:text-primary transition-colors"
-                >
-                  teddygithinji.me
-                </a>
-              </div>
-            </motion.div>
 
             {/* Social Links */}
             <motion.div
@@ -222,6 +136,11 @@ export default function Portfolio() {
               transition={{ delay: 0.7 }}
             >
               {[
+                {
+                  icon: Mail,
+                  href: "mailto:ted@teddygithinji.me",
+                  color: "hover:text-red-400",
+                },
                 {
                   icon: Github,
                   href: "https://github.com/Tgithinji/",
@@ -252,26 +171,7 @@ export default function Portfolio() {
               ))}
             </motion.div>
 
-            {/* About Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
-            >
-              <Card className="bg-card/50 border-border">
-                <CardContent className="p-4">
-                  <h3 className="font-semibold text-foreground mb-3 text-sm lg:text-base">
-                    About
-                  </h3>
-                  <p className="text-muted-foreground text-xs lg:text-sm leading-relaxed text-pretty">
-                    I specialize in creating efficient, scalable solutions that
-                    help businesses grow. From custom web applications to
-                    intelligent automation systems, I bring ideas to life with
-                    clean code and thoughtful design.
-                  </p>
-                </CardContent>
-              </Card>
-            </motion.div>
+
           </div>
         </motion.div>
 
@@ -284,12 +184,12 @@ export default function Portfolio() {
               onValueChange={handleTabChange}
               className="w-full"
             >
-              <TabsList className="grid w-full grid-cols-4 mb-4 bg-card border border-border">
+              <TabsList className="grid w-full grid-cols-5 mb-4 bg-card border border-border">
                 <TabsTrigger
-                  value="projects"
+                  value="home"
                   className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-300"
                 >
-                  Projects
+                  Home
                 </TabsTrigger>
                 <TabsTrigger
                   value="services"
@@ -298,10 +198,16 @@ export default function Portfolio() {
                   Services
                 </TabsTrigger>
                 <TabsTrigger
-                  value="resume"
+                  value="casestudies"
                   className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-300"
                 >
-                  Resume
+                  Case Studies
+                </TabsTrigger>
+                <TabsTrigger
+                  value="about"
+                  className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-300"
+                >
+                  About
                 </TabsTrigger>
                 <TabsTrigger
                   value="contact"
@@ -338,7 +244,12 @@ export default function Portfolio() {
               <AnimatePresence mode="wait">
                 {!isTabLoading && (
                   <>
-                    <ProjectsSection
+                    <HomeSection
+                      onCTAClick={handleCTAClickAndNavigate}
+                      onContactClick={handleContactClick}
+                    />
+
+                    <CaseStudiesSection
                       activeProjectTab={activeProjectTab}
                       setActiveProjectTab={setActiveProjectTab}
                     />
@@ -351,7 +262,7 @@ export default function Portfolio() {
                       isLoading={isLoading}
                     />
 
-                    <ResumeSection />
+                    <AboutSection />
 
                     <ContactSection
                       formData={formData}

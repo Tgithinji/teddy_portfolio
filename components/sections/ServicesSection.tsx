@@ -2,19 +2,13 @@
 
 import type React from "react";
 import { motion } from "framer-motion";
-import { TabsContent, Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { TabsContent } from "@/components/ui/tabs";
 import { ServiceCard } from "@/components/portfolio/ServiceCard";
-import { PricingCard } from "@/components/portfolio/PricingCard";
 import { FAQItem } from "@/components/portfolio/FAQItem";
 import { buttonHover } from "@/components/portfolio/animations";
 import { Button } from "@/components/ui/button";
 import { Code, Zap, Puzzle, Bot } from "lucide-react";
-import {
-  services,
-  automationPricing,
-  softwarePricing,
-  faqData,
-} from "@/data/portfolio";
+import { services, faqData } from "@/data/portfolio";
 
 interface ServicesSectionProps {
   openFAQ: number | null;
@@ -40,7 +34,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
         transition={{ duration: 0.5 }}
       >
         <motion.div
-          className="text-center mb-4"
+          className="text-center mb-12"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -49,14 +43,13 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
             Services & Solutions
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
-            Comprehensive development and automation services tailored to your
-            business needs
+            Comprehensive development and automation services tailored to your business needs.
           </p>
         </motion.div>
 
         {/* Services Grid */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8"
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.6 }}
@@ -94,80 +87,28 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
           })}
         </motion.div>
 
-        {/* Pricing Section */}
+        {/* Engagement Approach */}
         <motion.div
-          className="mb-8"
+          className="mb-16 bg-card/50 border border-border rounded-2xl p-8 md:p-12 text-center"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.6 }}
         >
-          <div className="text-center mb-6">
-            <h2 className="text-3xl font-bold text-foreground mb-4">
-              Pricing Plans
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Choose the perfect plan for your project needs
-            </p>
-          </div>
-
-          <Tabs defaultValue="automation" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 mb-6">
-              <TabsTrigger value="automation">Automation</TabsTrigger>
-              <TabsTrigger value="software">
-                Software & Web Development
-              </TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="automation">
-              <motion.div
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5 }}
-              >
-                {automationPricing.map((plan, index) => (
-                  <PricingCard
-                    key={plan.name}
-                    name={plan.name}
-                    price={plan.price}
-                    usdPrice={plan.usdPrice}
-                    description={plan.description}
-                    features={plan.features}
-                    range={plan.range}
-                    support={plan.support}
-                    popular={plan.popular}
-                    index={index}
-                    onCTAClick={onCTAClick}
-                  />
-                ))}
-              </motion.div>
-            </TabsContent>
-
-            <TabsContent value="software">
-              <motion.div
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5 }}
-              >
-                {softwarePricing.map((plan, index) => (
-                  <PricingCard
-                    key={plan.name}
-                    name={plan.name}
-                    price={plan.price}
-                    usdPrice={plan.usdPrice}
-                    description={plan.description}
-                    features={plan.features}
-                    range={plan.range}
-                    support={plan.support}
-                    popular={plan.popular}
-                    index={index}
-                    onCTAClick={onCTAClick}
-                  />
-                ))}
-              </motion.div>
-            </TabsContent>
-          </Tabs>
+          <h2 className="text-3xl font-bold text-foreground mb-6">
+            Every business is unique.
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed">
+            I don't offer generic templates or forced tier structures. Every workflow, internal system, and automation is designed specifically for your operational challenges and revenue goals.
+          </p>
+          <motion.button
+            onClick={() => onCTAClick("I'd like to book a discovery call to discuss my workflow challenges.")}
+            className="bg-primary text-primary-foreground px-8 py-4 rounded-lg font-semibold text-lg hover:bg-primary/90 transition-all duration-300 hover:shadow-lg hover:shadow-primary/25"
+            variants={buttonHover}
+            whileHover="hover"
+            whileTap="tap"
+          >
+            Book a Discovery Call
+          </motion.button>
         </motion.div>
 
         {/* FAQ Section */}
@@ -177,32 +118,24 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
               className="text-3xl font-bold text-foreground mb-4"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
+              transition={{ delay: 0.6 }}
             >
               Frequently Asked Questions
             </motion.h2>
-            <motion.p
-              className="text-muted-foreground text-lg max-w-2xl mx-auto"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.9 }}
-            >
-              Answers to common questions about my services.
-            </motion.p>
           </div>
 
           <motion.div
             className="max-w-3xl mx-auto space-y-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1.0 }}
+            transition={{ delay: 0.7 }}
           >
             {faqData.map((faq, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.1 + index * 0.1 }}
+                transition={{ delay: 0.8 + index * 0.1 }}
               >
                 <FAQItem
                   question={faq.question}
@@ -220,7 +153,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
           className="mt-20"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.5, duration: 0.6 }}
+          transition={{ delay: 1.2, duration: 0.6 }}
         >
           <div className="max-w-3xl mx-auto">
             <div className="bg-card/30 backdrop-blur-sm border border-border rounded-xl p-12 text-center shadow-2xl shadow-primary/5">
@@ -228,19 +161,18 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                 className="text-4xl font-bold text-foreground mb-6"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.6 }}
+                transition={{ delay: 1.3 }}
               >
-                Let's Automate Your Business
+                Let's Identify What's Slowing Your Business Down
               </motion.h2>
 
               <motion.p
                 className="text-muted-foreground text-lg mb-8 max-w-2xl mx-auto leading-relaxed"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.7 }}
+                transition={{ delay: 1.4 }}
               >
-                Whether you need custom software or smart automation, I can help
-                streamline your workflow and save you time.
+                Book a free 30-minute consultation and I'll show you where automation or software can save time, reduce costs, or improve customer experience.
               </motion.p>
 
               <motion.button
@@ -251,7 +183,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                 whileTap="tap"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.8 }}
+                transition={{ delay: 1.5 }}
                 aria-label="Contact Form"
               >
                 {isLoading ? (
@@ -265,10 +197,10 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                         ease: "linear",
                       }}
                     />
-                    Sending...
+                    Loading...
                   </div>
                 ) : (
-                  "Send Message"
+                  "Schedule a Call"
                 )}
               </motion.button>
             </div>
