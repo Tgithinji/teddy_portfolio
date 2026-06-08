@@ -2,7 +2,7 @@
 
 import type React from "react";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
@@ -10,7 +10,8 @@ import {
   Mail,
   Github,
   Linkedin,
-  Twitter,
+  MessageCircle,
+  ArrowUp,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { CaseStudiesSection } from "@/components/sections/CaseStudiesSection";
@@ -25,6 +26,26 @@ export default function Portfolio() {
   const [activeTab, setActiveTab] = useState("home");
   const [isTabLoading, setIsTabLoading] = useState(false);
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 400) {
+        setShowScrollTop(true);
+      } else {
+        setShowScrollTop(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   const {
     isLoading,
@@ -151,9 +172,9 @@ export default function Portfolio() {
                   color: "hover:text-blue-400",
                 },
                 {
-                  icon: Twitter,
-                  href: "https://x.com/SorcererScript",
-                  color: "hover:text-blue-400",
+                  icon: MessageCircle,
+                  href: "https://wa.me/254702783943",
+                  color: "hover:text-green-500",
                 },
               ].map((social, index) => (
                 <motion.a
@@ -186,31 +207,31 @@ export default function Portfolio() {
               <TabsList className="flex w-full overflow-x-auto no-scrollbar md:grid md:grid-cols-5 gap-2 mb-4 bg-card border border-border p-1.5 rounded-xl justify-start sm:justify-center">
                 <TabsTrigger
                   value="home"
-                  className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground hover:bg-primary/10 hover:text-primary dark:hover:bg-primary/20 dark:hover:text-primary transition-all duration-300"
+                  className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground dark:data-[state=active]:!text-black hover:bg-primary/10 hover:text-primary dark:hover:bg-primary/60 dark:hover:!text-black transition-all duration-300"
                 >
                   Home
                 </TabsTrigger>
                 <TabsTrigger
                   value="services"
-                  className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground hover:bg-primary/10 hover:text-primary dark:hover:bg-primary/20 dark:hover:text-primary transition-all duration-300"
+                  className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground dark:data-[state=active]:!text-black hover:bg-primary/10 hover:text-primary dark:hover:bg-primary/60 dark:hover:!text-black transition-all duration-300"
                 >
                   Services
                 </TabsTrigger>
                 <TabsTrigger
                   value="casestudies"
-                  className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground hover:bg-primary/10 hover:text-primary dark:hover:bg-primary/20 dark:hover:text-primary transition-all duration-300"
+                  className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground dark:data-[state=active]:!text-black hover:bg-primary/10 hover:text-primary dark:hover:bg-primary/60 dark:hover:!text-black transition-all duration-300"
                 >
                   Case Studies
                 </TabsTrigger>
                 <TabsTrigger
                   value="about"
-                  className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground hover:bg-primary/10 hover:text-primary dark:hover:bg-primary/20 dark:hover:text-primary transition-all duration-300"
+                  className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground dark:data-[state=active]:!text-black hover:bg-primary/10 hover:text-primary dark:hover:bg-primary/60 dark:hover:!text-black transition-all duration-300"
                 >
                   About
                 </TabsTrigger>
                 <TabsTrigger
                   value="contact"
-                  className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground hover:bg-primary/10 hover:text-primary dark:hover:bg-primary/20 dark:hover:text-primary transition-all duration-300"
+                  className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground dark:data-[state=active]:!text-black hover:bg-primary/10 hover:text-primary dark:hover:bg-primary/60 dark:hover:!text-black transition-all duration-300"
                 >
                   Contact
                 </TabsTrigger>
@@ -275,6 +296,20 @@ export default function Portfolio() {
           </div>
         </div>
       </div>
+      <AnimatePresence>
+        {showScrollTop && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: 20 }}
+            onClick={scrollToTop}
+            className="fixed bottom-6 right-6 lg:bottom-10 lg:right-10 p-3 bg-primary text-primary-foreground rounded-full shadow-2xl hover:bg-primary/90 transition-all z-50 flex items-center justify-center cursor-pointer hover:-translate-y-1"
+            aria-label="Back to top"
+          >
+            <ArrowUp className="w-6 h-6" />
+          </motion.button>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
