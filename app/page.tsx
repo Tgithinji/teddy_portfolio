@@ -183,34 +183,34 @@ export default function Portfolio() {
               onValueChange={handleTabChange}
               className="w-full"
             >
-              <TabsList className="grid w-full grid-cols-5 mb-4 bg-card border border-border">
+              <TabsList className="flex w-full overflow-x-auto no-scrollbar md:grid md:grid-cols-5 gap-2 mb-4 bg-card border border-border p-1.5 rounded-xl justify-start sm:justify-center">
                 <TabsTrigger
                   value="home"
-                  className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-300"
+                  className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground hover:bg-primary/10 hover:text-primary dark:hover:bg-primary/20 dark:hover:text-primary transition-all duration-300"
                 >
                   Home
                 </TabsTrigger>
                 <TabsTrigger
                   value="services"
-                  className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-300"
+                  className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground hover:bg-primary/10 hover:text-primary dark:hover:bg-primary/20 dark:hover:text-primary transition-all duration-300"
                 >
                   Services
                 </TabsTrigger>
                 <TabsTrigger
                   value="casestudies"
-                  className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-300"
+                  className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground hover:bg-primary/10 hover:text-primary dark:hover:bg-primary/20 dark:hover:text-primary transition-all duration-300"
                 >
                   Case Studies
                 </TabsTrigger>
                 <TabsTrigger
                   value="about"
-                  className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-300"
+                  className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground hover:bg-primary/10 hover:text-primary dark:hover:bg-primary/20 dark:hover:text-primary transition-all duration-300"
                 >
                   About
                 </TabsTrigger>
                 <TabsTrigger
                   value="contact"
-                  className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-300"
+                  className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground hover:bg-primary/10 hover:text-primary dark:hover:bg-primary/20 dark:hover:text-primary transition-all duration-300"
                 >
                   Contact
                 </TabsTrigger>
@@ -246,6 +246,7 @@ export default function Portfolio() {
                     <HomeSection
                       onCTAClick={handleCTAClickAndNavigate}
                       onContactClick={handleContactClick}
+                      onViewCaseStudies={() => handleTabChange("casestudies")}
                     />
 
                     <CaseStudiesSection />

@@ -11,11 +11,13 @@ import { buttonHover } from "@/components/portfolio/animations";
 interface HomeSectionProps {
   onCTAClick: (message: string) => void;
   onContactClick: () => void;
+  onViewCaseStudies: () => void;
 }
 
 export const HomeSection: React.FC<HomeSectionProps> = ({
   onCTAClick,
   onContactClick,
+  onViewCaseStudies,
 }) => {
   return (
     <TabsContent value="home" className="mt-0">
@@ -32,10 +34,10 @@ export const HomeSection: React.FC<HomeSectionProps> = ({
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6 text-balance tracking-tight">
+          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4 text-balance">
             Stop Losing Time on Manual Work
           </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty mb-8">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty mb-8">
             I build custom software, AI automations, and business systems that help companies operate faster, serve customers better, and scale without hiring more staff.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
@@ -49,12 +51,7 @@ export const HomeSection: React.FC<HomeSectionProps> = ({
             <Button 
               size="lg" 
               variant="outline" 
-              onClick={() => {
-                // To simulate navigating to Case Studies, we'll just click contact for now, 
-                // or we'd need to lift the activeTab state to parent. 
-                // Since this component doesn't control tabs, we can just trigger a general action.
-                document.querySelector('[value="casestudies"]')?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
-              }}
+              onClick={onViewCaseStudies}
               className="text-lg px-8 py-6 h-auto"
             >
               View Case Studies
@@ -65,8 +62,8 @@ export const HomeSection: React.FC<HomeSectionProps> = ({
         {/* What Clients Achieve */}
         <div className="mb-20">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold text-foreground mb-4">What Clients Achieve</h2>
-            <p className="text-lg text-muted-foreground">Measurable business outcomes.</p>
+            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-3 text-balance">What Clients Achieve</h2>
+            <p className="text-base lg:text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">Measurable business outcomes.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {clientAchievements.map((achievement, index) => (
@@ -87,8 +84,8 @@ export const HomeSection: React.FC<HomeSectionProps> = ({
         {/* Who I Help */}
         <div className="mb-20">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold text-foreground mb-4">Who I Help</h2>
-            <p className="text-lg text-muted-foreground">Solutions tailored to your industry.</p>
+            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-3 text-balance">Who I Help</h2>
+            <p className="text-base lg:text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">Solutions tailored to your industry.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {industries.map((industry, index) => (
@@ -99,10 +96,10 @@ export const HomeSection: React.FC<HomeSectionProps> = ({
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 + (0.1 * index) }}
               >
-                <h3 className="text-2xl font-bold mb-4">{industry.title}</h3>
+                <h3 className="text-xl font-bold text-foreground mb-3">{industry.title}</h3>
                 <ul className="space-y-3">
                   {industry.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center gap-2 text-muted-foreground">
+                    <li key={idx} className="flex items-center gap-2 text-muted-foreground text-sm lg:text-base">
                       <ArrowRight className="w-4 h-4 text-primary" />
                       {feature}
                     </li>
@@ -121,15 +118,15 @@ export const HomeSection: React.FC<HomeSectionProps> = ({
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
           >
-            <h2 className="text-3xl font-bold text-foreground mb-6 text-center">A Technical Partner, Not Just a Developer</h2>
+            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-6 text-balance text-center">A Technical Partner, Not Just a Developer</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
               <div>
-                <p className="text-lg text-muted-foreground mb-4 leading-relaxed">
+                <p className="text-base lg:text-lg text-muted-foreground mb-4 leading-relaxed text-pretty">
                   I help businesses identify bottlenecks, automate repetitive processes, and build software that supports growth. Whether you need an AI-powered workflow, a custom platform, or system integrations, I focus on measurable business outcomes rather than just writing code.
                 </p>
                 <ul className="space-y-2 mt-6">
                   {['Backend Engineer with production experience', 'AI & Automation Specialist', 'Focused on business outcomes', 'Custom-built solutions rather than generic templates', 'Long-term support and continuous improvement mindset'].map((item, i) => (
-                    <li key={i} className="flex items-center gap-2 font-medium text-foreground">
+                    <li key={i} className="flex items-center gap-2 text-foreground text-sm lg:text-base">
                       <div className="w-2 h-2 rounded-full bg-primary" />
                       {item}
                     </li>
@@ -150,8 +147,8 @@ export const HomeSection: React.FC<HomeSectionProps> = ({
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8 }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Free Business Automation Audit</h2>
-          <p className="text-lg text-muted-foreground mb-8 text-pretty">
+          <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4 text-balance">Free Business Automation Audit</h2>
+          <p className="text-base lg:text-lg text-muted-foreground mb-8 text-pretty max-w-2xl mx-auto">
             I will review your workflow and identify manual bottlenecks, repetitive tasks, and opportunities where software can save you hours every week.
           </p>
           <motion.button
