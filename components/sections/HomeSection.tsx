@@ -43,10 +43,12 @@ export const HomeSection: React.FC<HomeSectionProps> = ({
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Button 
               size="lg" 
-              onClick={() => onCTAClick("I'm interested in a discovery call.")}
+              asChild
               className="text-lg px-8 py-6 h-auto"
             >
-              Book a Discovery Call
+              <a href={process.env.NEXT_PUBLIC_CALENDLY_LINK || "#"} target="_blank" rel="noopener noreferrer">
+                Book a Discovery Call
+              </a>
             </Button>
             <Button 
               size="lg" 
