@@ -1,61 +1,62 @@
 import type React from "react";
 import type { Metadata } from "next";
-import { Geist, Manrope } from "next/font/google";
+import { Geist, Instrument_Serif, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Nav } from "@/components/Nav";
+import { Footer } from "@/components/Footer";
 
-const geist = Geist({
+const inter = Inter({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-geist",
+  variable: "--font-inter",
 });
 
-const manrope = Manrope({
+const instrumentSerif = Instrument_Serif({
+  weight: "400",
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  display: "swap",
+  variable: "--font-instrument-serif",
+});
+
+const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-manrope",
+  variable: "--font-jetbrains-mono",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://teddygithinji.me"),
-  title: "Teddy | Software Developer & Automation Engineer",
+  title: "Teddy Githinji — Software & Systems Engineer",
   description:
-    "Portfolio showcasing full-stack software projects and workflow automations.",
+    "Building custom business systems, AI automations, internal tools, and high-performance web applications for operating teams.",
   keywords: [
-    "Teddy Githinji Muraguri",
     "Teddy Githinji",
-    "Teddy",
-    "Software Developer Kenya",
-    "Automation Kenya",
-    "Software Developer",
-    "Automation Engineer",
-    "Full Stack",
-    "Backend developer",
-    "PostgreSQL",
-    "Python",
-    "FastAPI",
-    "MySQL",
-    "n8n",
-    "SQL",
-    "Flask",
+    "Software Engineer Kenya",
+    "Automation Architect",
+    "AI Intake Automations",
+    "FastAPI Python Developer",
+    "Next.js Developer",
+    "n8n Workflow Automation",
+    "Business Systems Engineer",
   ],
-
   creator: "Teddy Githinji",
   alternates: {
     canonical: "https://teddygithinji.me",
   },
   openGraph: {
-    title: "Teddy | Software Developer & Automation Engineer",
+    title: "Teddy Githinji — Software & Systems Engineer",
     description:
-      "Portfolio showcasing full-stack software projects and workflow automations.",
+      "Building custom business systems, AI automations, internal tools, and high-performance web applications.",
     url: "https://teddygithinji.me",
-    siteName: "Teddy's Portfolio",
+    siteName: "Teddy Githinji",
     images: [
       {
         url: "/og-image.webp",
         width: 1200,
         height: 630,
-        alt: "Teddy's Portfolio - Software Developer & Automation Engineer",
+        alt: "Teddy Githinji — Software & Systems Engineer",
       },
     ],
     locale: "en_US",
@@ -63,37 +64,24 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Teddy | Software Developer & Automation Engineer",
+    title: "Teddy Githinji — Software & Systems Engineer",
     description:
-      "Portfolio showcasing full-stack software projects and workflow automations.",
+      "Building custom business systems, AI automations, internal tools, and high-performance web applications.",
     images: ["/og-image.webp"],
   },
   robots: {
     index: true,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
   icons: {
     icon: "/favicon.webp",
     shortcut: "/favicon.webp",
     apple: "/favicon.webp",
   },
-  authors: [
-    {
-      name: "Teddy Githinji Muraguri",
-      url: "https://teddygithinji.me",
-    },
-  ],
 };
 
 export const viewport = {
-  themeColor: "#0f172a",
+  themeColor: "#151516",
 };
 
 export default function RootLayout({
@@ -105,7 +93,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geist.variable} ${manrope.variable} antialiased`}
+      className={`${inter.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable} dark antialiased`}
     >
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -114,55 +102,22 @@ export default function RootLayout({
           href="https://fonts.gstatic.com"
           crossOrigin=""
         />
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-        <link rel="preload" href="/Teddy.webp" as="image" type="image/webp" />
         <link
-          rel="preload"
-          href="/og-image.webp"
-          as="image"
-          type="image/webp"
-        />
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `
-              /* Critical CSS for above-the-fold content */
-              .font-sans { font-family: var(--font-geist), ui-sans-serif, system-ui, sans-serif; }
-              .antialiased { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-              .min-h-screen { min-height: 100vh; }
-              .bg-background { background-color: hsl(var(--background)); }
-              .text-foreground { color: hsl(var(--foreground)); }
-              .hidden { display: none; }
-              @media (min-width: 1024px) { .lg\\:block { display: block; } .lg\\:hidden { display: none; } }
-            `,
-          }}
+          href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap"
+          rel="stylesheet"
         />
       </head>
-      <body className="font-sans">
+      <body className="min-h-screen bg-background text-foreground selection:bg-primary selection:text-primary-foreground">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange={false}
+          forcedTheme="dark"
+          disableTransitionOnChange
         >
-          {children}
+          <Nav />
+          <main>{children}</main>
+          <Footer />
         </ThemeProvider>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Person",
-              name: "Teddy Githinji",
-              url: "https://teddygithinji.me",
-              jobTitle: "Software Developer & Automation Engineer",
-              sameAs: [
-                "https://github.com/Tgithinji",
-                "https://www.linkedin.com/in/teddy-githinji",
-              ],
-            }),
-          }}
-        />
       </body>
     </html>
   );
