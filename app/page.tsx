@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { selectedSystems, services } from "@/data/portfolio";
 import { useContactForm } from "@/hooks/useContactForm";
+import { siteConfig } from "@/lib/siteConfig";
 import { ArrowUpRight, CheckCircle2, Clock, Cpu, ShieldCheck, Zap } from "lucide-react";
 
 function Shell({ children }: { children: React.ReactNode }) {
@@ -61,22 +62,22 @@ export default function Home() {
 
             <div className="col-span-12 md:col-span-10">
               <h1 className="rise text-[clamp(2.5rem,6vw,5.5rem)] font-light leading-[1.04] tracking-[-0.03em] text-foreground">
-                I build custom software, AI automations, and workflow systems that make business operations{" "}
+                Most businesses don't need more software.{" "}
                 <span className="font-serif italic text-[color:var(--color-primary)]">
-                  run faster.
+                  They need systems that actually fit the way they work.
                 </span>
               </h1>
 
               <div className="mt-12 grid grid-cols-12 gap-x-6 gap-y-8">
                 <p className="rise col-span-12 max-w-[54ch] text-base leading-relaxed text-[color:var(--color-muted-foreground)] md:col-span-7">
-                  Software Engineer & Automation Architect based in Nairobi. I help companies eliminate repetitive admin, bridge disconnected tools, and deploy sub-minute AI intake engines that convert silence into structured execution.
+                  I design and build modern websites, AI automations, and internal software that remove friction, reduce manual work, and help businesses operate more efficiently.
                 </p>
                 
                 <div className="rise col-span-12 md:col-span-5 md:col-start-8">
                   <dl className="space-y-3.5 text-sm">
                     <div className="flex justify-between hairline-b pb-2.5">
                       <dt className="text-[color:var(--color-subtle)]">Role</dt>
-                      <dd className="font-medium text-foreground">Software & Systems Engineer</dd>
+                      <dd className="font-medium text-foreground">Software &amp; Systems Engineer</dd>
                     </div>
                     <div className="flex justify-between hairline-b pb-2.5">
                       <dt className="text-[color:var(--color-subtle)]">Based</dt>
@@ -106,7 +107,7 @@ export default function Home() {
                 <span className="font-mono text-foreground">MISSION CONTROL</span>
               </div>
               <p className="mt-2 text-xs text-[color:var(--color-muted-foreground)]">
-                Live operating status & core capabilities
+                Live operating status &amp; core capabilities
               </p>
             </div>
 
@@ -118,7 +119,7 @@ export default function Home() {
                     <Zap className="h-3.5 w-3.5 text-primary" />
                   </div>
                   <p className="mt-2 text-xs font-medium text-foreground">
-                    AI Intake Briefing Pipelines & Custom FastAPI Services
+                    AI Intake Briefing Pipelines &amp; Custom FastAPI Services
                   </p>
                 </div>
 
@@ -164,7 +165,7 @@ export default function Home() {
         <Shell>
           <div className="grid grid-cols-12 gap-x-6 gap-y-12">
             <div className="col-span-12 md:col-span-3">
-              <SectionLabel index="02">Proof & Impact</SectionLabel>
+              <SectionLabel index="02">Proof &amp; Impact</SectionLabel>
             </div>
 
             <div className="col-span-12 md:col-span-9">
@@ -177,7 +178,7 @@ export default function Home() {
                   <div className="text-3xl font-light tracking-tight text-foreground md:text-4xl">
                     &lt; 1 min
                   </div>
-                  <div className="mt-2 text-xs uppercase tracking-wider text-[color:var(--color-subtle)]">
+                  <div className="mt-2 text-xs uppercase tracking-wider text-[color:var(--color-subtle)] font-mono">
                     AI Lead Response Speed
                   </div>
                 </div>
@@ -186,7 +187,7 @@ export default function Home() {
                   <div className="text-3xl font-light tracking-tight text-foreground md:text-4xl">
                     10+ hrs
                   </div>
-                  <div className="mt-2 text-xs uppercase tracking-wider text-[color:var(--color-subtle)]">
+                  <div className="mt-2 text-xs uppercase tracking-wider text-[color:var(--color-subtle)] font-mono">
                     Weekly Payroll Admin Saved
                   </div>
                 </div>
@@ -195,7 +196,7 @@ export default function Home() {
                   <div className="text-3xl font-light tracking-tight text-foreground md:text-4xl">
                     85%↓
                   </div>
-                  <div className="mt-2 text-xs uppercase tracking-wider text-[color:var(--color-subtle)]">
+                  <div className="mt-2 text-xs uppercase tracking-wider text-[color:var(--color-subtle)] font-mono">
                     Intake Follow-Up Delay
                   </div>
                 </div>
@@ -204,7 +205,7 @@ export default function Home() {
                   <div className="text-3xl font-light tracking-tight text-foreground md:text-4xl">
                     100%
                   </div>
-                  <div className="mt-2 text-xs uppercase tracking-wider text-[color:var(--color-subtle)]">
+                  <div className="mt-2 text-xs uppercase tracking-wider text-[color:var(--color-subtle)] font-mono">
                     Attorney Brief Readiness
                   </div>
                 </div>
@@ -215,17 +216,17 @@ export default function Home() {
       </section>
 
       {/* -------------------------------------------------------------------------- */}
-      {/*  03 — SELECTED SYSTEMS (FEATURED WORK)                                      */}
+      {/*  03 — SELECTED SYSTEMS (EDITORIAL MAGAZINE FEATURE ROWS)                   */}
       {/* -------------------------------------------------------------------------- */}
-      <section className="hairline-t py-24 md:py-32">
+      <section className="hairline-t pt-24 md:pt-36">
         <Shell>
-          <div className="grid grid-cols-12 gap-x-6 pb-12">
+          <div className="grid grid-cols-12 gap-x-6 pb-16">
             <div className="col-span-12 md:col-span-3">
               <SectionLabel index="03">Selected Systems</SectionLabel>
             </div>
             <div className="col-span-12 md:col-span-9 flex flex-col justify-between gap-4 md:flex-row md:items-end">
-              <h2 className="max-w-[24ch] text-[clamp(2rem,4vw,3rem)] font-light leading-[1.05] tracking-[-0.02em]">
-                Featured engineering builds,{" "}
+              <h2 className="max-w-[24ch] text-[clamp(2rem,4vw,3.25rem)] font-light leading-[1.05] tracking-[-0.02em]">
+                A small catalogue of business systems,{" "}
                 <span className="font-serif italic text-[color:var(--color-primary)]">
                   deeply finished.
                 </span>
@@ -239,15 +240,40 @@ export default function Home() {
               </Link>
             </div>
           </div>
+        </Shell>
 
-          <div className="space-y-16">
-            {featuredSystems.map((sys) => (
-              <article
-                key={sys.id}
-                className="group rounded-xl border border-[color:var(--color-hairline)] bg-[color:var(--color-card)]/30 p-6 md:p-10 transition-colors hover:border-[color:var(--color-border)]"
-              >
-                <div className="grid grid-cols-12 gap-x-6 gap-y-8 items-start">
-                  <div className="col-span-12 md:col-span-7">
+        {/* Editorial Alternating System Rows */}
+        {featuredSystems.map((sys, idx) => {
+          const isEven = idx % 2 === 1;
+          const imageOrder = isEven ? "md:order-last" : "md:order-first";
+
+          return (
+            <article key={sys.id} className="hairline-t py-20 md:py-28">
+              <Shell>
+                <div className="grid grid-cols-12 items-center gap-x-8 gap-y-12">
+                  {/* Screenshot Feature Block */}
+                  <div className={`col-span-12 md:col-span-7 ${imageOrder}`}>
+                    <Link href={`/case-studies#${sys.slug}`} className="group block relative overflow-hidden rounded-xl bg-[color:var(--color-card)]/50">
+                      <div className="relative aspect-[16/10] w-full overflow-hidden">
+                        {sys.thumbnail ? (
+                          <img
+                            src={sys.thumbnail}
+                            alt={sys.title}
+                            loading="lazy"
+                            className="h-full w-full object-cover object-top transition-transform duration-[1000ms] ease-out group-hover:scale-[1.03]"
+                          />
+                        ) : (
+                          <div className="flex h-full w-full items-center justify-center bg-card text-muted-foreground">
+                            System Preview
+                          </div>
+                        )}
+                      </div>
+                      <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-[color:var(--color-hairline)]" />
+                    </Link>
+                  </div>
+
+                  {/* Editorial Narrative & Outcomes Block */}
+                  <div className="col-span-12 md:col-span-5">
                     <div className="flex items-center gap-4 text-[11px] uppercase tracking-[0.22em] text-[color:var(--color-subtle)]">
                       <span className="font-mono">{sys.index}</span>
                       <span className="h-px w-8 bg-[color:var(--color-hairline)]" />
@@ -257,14 +283,15 @@ export default function Home() {
                       </span>
                     </div>
 
-                    <h3 className="mt-6 text-[clamp(1.5rem,2.8vw,2.25rem)] font-light leading-[1.12] tracking-[-0.02em] text-foreground">
+                    <h3 className="mt-6 text-[clamp(1.75rem,3vw,2.5rem)] font-light leading-[1.1] tracking-[-0.02em] text-foreground">
                       {sys.title}
                     </h3>
-                    <p className="mt-3 text-sm text-[color:var(--color-muted-foreground)]">
-                      {sys.subtitle}
+
+                    <p className="mt-3 text-xs uppercase tracking-[0.18em] text-[color:var(--color-primary)] font-mono">
+                      {sys.impactBadge}
                     </p>
 
-                    <div className="mt-6 space-y-4 text-xs md:text-sm text-[color:var(--color-muted-foreground)]">
+                    <div className="mt-8 space-y-5 text-sm leading-relaxed text-[color:var(--color-muted-foreground)]">
                       <div>
                         <span className="mr-2 text-[color:var(--color-subtle)] font-medium">
                           Problem —
@@ -279,38 +306,25 @@ export default function Home() {
                       </div>
                     </div>
 
-                    <div className="mt-8 flex flex-wrap items-center gap-2">
-                      {sys.techStack.map((tech) => (
-                        <span
-                          key={tech}
-                          className="rounded border border-[color:var(--color-hairline)] bg-background/60 px-2.5 py-1 font-mono text-[11px] text-[color:var(--color-muted-foreground)]"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="col-span-12 md:col-span-5 flex flex-col justify-between h-full">
-                    <dl className="grid grid-cols-3 gap-4 rounded-lg border border-[color:var(--color-hairline)] bg-background/40 p-5">
+                    <dl className="mt-10 grid grid-cols-3 gap-x-4 border-t border-[color:var(--color-hairline)] pt-6">
                       {sys.metrics.map((m) => (
                         <div key={m.label}>
-                          <dt className="text-[10px] uppercase tracking-[0.15em] text-[color:var(--color-subtle)]">
+                          <dt className="text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-subtle)] font-mono">
                             {m.label}
                           </dt>
-                          <dd className="mt-1 text-xl font-light tracking-tight text-foreground">
+                          <dd className="mt-2 text-2xl font-light tracking-tight text-foreground">
                             {m.value}
                           </dd>
                         </div>
                       ))}
                     </dl>
 
-                    <div className="mt-8 flex items-center gap-4">
+                    <div className="mt-10 flex items-center gap-6">
                       <Link
                         href={`/case-studies#${sys.slug}`}
                         className="link-underline text-sm font-medium text-foreground hover:text-primary"
                       >
-                        <span className="link-underline-line">Read full case study</span>
+                        <span className="link-underline-line">Read the case study</span>
                         <ArrowUpRight className="h-4 w-4" />
                       </Link>
                       {sys.demo && (
@@ -318,18 +332,18 @@ export default function Home() {
                           href={sys.demo}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-xs text-[color:var(--color-subtle)] hover:text-foreground underline underline-offset-4"
+                          className="text-xs text-[color:var(--color-subtle)] hover:text-foreground underline underline-offset-4 font-mono"
                         >
-                          Watch Demo
+                          Watch Demo Video
                         </a>
                       )}
                     </div>
                   </div>
                 </div>
-              </article>
-            ))}
-          </div>
-        </Shell>
+              </Shell>
+            </article>
+          );
+        })}
       </section>
 
       {/* -------------------------------------------------------------------------- */}
@@ -483,14 +497,14 @@ export default function Home() {
               <div className="mt-10 space-y-3 text-sm">
                 <div className="flex justify-between border-b border-[color:var(--color-hairline)] pb-2 text-xs">
                   <span className="text-[color:var(--color-subtle)]">Direct Email</span>
-                  <a href="mailto:ted@teddygithinji.me" className="text-foreground hover:text-primary">
-                    ted@teddygithinji.me
+                  <a href={`mailto:${siteConfig.email}`} className="text-foreground hover:text-primary">
+                    {siteConfig.email}
                   </a>
                 </div>
                 <div className="flex justify-between border-b border-[color:var(--color-hairline)] pb-2 text-xs">
                   <span className="text-[color:var(--color-subtle)]">WhatsApp</span>
-                  <a href="https://wa.me/254702783943" target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary">
-                    +254 702 783 943
+                  <a href={siteConfig.whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary">
+                    {siteConfig.whatsappNumber}
                   </a>
                 </div>
                 <div className="flex justify-between border-b border-[color:var(--color-hairline)] pb-2 text-xs">
@@ -552,7 +566,7 @@ export default function Home() {
                     rows={4}
                     value={formData.message}
                     onChange={handleInputChange}
-                    placeholder="Tell me about your manual intake, spreadsheet bottlenecks, or software requirements..."
+                    placeholder="Tell me about your manual intake, spreadsheet bottlenecks, or custom software requirements..."
                     className="w-full rounded-md border border-[color:var(--color-border)] bg-background/60 px-4 py-3 text-sm text-foreground placeholder:text-[color:var(--color-subtle)] focus:border-primary focus:outline-none resize-none"
                   />
                   {formErrors.message && (

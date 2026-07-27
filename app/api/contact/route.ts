@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
+import { siteConfig } from "@/lib/siteConfig";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -12,8 +13,8 @@ export async function POST(req: NextRequest) {
     }
 
     await resend.emails.send({
-      from: "contact@teddygithinji.me", // Must be verified in Resend
-      to: "ted@teddygithinji.me",
+      from: siteConfig.contactFromEmail,
+      to: siteConfig.contactToEmail,
       subject: `New message from ${name}`,
       html: `
         <h2>New Contact Form Submission</h2>

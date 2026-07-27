@@ -1,6 +1,7 @@
 "use client";
 
 import { useContactForm } from "@/hooks/useContactForm";
+import { siteConfig } from "@/lib/siteConfig";
 import { Mail, MessageCircle, Github, Linkedin, ShieldCheck, Clock, MapPin } from "lucide-react";
 
 function Shell({ children }: { children: React.ReactNode }) {
@@ -50,18 +51,18 @@ export default function ContactPage() {
 
               <div className="space-y-3 text-sm">
                 <a
-                  href="mailto:ted@teddygithinji.me"
+                  href={`mailto:${siteConfig.email}`}
                   className="flex items-center gap-3 rounded-lg border border-[color:var(--color-hairline)] bg-background/60 p-3.5 text-foreground hover:border-primary transition-colors"
                 >
                   <Mail className="h-4 w-4 text-primary" />
                   <div>
                     <div className="text-xs text-[color:var(--color-subtle)]">Email</div>
-                    <div className="font-medium">ted@teddygithinji.me</div>
+                    <div className="font-medium">{siteConfig.email}</div>
                   </div>
                 </a>
 
                 <a
-                  href="https://wa.me/254702783943"
+                  href={siteConfig.whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 rounded-lg border border-[color:var(--color-hairline)] bg-background/60 p-3.5 text-foreground hover:border-primary transition-colors"
@@ -69,7 +70,7 @@ export default function ContactPage() {
                   <MessageCircle className="h-4 w-4 text-primary" />
                   <div>
                     <div className="text-xs text-[color:var(--color-subtle)]">WhatsApp</div>
-                    <div className="font-medium">+254 702 783 943</div>
+                    <div className="font-medium">{siteConfig.whatsappNumber}</div>
                   </div>
                 </a>
               </div>

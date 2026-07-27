@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { siteConfig } from "@/lib/siteConfig";
 
 export function Footer() {
   return (
@@ -12,13 +13,13 @@ export function Footer() {
           
           <div className="flex items-center gap-6 text-sm">
             <a
-              href="mailto:ted@teddygithinji.me"
+              href={`mailto:${siteConfig.email}`}
               className="transition-colors hover:text-foreground"
             >
               Email
             </a>
             <a
-              href="https://github.com/Tgithinji/"
+              href={siteConfig.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="transition-colors hover:text-foreground"
@@ -26,7 +27,7 @@ export function Footer() {
               GitHub
             </a>
             <a
-              href="https://www.linkedin.com/in/teddy-muraguri/"
+              href={siteConfig.linkedinUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="transition-colors hover:text-foreground"
@@ -34,7 +35,7 @@ export function Footer() {
               LinkedIn
             </a>
             <a
-              href="https://wa.me/254702783943"
+              href={siteConfig.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="transition-colors hover:text-foreground"
