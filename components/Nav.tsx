@@ -21,7 +21,6 @@ export function Nav() {
     { label: "Selected Systems", href: "/case-studies" },
     { label: "Services", href: "/services" },
     { label: "About", href: "/about" },
-    { label: "Insights", href: "/insights" },
     { label: "Contact", href: "/contact" },
   ];
 
