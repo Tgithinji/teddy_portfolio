@@ -422,21 +422,15 @@ export default function Home() {
         })}
 
         {/* Section Ending CTA: Explore All Case Studies */}
-        <div className="hairline-t py-16">
+        <div className="hairline-t py-12">
           <Shell>
-            <div className="flex flex-col items-center text-center">
-              <p className="font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-subtle)]">
-                Executive Overview Complete
-              </p>
-              <h3 className="mt-3 text-xl md:text-2xl font-light text-foreground max-w-xl">
-                Ready to review technical architectures, workflow diagrams, and full build specs?
-              </h3>
+            <div className="flex justify-end">
               <Link
                 href="/case-studies"
-                className="mt-8 inline-flex items-center gap-3 rounded-full border border-primary/40 bg-primary/10 px-8 py-3.5 text-sm font-medium text-foreground hover:bg-primary/20 hover:border-primary transition-colors group"
+                className="link-underline text-sm font-medium text-foreground hover:text-primary"
               >
-                <span>Explore All Case Studies</span>
-                <ArrowUpRight className="h-4 w-4 text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                <span className="link-underline-line">Explore All Case Studies</span>
+                <ArrowUpRight className="h-4 w-4" />
               </Link>
             </div>
           </Shell>
