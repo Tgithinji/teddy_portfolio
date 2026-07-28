@@ -19,7 +19,7 @@ function Shell({ children }: { children: React.ReactNode }) {
 
 export default function CaseStudiesPage() {
   return (
-    <div className="min-h-screen bg-background pt-32 pb-32">
+    <div className="min-h-screen bg-transparent pt-32 pb-32">
       <Shell>
         {/* Header */}
         <div className="max-w-3xl border-b border-[color:var(--color-hairline)] pb-12">

@@ -41,14 +41,20 @@ export default function Home() {
   const featuredSystems = selectedSystems.filter((sys) => sys.featured);
 
   return (
-    <div className="min-h-screen bg-background text-foreground antialiased selection:bg-primary selection:text-primary-foreground">
+    <div className="min-h-screen bg-transparent text-foreground antialiased selection:bg-primary selection:text-primary-foreground">
       {/* -------------------------------------------------------------------------- */}
       {/*  01 — HERO                                                                 */}
       {/* -------------------------------------------------------------------------- */}
-      <section className="relative pt-36 pb-24 md:pt-48 md:pb-36">
+      <section className="relative pt-36 pb-24 md:pt-48 md:pb-36 overflow-hidden">
+        {/* Soft Warm Radial Glow */}
         <div
-          className="pointer-events-none absolute inset-0 -z-10 grid-precision opacity-60"
-          aria-hidden
+          className="pointer-events-none absolute inset-0 -z-10 hero-radial-glow"
+          aria-hidden="true"
+        />
+        {/* Slightly Brighter Hero Precision Grid */}
+        <div
+          className="pointer-events-none absolute inset-0 -z-10 hero-brighter-grid opacity-80"
+          aria-hidden="true"
         />
         <Shell>
           <div className="grid grid-cols-12 gap-x-6">

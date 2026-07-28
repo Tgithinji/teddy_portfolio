@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { BackToTop } from "@/components/BackToTop";
+import { AmbientBackground } from "@/components/AmbientBackground";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -115,6 +116,7 @@ export default function RootLayout({
           forcedTheme="dark"
           disableTransitionOnChange
         >
+          <AmbientBackground />
           <Nav />
           <main>{children}</main>
           <Footer />
