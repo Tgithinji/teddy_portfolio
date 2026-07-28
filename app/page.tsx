@@ -658,7 +658,7 @@ export default function Home() {
                 Let's automate it.
               </h2>
               <p className="mt-6 text-sm leading-relaxed text-[color:var(--color-muted-foreground)]">
-                Send a brief overview of what you're trying to streamline. I reply within 48 hours with direct technical feedback.
+                Send a brief overview of what you're trying to streamline. I reply within 24 hours with direct technical feedback.
               </p>
 
               <div className="mt-10 space-y-3 text-sm">
@@ -666,12 +666,6 @@ export default function Home() {
                   <span className="text-[color:var(--color-subtle)]">Direct Email</span>
                   <a href={`mailto:${siteConfig.email}`} className="text-foreground hover:text-primary">
                     {siteConfig.email}
-                  </a>
-                </div>
-                <div className="flex justify-between border-b border-[color:var(--color-hairline)] pb-2 text-xs">
-                  <span className="text-[color:var(--color-subtle)]">WhatsApp</span>
-                  <a href={siteConfig.whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary">
-                    {siteConfig.whatsappNumber}
                   </a>
                 </div>
                 <div className="flex justify-between border-b border-[color:var(--color-hairline)] pb-2 text-xs">

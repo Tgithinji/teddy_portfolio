@@ -2,7 +2,7 @@
 
 import { useContactForm } from "@/hooks/useContactForm";
 import { siteConfig } from "@/lib/siteConfig";
-import { Mail, MessageCircle, Github, Linkedin, ShieldCheck, Clock, MapPin, CheckCircle2 } from "lucide-react";
+import { Mail, Github, Linkedin, ShieldCheck, Clock, MapPin, CheckCircle2, Calendar } from "lucide-react";
 
 function Shell({ children }: { children: React.ReactNode }) {
   return (
@@ -64,18 +64,7 @@ export default function ContactPage() {
                   </div>
                 </a>
 
-                <a
-                  href={siteConfig.whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 rounded-lg border border-[color:var(--color-hairline)] bg-background/60 p-3.5 text-foreground hover:border-primary transition-colors"
-                >
-                  <MessageCircle className="h-4 w-4 text-primary" />
-                  <div>
-                    <div className="text-xs text-[color:var(--color-subtle)]">WhatsApp</div>
-                    <div className="font-medium">{siteConfig.whatsappNumber}</div>
-                  </div>
-                </a>
+
               </div>
             </div>
 
@@ -115,21 +104,21 @@ export default function ContactPage() {
                 </p>
 
                 <div className="mt-8 flex flex-col sm:flex-row items-center gap-4">
+                  <a
+                    href={siteConfig.calendlyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-2.5 text-xs font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
+                  >
+                    <Calendar className="h-3.5 w-3.5" />
+                    <span>Book a Discovery Call</span>
+                  </a>
                   <button
                     onClick={resetForm}
                     className="rounded-full border border-[color:var(--color-border)] bg-background/60 px-6 py-2.5 text-xs font-medium text-foreground hover:border-primary hover:text-primary transition-colors"
                   >
                     Send Another Message
                   </button>
-                  <a
-                    href={siteConfig.whatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-xs text-[color:var(--color-subtle)] hover:text-foreground transition-colors"
-                  >
-                    <MessageCircle className="h-3.5 w-3.5" />
-                    Or reach out on WhatsApp
-                  </a>
                 </div>
               </div>
             ) : (

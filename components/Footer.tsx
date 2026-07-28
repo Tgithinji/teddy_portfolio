@@ -34,14 +34,6 @@ export function Footer() {
             >
               LinkedIn
             </a>
-            <a
-              href={siteConfig.whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-colors hover:text-foreground"
-            >
-              WhatsApp
-            </a>
           </div>
 
           <div className="font-mono text-xs text-[color:var(--color-subtle)]">

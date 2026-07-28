@@ -105,7 +105,7 @@ export function generateClientConfirmationEmail({
           <tr>
             <td style="padding: 20px 32px; background-color: #0b0f17; border-top: 1px solid #1e293b; text-align: center;">
               <p style="margin: 0; font-size: 11px; color: #64748b; font-family: monospace;">
-                Direct: <a href="mailto:${siteConfig.email}" style="color: #38bdf8; text-decoration: none;">${siteConfig.email}</a> &nbsp;|&nbsp; WhatsApp: <a href="${siteConfig.whatsappUrl}" style="color: #38bdf8; text-decoration: none;">${siteConfig.whatsappNumber}</a>
+                Direct: <a href="mailto:${siteConfig.email}" style="color: #38bdf8; text-decoration: none;">${siteConfig.email}</a>
               </p>
             </td>
           </tr>
