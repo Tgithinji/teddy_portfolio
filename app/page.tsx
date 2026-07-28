@@ -177,164 +177,120 @@ export default function Home() {
           {/* ── Visual Diagram ── */}
           <div className="mt-16 md:mt-24 flex flex-col items-center">
 
-            {/* Root: BUSINESS */}
-            <div className="rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-card)]/60 px-6 py-3">
-              <span className="font-mono text-xs uppercase tracking-[0.22em] text-foreground font-medium">Business</span>
+            {/* Root: YOUR BUSINESS (Step 1) */}
+            <div className="flow-step-1 rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-card)]/60 px-6 py-3 shadow-sm">
+              <span className="font-mono text-xs uppercase tracking-[0.22em] text-foreground font-medium">YOUR BUSINESS</span>
             </div>
 
-            {/* Vertical connector */}
-            <div className="w-px h-8 bg-[color:var(--color-hairline)]" />
+            {/* Vertical connector & Three-way branch headers (Step 2) */}
+            <div className="flow-step-2 flex flex-col items-center w-full max-w-3xl">
+              <div className="w-px h-8 bg-[color:var(--color-hairline)]" />
+              <div className="relative w-full">
+                {/* Horizontal connector line */}
+                <div className="absolute top-0 h-px bg-[color:var(--color-hairline)]" style={{ left: '16.67%', right: '16.67%' }} />
 
-            {/* Three-way branch */}
-            <div className="relative w-full max-w-3xl">
-              {/* Horizontal connector line */}
-              <div className="absolute top-0 left-1/6 right-1/6 h-px bg-[color:var(--color-hairline)] md:left-[16.67%] md:right-[16.67%]" style={{ left: '16.67%', right: '16.67%' }} />
-
-              <div className="grid grid-cols-3 gap-4 md:gap-8">
-                {/* Branch 1: Customer Experience */}
-                <div className="flex flex-col items-center">
-                  <div className="w-px h-8 bg-[color:var(--color-hairline)]" />
-                  <div className="rounded-lg border border-[color:var(--color-border)] bg-background/60 px-3 py-2.5 text-center">
-                    <span className="text-xs font-medium text-foreground">Customer Experience</span>
+                <div className="grid grid-cols-3 gap-4 md:gap-8">
+                  {/* Branch 1: Customer Experience */}
+                  <div className="flex flex-col items-center">
+                    <div className="w-px h-8 bg-[color:var(--color-hairline)]" />
+                    <div className="rounded-lg border border-[color:var(--color-border)] bg-background/60 px-3 py-2.5 text-center">
+                      <span className="text-xs font-medium text-foreground">Customer Experience</span>
+                    </div>
                   </div>
+
+                  {/* Branch 2: Operations */}
+                  <div className="flex flex-col items-center">
+                    <div className="w-px h-8 bg-[color:var(--color-hairline)]" />
+                    <div className="rounded-lg border border-[color:var(--color-border)] bg-background/60 px-3 py-2.5 text-center">
+                      <span className="text-xs font-medium text-foreground">Operations</span>
+                    </div>
+                  </div>
+
+                  {/* Branch 3: Management */}
+                  <div className="flex flex-col items-center">
+                    <div className="w-px h-8 bg-[color:var(--color-hairline)]" />
+                    <div className="rounded-lg border border-[color:var(--color-border)] bg-background/60 px-3 py-2.5 text-center">
+                      <span className="text-xs font-medium text-foreground">Management</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Sub-nodes: Website, Internal Software, Dashboards & Bottom Merge (Step 3) */}
+            <div className="flow-step-3 flex flex-col items-center w-full max-w-3xl">
+              <div className="grid grid-cols-3 gap-4 md:gap-8 w-full">
+                <div className="flex flex-col items-center">
                   <div className="w-px h-6 bg-[color:var(--color-hairline)]" />
-                  <div className="rounded border border-[color:var(--color-hairline)] bg-[color:var(--color-card)]/40 px-3 py-2 text-center">
+                  <div className="rounded border border-[color:var(--color-hairline)] bg-[color:var(--color-card)]/40 px-3 py-2 text-center w-full max-w-[180px]">
                     <span className="font-mono text-[11px] text-[color:var(--color-primary)]">Website</span>
                   </div>
                   <div className="w-px h-6 bg-[color:var(--color-hairline)]" />
                 </div>
 
-                {/* Branch 2: Operations */}
                 <div className="flex flex-col items-center">
-                  <div className="w-px h-8 bg-[color:var(--color-hairline)]" />
-                  <div className="rounded-lg border border-[color:var(--color-border)] bg-background/60 px-3 py-2.5 text-center">
-                    <span className="text-xs font-medium text-foreground">Operations</span>
-                  </div>
                   <div className="w-px h-6 bg-[color:var(--color-hairline)]" />
-                  <div className="rounded border border-[color:var(--color-hairline)] bg-[color:var(--color-card)]/40 px-3 py-2 text-center">
+                  <div className="rounded border border-[color:var(--color-hairline)] bg-[color:var(--color-card)]/40 px-3 py-2 text-center w-full max-w-[180px]">
                     <span className="font-mono text-[11px] text-[color:var(--color-primary)]">Internal Software</span>
                   </div>
                   <div className="w-px h-6 bg-[color:var(--color-hairline)]" />
                 </div>
 
-                {/* Branch 3: Team */}
                 <div className="flex flex-col items-center">
-                  <div className="w-px h-8 bg-[color:var(--color-hairline)]" />
-                  <div className="rounded-lg border border-[color:var(--color-border)] bg-background/60 px-3 py-2.5 text-center">
-                    <span className="text-xs font-medium text-foreground">Team</span>
-                  </div>
                   <div className="w-px h-6 bg-[color:var(--color-hairline)]" />
-                  <div className="rounded border border-[color:var(--color-hairline)] bg-[color:var(--color-card)]/40 px-3 py-2 text-center">
+                  <div className="rounded border border-[color:var(--color-hairline)] bg-[color:var(--color-card)]/40 px-3 py-2 text-center w-full max-w-[180px]">
                     <span className="font-mono text-[11px] text-[color:var(--color-primary)]">Dashboards</span>
                   </div>
                   <div className="w-px h-6 bg-[color:var(--color-hairline)]" />
                 </div>
               </div>
 
-              {/* Bottom horizontal connector to merge */}
-              <div className="absolute bottom-0 h-px bg-[color:var(--color-hairline)]" style={{ left: '16.67%', right: '16.67%' }} />
-            </div>
-
-            {/* Vertical connector */}
-            <div className="w-px h-8 bg-[color:var(--color-hairline)]" />
-
-            {/* AI & Automation */}
-            <div className="rounded-lg border border-primary/30 bg-primary/5 px-6 py-3">
-              <span className="font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-primary)] font-medium">AI & Automation</span>
-            </div>
-
-            {/* Vertical connector */}
-            <div className="w-px h-6 bg-[color:var(--color-hairline)]" />
-
-            {/* Connected Systems */}
-            <div className="rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-card)]/60 px-6 py-3">
-              <span className="font-mono text-xs uppercase tracking-[0.22em] text-foreground font-medium">Connected Systems</span>
-            </div>
-
-            {/* Vertical connector */}
-            <div className="w-px h-6 bg-[color:var(--color-hairline)]" />
-
-            {/* Better Operations */}
-            <div className="rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-card)]/60 px-6 py-3">
-              <span className="font-mono text-xs uppercase tracking-[0.22em] text-foreground font-medium">Better Operations</span>
-            </div>
-          </div>
-
-          {/* ── Closing Statement ── */}
-          <p className="mt-16 md:mt-20 mx-auto max-w-[52ch] text-center text-base md:text-lg leading-relaxed text-[color:var(--color-muted-foreground)]">
-            Every engagement is different, but the goal is the same:{" "}
-            <span className="text-foreground">
-              connect the parts of your business so work flows instead of being passed around.
-            </span>
-          </p>
-        </Shell>
-      </section>
-
-      {/* -------------------------------------------------------------------------- */}
-      {/*  02 — PROOF & IMPACT                                                       */}
-      {/* -------------------------------------------------------------------------- */}
-      <section className="hairline-t py-24 md:py-32">
-        <Shell>
-          <div className="grid grid-cols-12 gap-x-6 gap-y-12">
-            <div className="col-span-12 md:col-span-3">
-              <SectionLabel index="02">Proof &amp; Impact</SectionLabel>
-            </div>
-
-            <div className="col-span-12 md:col-span-9">
-              <p className="max-w-[44ch] text-2xl font-light leading-snug tracking-[-0.01em] text-foreground md:text-[28px]">
-                Engineering outcomes evaluated on Monday morning—measured by administrative hours saved, client response speed, and error elimination.
-              </p>
-
-              <div className="mt-14 grid grid-cols-2 gap-8 border-t border-[color:var(--color-hairline)] pt-10 sm:grid-cols-4">
-                <div>
-                  <div className="text-3xl font-light tracking-tight text-foreground md:text-4xl">
-                    &lt; 1 min
-                  </div>
-                  <div className="mt-2 text-xs uppercase tracking-wider text-[color:var(--color-subtle)] font-mono">
-                    AI Lead Response Speed
-                  </div>
-                </div>
-
-                <div>
-                  <div className="text-3xl font-light tracking-tight text-foreground md:text-4xl">
-                    10+ hrs
-                  </div>
-                  <div className="mt-2 text-xs uppercase tracking-wider text-[color:var(--color-subtle)] font-mono">
-                    Weekly Payroll Admin Saved
-                  </div>
-                </div>
-
-                <div>
-                  <div className="text-3xl font-light tracking-tight text-foreground md:text-4xl">
-                    85%↓
-                  </div>
-                  <div className="mt-2 text-xs uppercase tracking-wider text-[color:var(--color-subtle)] font-mono">
-                    Intake Follow-Up Delay
-                  </div>
-                </div>
-
-                <div>
-                  <div className="text-3xl font-light tracking-tight text-foreground md:text-4xl">
-                    100%
-                  </div>
-                  <div className="mt-2 text-xs uppercase tracking-wider text-[color:var(--color-subtle)] font-mono">
-                    Attorney Brief Readiness
-                  </div>
-                </div>
+              {/* Bottom horizontal connector merging the three branches */}
+              <div className="relative w-full">
+                <div className="absolute top-0 h-px bg-[color:var(--color-hairline)]" style={{ left: '16.67%', right: '16.67%' }} />
               </div>
             </div>
+
+            {/* AI & Automation Layer (Step 4) */}
+            <div className="flow-step-4 flex flex-col items-center">
+              <div className="w-px h-8 bg-[color:var(--color-hairline)]" />
+              <div className="rounded-lg border border-primary/30 bg-primary/5 px-6 py-3 shadow-sm">
+                <span className="font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-primary)] font-medium">AI & Automation Layer</span>
+              </div>
+            </div>
+
+            {/* Outcomes & Caption (Step 5) */}
+            <div className="flow-step-5 flex flex-col items-center w-full">
+              <div className="w-px h-6 bg-[color:var(--color-hairline)]" />
+              <div className="rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-card)]/60 px-6 py-3">
+                <span className="font-mono text-xs uppercase tracking-[0.22em] text-foreground font-medium">Connected Workflows</span>
+              </div>
+
+              <div className="w-px h-6 bg-[color:var(--color-hairline)]" />
+              <div className="rounded-lg border border-primary/20 bg-background/80 px-6 py-3 shadow-sm">
+                <span className="font-mono text-xs uppercase tracking-[0.22em] text-foreground font-medium">Better Business Outcomes</span>
+              </div>
+
+              {/* ── Closing Statement ── */}
+              <p className="mt-16 md:mt-20 mx-auto max-w-[54ch] text-center text-base md:text-lg leading-relaxed text-[color:var(--color-muted-foreground)]">
+                Every business is different. The goal is always the same:{" "}
+                <span className="text-foreground">
+                  connect the tools, people, and processes so work flows naturally instead of being passed around.
+                </span>
+              </p>
+            </div>
           </div>
         </Shell>
       </section>
 
       {/* -------------------------------------------------------------------------- */}
-      {/*  03 — SELECTED SYSTEMS (EDITORIAL MAGAZINE FEATURE ROWS)                   */}
+      {/*  02 — SELECTED SYSTEMS (EDITORIAL MAGAZINE FEATURE ROWS)                   */}
       {/* -------------------------------------------------------------------------- */}
       <section className="hairline-t pt-24 md:pt-36">
         <Shell>
           <div className="grid grid-cols-12 gap-x-6 pb-16">
             <div className="col-span-12 md:col-span-3">
-              <SectionLabel index="03">Selected Systems</SectionLabel>
+              <SectionLabel index="02">Selected Systems</SectionLabel>
             </div>
             <div className="col-span-12 md:col-span-9 flex flex-col justify-between gap-4 md:flex-row md:items-end">
               <h2 className="max-w-[24ch] text-[clamp(2rem,4vw,3.25rem)] font-light leading-[1.05] tracking-[-0.02em]">
@@ -459,13 +415,13 @@ export default function Home() {
       </section>
 
       {/* -------------------------------------------------------------------------- */}
-      {/*  04 — SERVICES OVERVIEW                                                    */}
+      {/*  03 — SERVICES OVERVIEW                                                    */}
       {/* -------------------------------------------------------------------------- */}
       <section className="hairline-t py-24 md:py-32">
         <Shell>
           <div className="grid grid-cols-12 gap-x-6 gap-y-12">
             <div className="col-span-12 md:col-span-4">
-              <SectionLabel index="04">Capabilities</SectionLabel>
+              <SectionLabel index="03">Capabilities</SectionLabel>
               <h2 className="mt-6 text-[clamp(2rem,3.5vw,2.75rem)] font-light leading-[1.1] tracking-[-0.02em]">
                 Focused on business outcomes,{" "}
                 <span className="font-serif italic text-[color:var(--color-primary)]">
@@ -522,13 +478,13 @@ export default function Home() {
       </section>
 
       {/* -------------------------------------------------------------------------- */}
-      {/*  05 — PROCESS                                                              */}
+      {/*  04 — PROCESS                                                              */}
       {/* -------------------------------------------------------------------------- */}
       <section className="hairline-t py-24 md:py-32">
         <Shell>
           <div className="grid grid-cols-12 gap-x-6 gap-y-14">
             <div className="col-span-12 md:col-span-4">
-              <SectionLabel index="05">Execution Process</SectionLabel>
+              <SectionLabel index="04">Execution Process</SectionLabel>
               <h2 className="mt-6 text-[clamp(2rem,3.5vw,2.75rem)] font-light leading-[1.1] tracking-[-0.02em]">
                 Visible cycles,{" "}
                 <span className="font-serif italic text-[color:var(--color-primary)]">
@@ -588,13 +544,13 @@ export default function Home() {
       </section>
 
       {/* -------------------------------------------------------------------------- */}
-      {/*  06 — CONTACT                                                              */}
+      {/*  05 — CONTACT                                                              */}
       {/* -------------------------------------------------------------------------- */}
       <section id="contact" className="hairline-t py-28 md:py-36">
         <Shell>
           <div className="grid grid-cols-12 gap-x-6 gap-y-12">
             <div className="col-span-12 md:col-span-4">
-              <SectionLabel index="06">Contact</SectionLabel>
+              <SectionLabel index="05">Contact</SectionLabel>
               <h2 className="mt-6 text-[clamp(2.25rem,4.5vw,3.5rem)] font-light leading-[1.04] tracking-[-0.03em]">
                 Have a system that's{" "}
                 <span className="font-serif italic text-[color:var(--color-primary)]">
