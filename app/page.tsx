@@ -96,7 +96,7 @@ export default function Home() {
       </section>
 
       {/* -------------------------------------------------------------------------- */}
-      {/*  MISSION CONTROL DASHBOARD BLOCK                                          */}
+      {/*  SYSTEM STATUS DASHBOARD BLOCK                                            */}
       {/* -------------------------------------------------------------------------- */}
       <section className="hairline-t hairline-b bg-[color:var(--color-card)]/40 py-12">
         <Shell>
@@ -104,52 +104,52 @@ export default function Home() {
             <div className="col-span-12 md:col-span-3">
               <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-[color:var(--color-subtle)]">
                 <span className="status-dot" aria-hidden />
-                <span className="font-mono text-foreground">MISSION CONTROL</span>
+                <span className="font-mono text-foreground font-medium">SYSTEM STATUS · ONLINE</span>
               </div>
               <p className="mt-2 text-xs text-[color:var(--color-muted-foreground)]">
-                Live operating status &amp; core capabilities
+                Live operating status &amp; availability
               </p>
             </div>
 
             <div className="col-span-12 md:col-span-9">
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 <div className="rounded-lg border border-[color:var(--color-border)] bg-background/50 p-4">
-                  <div className="flex items-center justify-between text-xs text-[color:var(--color-subtle)]">
-                    <span>CURRENT FOCUS</span>
+                  <div className="flex items-center justify-between text-xs text-[color:var(--color-subtle)] font-mono">
+                    <span>BUILDING</span>
                     <Zap className="h-3.5 w-3.5 text-primary" />
                   </div>
                   <p className="mt-2 text-xs font-medium text-foreground">
-                    AI Intake Briefing Pipelines &amp; Custom FastAPI Services
+                    Software that helps businesses run with less friction.
                   </p>
                 </div>
 
                 <div className="rounded-lg border border-[color:var(--color-border)] bg-background/50 p-4">
-                  <div className="flex items-center justify-between text-xs text-[color:var(--color-subtle)]">
-                    <span>CAPABILITY STACK</span>
+                  <div className="flex items-center justify-between text-xs text-[color:var(--color-subtle)] font-mono">
+                    <span>CURRENT FOCUS</span>
                     <Cpu className="h-3.5 w-3.5 text-primary" />
                   </div>
                   <p className="mt-2 text-xs font-medium text-foreground">
-                    Python, FastAPI, n8n, Next.js, PostgreSQL, OpenAI
+                    Building operational software that removes manual work.
                   </p>
                 </div>
 
                 <div className="rounded-lg border border-[color:var(--color-border)] bg-background/50 p-4">
-                  <div className="flex items-center justify-between text-xs text-[color:var(--color-subtle)]">
-                    <span>BENCHMARK SPEED</span>
-                    <Clock className="h-3.5 w-3.5 text-primary" />
-                  </div>
-                  <p className="mt-2 text-xs font-medium text-foreground">
-                    &lt; 60s Intake Triage &amp; 10+ Hrs Saved / Wk
-                  </p>
-                </div>
-
-                <div className="rounded-lg border border-[color:var(--color-border)] bg-background/50 p-4">
-                  <div className="flex items-center justify-between text-xs text-[color:var(--color-subtle)]">
-                    <span>AVAILABILITY</span>
+                  <div className="flex items-center justify-between text-xs text-[color:var(--color-subtle)] font-mono">
+                    <span>BEST FIT</span>
                     <ShieldCheck className="h-3.5 w-3.5 text-primary" />
                   </div>
                   <p className="mt-2 text-xs font-medium text-foreground">
-                    Accepting 2 Client Builds for Q1/Q2 2026
+                    Professional Service Businesses
+                  </p>
+                </div>
+
+                <div className="rounded-lg border border-[color:var(--color-border)] bg-background/50 p-4">
+                  <div className="flex items-center justify-between text-xs text-[color:var(--color-subtle)] font-mono">
+                    <span>RESPONSE TIME</span>
+                    <Clock className="h-3.5 w-3.5 text-primary" />
+                  </div>
+                  <p className="mt-2 text-xs font-medium text-foreground">
+                    Within 24 Hours
                   </p>
                 </div>
               </div>
