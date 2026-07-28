@@ -72,7 +72,7 @@ export default function Home() {
                 <p className="rise col-span-12 max-w-[54ch] text-base leading-relaxed text-[color:var(--color-muted-foreground)] md:col-span-7">
                   I design and build modern websites, AI automations, and internal software that remove friction, reduce manual work, and help businesses operate more efficiently.
                 </p>
-                
+
                 <div className="rise col-span-12 md:col-span-5 md:col-start-8">
                   <dl className="space-y-3.5 text-sm">
                     <div className="flex justify-between hairline-b pb-2.5">
@@ -82,10 +82,6 @@ export default function Home() {
                     <div className="flex justify-between hairline-b pb-2.5">
                       <dt className="text-[color:var(--color-subtle)]">Based</dt>
                       <dd className="text-foreground">Nairobi, Kenya · Remote</dd>
-                    </div>
-                    <div className="flex justify-between hairline-b pb-2.5">
-                      <dt className="text-[color:var(--color-subtle)]">Next opening</dt>
-                      <dd className="text-[color:var(--color-primary)] font-mono">Q1 / Q2 2026</dd>
                     </div>
                   </dl>
                 </div>
@@ -159,9 +155,125 @@ export default function Home() {
       </section>
 
       {/* -------------------------------------------------------------------------- */}
+      {/*  HOW A BUSINESS SYSTEM COMES TOGETHER                                      */}
+      {/* -------------------------------------------------------------------------- */}
+      <section className="py-24 md:py-36">
+        <Shell>
+          <div className="grid grid-cols-12 gap-x-6 gap-y-12">
+            <div className="col-span-12 md:col-span-3">
+              <SectionLabel index="—">System Anatomy</SectionLabel>
+            </div>
+
+            <div className="col-span-12 md:col-span-9">
+              <h2 className="max-w-[28ch] text-[clamp(2rem,4vw,3rem)] font-light leading-[1.08] tracking-[-0.02em] text-foreground">
+                How a Business System{" "}
+                <span className="font-serif italic text-[color:var(--color-primary)]">
+                  Comes Together.
+                </span>
+              </h2>
+            </div>
+          </div>
+
+          {/* ── Visual Diagram ── */}
+          <div className="mt-16 md:mt-24 flex flex-col items-center">
+
+            {/* Root: BUSINESS */}
+            <div className="rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-card)]/60 px-6 py-3">
+              <span className="font-mono text-xs uppercase tracking-[0.22em] text-foreground font-medium">Business</span>
+            </div>
+
+            {/* Vertical connector */}
+            <div className="w-px h-8 bg-[color:var(--color-hairline)]" />
+
+            {/* Three-way branch */}
+            <div className="relative w-full max-w-3xl">
+              {/* Horizontal connector line */}
+              <div className="absolute top-0 left-1/6 right-1/6 h-px bg-[color:var(--color-hairline)] md:left-[16.67%] md:right-[16.67%]" style={{ left: '16.67%', right: '16.67%' }} />
+
+              <div className="grid grid-cols-3 gap-4 md:gap-8">
+                {/* Branch 1: Customer Experience */}
+                <div className="flex flex-col items-center">
+                  <div className="w-px h-8 bg-[color:var(--color-hairline)]" />
+                  <div className="rounded-lg border border-[color:var(--color-border)] bg-background/60 px-3 py-2.5 text-center">
+                    <span className="text-xs font-medium text-foreground">Customer Experience</span>
+                  </div>
+                  <div className="w-px h-6 bg-[color:var(--color-hairline)]" />
+                  <div className="rounded border border-[color:var(--color-hairline)] bg-[color:var(--color-card)]/40 px-3 py-2 text-center">
+                    <span className="font-mono text-[11px] text-[color:var(--color-primary)]">Website</span>
+                  </div>
+                  <div className="w-px h-6 bg-[color:var(--color-hairline)]" />
+                </div>
+
+                {/* Branch 2: Operations */}
+                <div className="flex flex-col items-center">
+                  <div className="w-px h-8 bg-[color:var(--color-hairline)]" />
+                  <div className="rounded-lg border border-[color:var(--color-border)] bg-background/60 px-3 py-2.5 text-center">
+                    <span className="text-xs font-medium text-foreground">Operations</span>
+                  </div>
+                  <div className="w-px h-6 bg-[color:var(--color-hairline)]" />
+                  <div className="rounded border border-[color:var(--color-hairline)] bg-[color:var(--color-card)]/40 px-3 py-2 text-center">
+                    <span className="font-mono text-[11px] text-[color:var(--color-primary)]">Internal Software</span>
+                  </div>
+                  <div className="w-px h-6 bg-[color:var(--color-hairline)]" />
+                </div>
+
+                {/* Branch 3: Team */}
+                <div className="flex flex-col items-center">
+                  <div className="w-px h-8 bg-[color:var(--color-hairline)]" />
+                  <div className="rounded-lg border border-[color:var(--color-border)] bg-background/60 px-3 py-2.5 text-center">
+                    <span className="text-xs font-medium text-foreground">Team</span>
+                  </div>
+                  <div className="w-px h-6 bg-[color:var(--color-hairline)]" />
+                  <div className="rounded border border-[color:var(--color-hairline)] bg-[color:var(--color-card)]/40 px-3 py-2 text-center">
+                    <span className="font-mono text-[11px] text-[color:var(--color-primary)]">Dashboards</span>
+                  </div>
+                  <div className="w-px h-6 bg-[color:var(--color-hairline)]" />
+                </div>
+              </div>
+
+              {/* Bottom horizontal connector to merge */}
+              <div className="absolute bottom-0 h-px bg-[color:var(--color-hairline)]" style={{ left: '16.67%', right: '16.67%' }} />
+            </div>
+
+            {/* Vertical connector */}
+            <div className="w-px h-8 bg-[color:var(--color-hairline)]" />
+
+            {/* AI & Automation */}
+            <div className="rounded-lg border border-primary/30 bg-primary/5 px-6 py-3">
+              <span className="font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-primary)] font-medium">AI & Automation</span>
+            </div>
+
+            {/* Vertical connector */}
+            <div className="w-px h-6 bg-[color:var(--color-hairline)]" />
+
+            {/* Connected Systems */}
+            <div className="rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-card)]/60 px-6 py-3">
+              <span className="font-mono text-xs uppercase tracking-[0.22em] text-foreground font-medium">Connected Systems</span>
+            </div>
+
+            {/* Vertical connector */}
+            <div className="w-px h-6 bg-[color:var(--color-hairline)]" />
+
+            {/* Better Operations */}
+            <div className="rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-card)]/60 px-6 py-3">
+              <span className="font-mono text-xs uppercase tracking-[0.22em] text-foreground font-medium">Better Operations</span>
+            </div>
+          </div>
+
+          {/* ── Closing Statement ── */}
+          <p className="mt-16 md:mt-20 mx-auto max-w-[52ch] text-center text-base md:text-lg leading-relaxed text-[color:var(--color-muted-foreground)]">
+            Every engagement is different, but the goal is the same:{" "}
+            <span className="text-foreground">
+              connect the parts of your business so work flows instead of being passed around.
+            </span>
+          </p>
+        </Shell>
+      </section>
+
+      {/* -------------------------------------------------------------------------- */}
       {/*  02 — PROOF & IMPACT                                                       */}
       {/* -------------------------------------------------------------------------- */}
-      <section className="py-24 md:py-32">
+      <section className="hairline-t py-24 md:py-32">
         <Shell>
           <div className="grid grid-cols-12 gap-x-6 gap-y-12">
             <div className="col-span-12 md:col-span-3">
