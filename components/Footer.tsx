@@ -37,7 +37,7 @@ export function Footer() {
           </div>
 
           <div className="font-mono text-xs text-[color:var(--color-subtle)]">
-            © {new Date().getFullYear()} — Handbuilt in Nairobi, Kenya.
+            © {new Date().getFullYear()} — Quietly building better business systems.
           </div>
         </div>
       </div>
