@@ -2,7 +2,7 @@
 
 import { useContactForm } from "@/hooks/useContactForm";
 import { siteConfig } from "@/lib/siteConfig";
-import { Mail, MessageCircle, Github, Linkedin, ShieldCheck, Clock, MapPin } from "lucide-react";
+import { Mail, MessageCircle, Github, Linkedin, ShieldCheck, Clock, MapPin, CheckCircle2 } from "lucide-react";
 
 function Shell({ children }: { children: React.ReactNode }) {
   return (
@@ -13,10 +13,13 @@ function Shell({ children }: { children: React.ReactNode }) {
 export default function ContactPage() {
   const {
     isLoading,
+    isSubmitted,
+    submitError,
     formData,
     formErrors,
     handleInputChange,
     handleSubmit,
+    resetForm,
   } = useContactForm();
 
   return (
@@ -36,7 +39,7 @@ export default function ContactPage() {
             </span>
           </h1>
           <p className="mt-6 text-base leading-relaxed text-[color:var(--color-muted-foreground)]">
-            Whether you need a sub-minute AI intake engine, custom internal software, or automated workflow integrations, send a brief note and I'll reply within 48 hours.
+            Whether you need a sub-minute AI intake engine, custom internal software, or automated workflow integrations, send a brief note and I'll reply within 24 hours.
           </p>
         </div>
 
@@ -88,91 +91,129 @@ export default function ContactPage() {
                 </div>
                 <div className="flex justify-between border-b border-[color:var(--color-hairline)] pb-2.5">
                   <dt className="text-[color:var(--color-subtle)]">Response Time</dt>
-                  <dd className="text-foreground">Within 48 hours</dd>
-                </div>
-                <div className="flex justify-between">
-                  <dt className="text-[color:var(--color-subtle)]">Next Slot</dt>
-                  <dd className="text-primary font-mono font-medium">Q1 / Q2 2026</dd>
+                  <dd className="text-foreground">Within 24 hours</dd>
                 </div>
               </dl>
             </div>
           </div>
 
-          {/* Form */}
+          {/* Form or Success Message */}
           <div className="col-span-12 lg:col-span-7">
-            <form
-              onSubmit={handleSubmit}
-              className="rounded-2xl border border-[color:var(--color-border)] bg-[color:var(--color-card)]/40 p-8 md:p-10 space-y-6"
-            >
-              <h2 className="text-xl font-light text-foreground">
-                Project Inquiry Form
-              </h2>
+            {isSubmitted ? (
+              /* ── Success Confirmation ── */
+              <div className="rounded-2xl border border-primary/30 bg-primary/5 p-8 md:p-12 flex flex-col items-center text-center">
+                <div className="flex h-16 w-16 items-center justify-center rounded-full border border-primary/30 bg-primary/10">
+                  <CheckCircle2 className="h-8 w-8 text-primary" />
+                </div>
 
-              <div>
-                <label className="block text-xs font-mono uppercase tracking-wider text-[color:var(--color-subtle)] mb-2">
-                  Your Name *
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  placeholder="e.g. Alex Morgan"
-                  className="w-full rounded-md border border-[color:var(--color-border)] bg-background/60 px-4 py-3 text-sm text-foreground placeholder:text-[color:var(--color-subtle)] focus:border-primary focus:outline-none"
-                />
-                {formErrors.name && (
-                  <span className="text-xs text-destructive mt-1 block">
-                    {formErrors.name}
-                  </span>
-                )}
+                <h2 className="mt-6 text-2xl font-light text-foreground">
+                  Message Sent Successfully
+                </h2>
+
+                <p className="mt-3 max-w-md text-sm leading-relaxed text-[color:var(--color-muted-foreground)]">
+                  Thank you for reaching out. I'll review your project details and respond within 24 hours with next steps.
+                </p>
+
+                <div className="mt-8 flex flex-col sm:flex-row items-center gap-4">
+                  <button
+                    onClick={resetForm}
+                    className="rounded-full border border-[color:var(--color-border)] bg-background/60 px-6 py-2.5 text-xs font-medium text-foreground hover:border-primary hover:text-primary transition-colors"
+                  >
+                    Send Another Message
+                  </button>
+                  <a
+                    href={siteConfig.whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-xs text-[color:var(--color-subtle)] hover:text-foreground transition-colors"
+                  >
+                    <MessageCircle className="h-3.5 w-3.5" />
+                    Or reach out on WhatsApp
+                  </a>
+                </div>
               </div>
-
-              <div>
-                <label className="block text-xs font-mono uppercase tracking-wider text-[color:var(--color-subtle)] mb-2">
-                  Work Email *
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  placeholder="alex@company.com"
-                  className="w-full rounded-md border border-[color:var(--color-border)] bg-background/60 px-4 py-3 text-sm text-foreground placeholder:text-[color:var(--color-subtle)] focus:border-primary focus:outline-none"
-                />
-                {formErrors.email && (
-                  <span className="text-xs text-destructive mt-1 block">
-                    {formErrors.email}
-                  </span>
-                )}
-              </div>
-
-              <div>
-                <label className="block text-xs font-mono uppercase tracking-wider text-[color:var(--color-subtle)] mb-2">
-                  System Requirement / Challenge *
-                </label>
-                <textarea
-                  name="message"
-                  rows={5}
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  placeholder="Describe your current intake workflow, manual spreadsheet bottlenecks, or custom software requirements..."
-                  className="w-full rounded-md border border-[color:var(--color-border)] bg-background/60 px-4 py-3 text-sm text-foreground placeholder:text-[color:var(--color-subtle)] focus:border-primary focus:outline-none resize-none"
-                />
-                {formErrors.message && (
-                  <span className="text-xs text-destructive mt-1 block">
-                    {formErrors.message}
-                  </span>
-                )}
-              </div>
-
-              <button
-                type="submit"
-                disabled={isLoading}
-                className="w-full rounded-md bg-primary py-3.5 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors disabled:opacity-50"
+            ) : (
+              /* ── Contact Form ── */
+              <form
+                onSubmit={handleSubmit}
+                className="rounded-2xl border border-[color:var(--color-border)] bg-[color:var(--color-card)]/40 p-8 md:p-10 space-y-6"
               >
-                {isLoading ? "Sending Message..." : "Submit Project Inquiry"}
-              </button>
-            </form>
+                <h2 className="text-xl font-light text-foreground">
+                  Project Inquiry Form
+                </h2>
+
+                {submitError && (
+                  <div className="rounded-lg border border-destructive/30 bg-destructive/5 px-4 py-3 text-xs text-destructive">
+                    {submitError}
+                  </div>
+                )}
+
+                <div>
+                  <label className="block text-xs font-mono uppercase tracking-wider text-[color:var(--color-subtle)] mb-2">
+                    Your Name *
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    placeholder="e.g. Alex Morgan"
+                    className="w-full rounded-md border border-[color:var(--color-border)] bg-background/60 px-4 py-3 text-sm text-foreground placeholder:text-[color:var(--color-subtle)] focus:border-primary focus:outline-none"
+                  />
+                  {formErrors.name && (
+                    <span className="text-xs text-destructive mt-1 block">
+                      {formErrors.name}
+                    </span>
+                  )}
+                </div>
+
+                <div>
+                  <label className="block text-xs font-mono uppercase tracking-wider text-[color:var(--color-subtle)] mb-2">
+                    Work Email *
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    placeholder="alex@company.com"
+                    className="w-full rounded-md border border-[color:var(--color-border)] bg-background/60 px-4 py-3 text-sm text-foreground placeholder:text-[color:var(--color-subtle)] focus:border-primary focus:outline-none"
+                  />
+                  {formErrors.email && (
+                    <span className="text-xs text-destructive mt-1 block">
+                      {formErrors.email}
+                    </span>
+                  )}
+                </div>
+
+                <div>
+                  <label className="block text-xs font-mono uppercase tracking-wider text-[color:var(--color-subtle)] mb-2">
+                    System Requirement / Challenge *
+                  </label>
+                  <textarea
+                    name="message"
+                    rows={5}
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    placeholder="Describe your current intake workflow, manual spreadsheet bottlenecks, or custom software requirements..."
+                    className="w-full rounded-md border border-[color:var(--color-border)] bg-background/60 px-4 py-3 text-sm text-foreground placeholder:text-[color:var(--color-subtle)] focus:border-primary focus:outline-none resize-none"
+                  />
+                  {formErrors.message && (
+                    <span className="text-xs text-destructive mt-1 block">
+                      {formErrors.message}
+                    </span>
+                  )}
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={isLoading}
+                  className="w-full rounded-md bg-primary py-3.5 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors disabled:opacity-50"
+                >
+                  {isLoading ? "Sending Message..." : "Submit Project Inquiry"}
+                </button>
+              </form>
+            )}
           </div>
         </div>
       </Shell>
