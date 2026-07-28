@@ -1,186 +1,363 @@
-export const caseStudies = [
+export interface SystemMetric {
+  value: string;
+  label: string;
+}
+
+export interface SelectedSystem {
+  id: string;
+  slug: string;
+  index: string;
+  category: string;
+  title: string;
+  subtitle: string;
+  client: string;
+  year: string;
+  industry: string;
+  duration: string;
+  role: string;
+  impactBadge: string;
+  challenge: string;
+  solutionBullets: string[];
+  results: string[];
+  metrics: SystemMetric[];
+  techStack: string[];
+  images: string[];
+  thumbnail?: string;
+  demo?: string;
+  githubUrl?: string;
+  websiteUrl?: string;
+  testimonial?: string;
+  featured: boolean;
+}
+
+export const selectedSystems: SelectedSystem[] = [
   {
-    category: "⚖️ Law Firms",
-    projects: [
-      {
-        id: 10,
-        title: "AI Intake Automation for Immigration Law Firms",
-        subtitle: "Instant intake responses and structured case briefs for immigration clients",
-        impactBadge: "Responds in under one minute",
-        challenge: "Immigration inquiries were often met with silence after submission, costing firms leads and slowing intake response.",
-        solutionBullets: [
-          "Built an AI workflow that reads intake details and gauges urgency immediately",
-          "Sent a personalized response to prospects instead of a generic follow-up",
-          "Delivered a structured attorney brief with visa signals and recommended next steps",
-        ],
-        results: [
-          "Sub-minute response time for intake submissions",
-          "Fewer lost leads from post-submission silence",
-          "Attorneys enter first calls already informed",
-        ],
-        metrics: [
-          { value: "< 1 min", label: "Response time" },
-          { value: "↓ 85%", label: "Follow-up delay" },
-          { value: "↑ 100%", label: "Brief readiness" },
-        ],
-        role: "Automation Architect",
-        industry: "Legal",
-        duration: "3 weeks",
-        client: "Immigration law firm",
-        team: "Solo developer",
-        testimonial: "The automation turned slow intake follow-up into an immediate, personalized client response.",
-        techStack: ["n8n", "OpenAI", "Email API", "Google Sheets"],
-        images: ["/immigration_law_n8n.png", "/immigration_client_email.png", "/immigration_lawyer_email-1.png", "/immigration_lawyer_email-2.png"],
-        demo: "https://www.loom.com/share/521db541e5eb4ae590cc33ddd02c6fce",
-      },
-      {
-        id: 9,
-        title: "AI Intake Automation for Personal Injury Law Firms",
-        subtitle: "Immediate client response plus structured attorney briefs",
-        impactBadge: "Responds in under one minute",
-        challenge: "Prospective clients were left waiting after intake form submission, causing lost leads and missed first-call opportunities.",
-        solutionBullets: [
-          "Built an AI flow that reads case details and gauges urgency instantly",
-          "Sent a personalized response to the prospect instead of a generic reply",
-          "Delivered a structured attorney brief with injury, insurance, and next-step signals",
-        ],
-        results: [
-          "Sub-minute response time for intake submissions",
-          "Fewer lost leads from silent post-submission periods",
-          "Attorneys start first calls already informed",
-        ],
-        metrics: [
-          { value: "< 1 min", label: "Response time" },
-          { value: "↓ 90%", label: "Initial silence" },
-          { value: "↑ 100%", label: "Brief readiness" },
-        ],
-        role: "Automation Architect",
-        industry: "Legal",
-        duration: "3 weeks",
-        client: "Personal injury law firm",
-        team: "Solo developer",
-        testimonial: "The AI intake flow turned instant inquiries into informed first-call starts.",
-        techStack: ["n8n", "OpenAI", "Email API", "Google Sheets"],
-        images: ["/PI_law_n8n.png", "/PI_law_contact_form.png", "/PI_law_client_email.png", "/PI_law_lawyer_email.png"],
-        demo: "https://www.loom.com/share/21381e666bfe47ee86c10b5f1a9da1cb",
-      },
+    id: "immigration-law-intake",
+    slug: "immigration-law-intake",
+    index: "01",
+    category: "Legal Operations",
+    title: "AI Intake Briefing Engine for Immigration Law Firms",
+    subtitle: "Sub-minute client triage and structured attorney briefings for high-stakes immigration leads.",
+    client: "Immigration Law Practice",
+    year: "2025",
+    industry: "Legal",
+    duration: "3 weeks",
+    role: "Automation Architect",
+    impactBadge: "Sub-1min response time",
+    challenge: "Immigration inquiries were previously left waiting hours after form submission, resulting in missed consults, uncaptured lead data, and attorneys entering initial calls without contextual preparation.",
+    solutionBullets: [
+      "Built an autonomous AI ingestion pipeline using n8n and OpenAI to analyze complex intake data instantly",
+      "Triggered personalized, highly empathetic email confirmations to prospective clients in under 60 seconds",
+      "Generated structured attorney briefs identifying visa signals, potential roadblocks, and recommended next steps",
     ],
+    results: [
+      "Reduced post-submission response latency from hours to under 60 seconds",
+      "Eliminated lead drop-off caused by post-form silence",
+      "Provided attorneys with immediate case preparation before the first consult call",
+    ],
+    metrics: [
+      { value: "< 1 min", label: "Response time" },
+      { value: "↓ 85%", label: "Follow-up delay" },
+      { value: "100%", label: "Attorney brief readiness" },
+    ],
+    techStack: ["n8n", "OpenAI API", "Email API", "Google Sheets", "Python"],
+    images: [
+      "/immigration_law_n8n.png",
+      "/immigration_client_email.png",
+      "/immigration_lawyer_email-1.png",
+      "/immigration_lawyer_email-2.png",
+    ],
+    thumbnail: "/immigration_law_n8n.png",
+    demo: "https://www.loom.com/share/521db541e5eb4ae590cc33ddd02c6fce",
+    testimonial: "The automation turned slow intake follow-up into an immediate, personalized client response.",
+    featured: true,
   },
   {
-    category: "🛍️ E-commerce & Retail",
-    projects: [
-      {
-        id: 4,
-        title: "Automated order processing and support for e-commerce growth",
-        subtitle: "Shopify operations and customer support automation",
-        impactBadge: "Cut manual order handling significantly",
-        challenge: "The business was losing time to manual order checks, failed payment follow-up, and slow support replies.",
-        solutionBullets: [
-          "Monitored new Shopify orders and tracked payment status in real time",
-          "Triggered alerts for failed payments and support actions",
-          "Generated personalized AI support messages for successful orders",
-        ],
-        results: [
-          "Reduced manual workload for operations teams",
-          "Improved customer response times",
-          "Delivered a more consistent post-purchase experience",
-        ],
-        role: "Automation Engineer",
-        industry: "E-commerce",
-        duration: "3 weeks",
-        client: "Retail business",
-        team: "Solo developer",
-        techStack: ["n8n", "Shopify API", "Google Sheets", "Slack API", "OpenAI"],
-        thumbnail: "/shopify-orders-automation.png",
-        demo: "https://vimeo.com/1148659395?share=copy&fl=sv&fe=ci",
-      },
+    id: "pi-law-intake",
+    slug: "pi-law-intake",
+    index: "02",
+    category: "Legal Operations",
+    title: "Instant Case Triage & Attorney Briefs for Personal Injury Firms",
+    subtitle: "Automating injury claim intake, urgency scoring, and immediate client onboarding.",
+    client: "Personal Injury Practice",
+    year: "2025",
+    industry: "Legal",
+    duration: "3 weeks",
+    role: "Automation Architect",
+    impactBadge: "Zero lead leakage",
+    challenge: "Personal injury claimants expect immediate assistance. Delayed intake responses were causing prospective clients to reach out to competing law firms.",
+    solutionBullets: [
+      "Engineered an automated triage workflow evaluating injury severity, insurance signals, and incident timelines",
+      "Dispatched instant SMS/Email follow-up to claimants to confirm receipt and gather missing documentation",
+      "Delivered formatted incident summaries directly to senior intake specialists and case managers",
     ],
+    results: [
+      "Achieved sub-minute intake acknowledgement across all incoming web forms",
+      "Cut initial response silence by 90%",
+      "Increased first-call consultation conversion rate significantly",
+    ],
+    metrics: [
+      { value: "< 1 min", label: "Initial response" },
+      { value: "↓ 90%", label: "Form-to-contact delay" },
+      { value: "100%", label: "Triage completeness" },
+    ],
+    techStack: ["n8n", "OpenAI API", "Twilio API", "Webhooks", "PostgreSQL"],
+    images: [
+      "/PI_law_n8n.png",
+      "/PI_law_contact_form.png",
+      "/PI_law_client_email.png",
+      "/PI_law_lawyer_email.png",
+    ],
+    thumbnail: "/PI_law_n8n.png",
+    demo: "https://www.loom.com/share/21381e666bfe47ee86c10b5f1a9da1cb",
+    testimonial: "The AI intake flow turned instant inquiries into informed first-call starts.",
+    featured: false,
   },
   {
-    category: "⚙️ Internal Tools & Operations",
-    projects: [
-      {
-        id: 5,
-        title: "Saved 10+ hours per week in employee time tracking",
-        subtitle: "Slack-based attendance and payroll automation",
-        impactBadge: "Saved 10+ hours each week",
-        challenge: "The client spent too much time collecting IN/OUT messages, calculating hours, and preparing payroll.",
-        solutionBullets: [
-          "Automated message capture and time logging from Slack",
-          "Calculated working hours and generated payroll files automatically",
-          "Removed repetitive admin from the weekly payroll workflow",
-        ],
-        results: [
-          "Saved about 10 hours of manual work per week",
-          "Improved time-tracking accuracy",
-          "Reduced administrative overhead",
-        ],
-        role: "Automation Engineer",
-        industry: "Operations",
-        duration: "1 week",
-        client: "Internal ops team",
-        team: "Solo developer",
-        techStack: ["n8n", "Slack API", "Google Sheets", "PDF generation"],
-        thumbnail: "/Slack_time_tracking.webp",
-        demo: "https://drive.google.com/drive/folders/1vGOpVTHlRgCusIIUDvDS4POl2gu-ysSH?usp=sharing",
-      },
-      {
-        id: 7,
-        title: "Built a scalable backend for content platform growth",
-        subtitle: "API foundation for users, moderation, and interactions",
-        impactBadge: "Created a stronger backend foundation",
-        challenge: "The platform needed a scalable backend to support users, moderation, and social interactions reliably.",
-        solutionBullets: [
-          "Built REST endpoints for pagination, following, and comments",
-          "Implemented JWT-based security for protected routes",
-          "Structured the backend for future growth and maintenance",
-        ],
-        results: [
-          "Created a scalable foundation for growth",
-          "Improved structure for content-heavy workflows",
-          "Supported more reliable data flow for the platform",
-        ],
-        role: "Backend Engineer",
-        industry: "Product",
-        duration: "4 weeks",
-        client: "Startup",
-        team: "Solo developer",
-        techStack: ["Python", "FastAPI", "PostgrSQL", "SQLAlchemy", "JWT"],
-        thumbnail: "/blog_api.webp",
-        websiteUrl: "",
-        githubUrl: "https://github.com/Tgithinji/blog_api",
-      },
+    id: "ecommerce-fulfillment",
+    slug: "ecommerce-fulfillment",
+    index: "03",
+    category: "E-Commerce Ops",
+    title: "Order Processing & Customer Support Automation Engine",
+    subtitle: "Real-time Shopify order tracking, payment exception handling, and AI customer messaging.",
+    client: "Retail & E-Commerce Business",
+    year: "2025",
+    industry: "Retail",
+    duration: "3 weeks",
+    role: "Automation Engineer",
+    impactBadge: "70% less manual admin",
+    challenge: "Operations staff spent hours manually cross-checking Shopify orders, handling failed payments, and writing repetitive post-purchase support emails.",
+    solutionBullets: [
+      "Integrated Shopify API webhooks to monitor order statuses and flag failed payment events instantly",
+      "Automated Slack alert triggers for fulfillment exceptions requiring human intervention",
+      "Generated personalized AI order update messages to keep customers proactively informed",
     ],
+    results: [
+      "Substantially decreased manual order administration for the ops team",
+      "Improved post-purchase customer satisfaction score",
+      "Reduced payment resolution turnaround from 24 hours to under 30 minutes",
+    ],
+    metrics: [
+      { value: "70%", label: "Reduction in admin time" },
+      { value: "< 30m", label: "Payment error resolution" },
+      { value: "24/7", label: "Order monitoring" },
+    ],
+    techStack: ["n8n", "Shopify API", "OpenAI", "Slack API", "Google Sheets"],
+    images: ["/shopify-orders-automation.png"],
+    thumbnail: "/shopify-orders-automation.png",
+    demo: "https://vimeo.com/1148659395?share=copy&fl=sv&fe=ci",
+    featured: true,
   },
   {
-    category: "✍️ Marketing & Content",
-    projects: [
-      {
-        id: 8,
-        title: "Automated blog publishing and content production at scale",
-        subtitle: "AI-assisted WordPress content workflow",
-        impactBadge: "Turned a stagnant blog into a publishing engine",
-        challenge: "The client’s blog was rarely updated due to slow manual content production and inconsistent publishing.",
-        solutionBullets: [
-          "Built an automated WordPress workflow with topic research and outlines",
-          "Used AI to generate SEO-ready articles and publish them regularly",
-          "Removed the bottleneck of manual content production",
-        ],
-        results: [
-          "Transformed the blog into a 24/7 content engine",
-          "Saved hours of manual work each week",
-          "Improved SEO consistency without a dedicated content team",
-        ],
-        role: "Automation Engineer",
-        industry: "Marketing",
-        duration: "2 weeks",
-        client: "Content business",
-        team: "Solo developer",
-        techStack: ["n8n", "AI content generation", "WordPress", "SEO optimization"],
-        thumbnail: "/wordpress_blog_automation.webp",
-        demo: "https://drive.google.com/drive/folders/1BmIY0VVqck8lJFRAj3uHQbHaVd34FsIi?usp=sharing",
-      },
+    id: "slack-time-tracking",
+    slug: "slack-time-tracking",
+    index: "04",
+    category: "Internal Tools",
+    title: "Slack-Based Attendance & Payroll Calculation System",
+    subtitle: "Automated employee timestamp extraction, hourly calculation, and payroll generation.",
+    client: "Operations & Field Ops Team",
+    year: "2024",
+    industry: "Operations",
+    duration: "1 week",
+    role: "Automation Engineer",
+    impactBadge: "Saved 10+ hrs/wk",
+    challenge: "The client spent over 10 hours weekly manually collating daily check-in/out messages from Slack channels to calculate billable employee hours.",
+    solutionBullets: [
+      "Built automated Slack event listener to capture IN/OUT timestamps with edge case handling",
+      "Engineered automatic calculation logic for shifts, overtime, and break deductions",
+      "Generated downloadable weekly payroll spreadsheets and PDF summaries automatically",
     ],
+    results: [
+      "Saved 10+ hours per week in tedious administrative payroll compilation",
+      "Eliminated manual transcript transcription errors",
+      "Streamlined employee payout timelines",
+    ],
+    metrics: [
+      { value: "10+ hrs", label: "Saved every week" },
+      { value: "100%", label: "Calculation accuracy" },
+      { value: "0", label: "Manual transcript errors" },
+    ],
+    techStack: ["n8n", "Slack API", "Google Sheets API", "PDF Generation"],
+    images: ["/Slack_time_tracking.webp"],
+    thumbnail: "/Slack_time_tracking.webp",
+    demo: "https://drive.google.com/drive/folders/1vGOpVTHlRgCusIIUDvDS4POl2gu-ysSH?usp=sharing",
+    featured: true,
+  },
+  {
+    id: "scalable-backend-foundation",
+    slug: "scalable-backend-foundation",
+    index: "05",
+    category: "Software Engineering",
+    title: "Scalable API & Data Infrastructure for High-Traffic Content Platform",
+    subtitle: "High-performance FastAPI REST architecture with JWT authentication and PostgreSQL.",
+    client: "Technology Startup",
+    year: "2024",
+    industry: "Software",
+    duration: "4 weeks",
+    role: "Backend Engineer",
+    impactBadge: "Sub-50ms API latency",
+    challenge: "The platform required a robust backend architecture capable of handling user authentication, content moderation pipelines, and social interactions cleanly.",
+    solutionBullets: [
+      "Architected clean REST APIs using Python, FastAPI, and SQLAlchemy ORM",
+      "Implemented JWT security, request validation, and password hashing primitives",
+      "Structured optimized PostgreSQL database schemas and indexing for fast query response",
+    ],
+    results: [
+      "Delivered production-ready REST API foundation with high test coverage",
+      "Improved system maintainability and simplified modular extension",
+      "Ensured sub-50ms response times for core data endpoints",
+    ],
+    metrics: [
+      { value: "< 50ms", label: "Average API response" },
+      { value: "100%", label: "Modular schema design" },
+      { value: "JWT", label: "Secure Auth primitives" },
+    ],
+    techStack: ["Python", "FastAPI", "PostgreSQL", "SQLAlchemy", "Docker", "JWT"],
+    images: ["/blog_api.webp"],
+    thumbnail: "/blog_api.webp",
+    githubUrl: "https://github.com/Tgithinji/blog_api",
+    featured: false,
+  },
+  {
+    id: "wordpress-ai-publishing",
+    slug: "wordpress-ai-publishing",
+    index: "06",
+    category: "Content Automation",
+    title: "Automated Blog Publishing & SEO Content Production Engine",
+    subtitle: "End-to-end automated research, drafting, and publishing pipeline for WordPress.",
+    client: "Digital Content Business",
+    year: "2024",
+    industry: "Marketing",
+    duration: "2 weeks",
+    role: "Automation Engineer",
+    impactBadge: "24/7 Publishing engine",
+    challenge: "Content output was stagnant due to slow manual research, formatting bottlenecks, and inconsistent publishing schedules.",
+    solutionBullets: [
+      "Designed an automated n8n workflow for topic selection, outlining, and keyword research",
+      "Integrated OpenAI APIs to draft SEO-structured articles adhering to brand tone",
+      "Automated direct publishing to WordPress with featured tags and metadata",
+    ],
+    results: [
+      "Transformed a stagnant blog into a reliable publishing system",
+      "Saved dozens of manual writing hours each week",
+      "Maintained consistent publishing schedules automatically",
+    ],
+    metrics: [
+      { value: "3×", label: "Publishing frequency" },
+      { value: "15+ hrs", label: "Saved weekly" },
+      { value: "100%", label: "Automated formatting" },
+    ],
+    techStack: ["n8n", "OpenAI API", "WordPress REST API", "SEO Tools"],
+    images: ["/wordpress_blog_automation.webp"],
+    thumbnail: "/wordpress_blog_automation.webp",
+    demo: "https://drive.google.com/drive/folders/1BmIY0VVqck8lJFRAj3uHQbHaVd34FsIi?usp=sharing",
+    featured: false,
+  },
+];
+
+export const services = [
+  {
+    id: "customer-experience",
+    number: "01",
+    layer: "LAYER 01",
+    subtitle: "Digital Front-Doors & Conversion Engines",
+    title: "Customer Experience Layer",
+    outcome: "Turns visitor traffic into structured lead data and triggers instant automated intake.",
+    systemRole: "Acts as the public entry point of your business system, establishing executive credibility and funneling high-intent leads directly into your internal tools.",
+    description: "High-performance websites and intake portals engineered to capture prospect data, present complex technical offers clearly, and trigger automated downstream workflows the second a form is submitted.",
+    deliverables: [
+      "High-converting Next.js & React Web Applications",
+      "Dynamic SEO & Structured Schema Architecture",
+      "Interactive Project & Product Specification Specs",
+      "Automated Webhook & Intake Form Triggers",
+    ],
+    cta: "Build Front-Door Experience",
+  },
+  {
+    id: "operations",
+    number: "02",
+    layer: "LAYER 02",
+    subtitle: "Internal Software & Ops Dashboards",
+    title: "Operations Layer",
+    outcome: "Replaces spreadsheet chaos with custom internal software built around your exact business process.",
+    systemRole: "Serves as the internal control panel where your team manages incoming projects, tracks active client pipelines, and accesses real-time operational status.",
+    description: "When off-the-shelf SaaS apps are too rigid or expensive, I build fast, custom internal portals, booking systems, and ops dashboards tailored to how your team operates day-to-day.",
+    deliverables: [
+      "Custom Internal Portals & Admin Control Panels",
+      "Real-Time Operations & Revenue Dashboards",
+      "Role-Based Access Control (RBAC) & Team Workspaces",
+      "Custom Scheduling, Booking & Resource Management",
+    ],
+    cta: "Build Internal Software",
+  },
+  {
+    id: "automation-ai",
+    number: "03",
+    layer: "LAYER 03",
+    subtitle: "AI Intake & Workflow Automation",
+    title: "Automation & AI Layer",
+    outcome: "Eliminates manual data entry, formats instant briefs, and routes tasks automatically.",
+    systemRole: "Acts as the connective neural network of your business—processing incoming data, running AI evaluations, drafting briefs, and alerting key stakeholders.",
+    description: "Multi-step automated workflows and practical AI pipelines that parse client submissions, extract document data, format structured attorney/operator briefs, and trigger instant Slack & email notifications.",
+    deliverables: [
+      "Sub-Minute AI Lead Intake & Briefing Engines",
+      "Multi-Step Webhook, n8n & Make.com Workflows",
+      "Document Parsing & Automated PDF Data Extraction",
+      "Instant Slack, Email & Operational Alert System",
+    ],
+    cta: "Deploy AI Automations",
+  },
+  {
+    id: "infrastructure",
+    number: "04",
+    layer: "LAYER 04",
+    subtitle: "Custom APIs & Database Integrations",
+    title: "Infrastructure Layer",
+    outcome: "Connects isolated SaaS tools and databases into a single, reliable source of truth.",
+    systemRole: "Forms the resilient backbone of your business tech stack, managing secure data persistence, API webhooks, and seamless third-party synchronization.",
+    description: "Robust backend microservices, clean PostgreSQL database schemas, and custom API bridges that connect Stripe, CRMs, email servers, and third-party tools without data loss.",
+    deliverables: [
+      "Custom Python (FastAPI) & Node.js Backend Microservices",
+      "PostgreSQL & Relational Database Architecture",
+      "Stripe, Square & Payment Gateway API Bridges",
+      "Reliable Webhook Systems & Multi-Tool Data Sync",
+    ],
+    cta: "Build Custom APIs",
+  },
+];
+
+export const insights = [
+  {
+    slug: "why-legal-intake-fails-in-silence",
+    date: "Feb 2026",
+    category: "Legal Tech & AI",
+    title: "Why legal intake fails in post-submission silence — and how sub-minute AI briefings solve it.",
+    readTime: "6 min read",
+    summary: "When a prospective law client submits a form, every minute of silence increases lead leakage. Here is how automated triage generates inform attorney briefs before the first call.",
+  },
+  {
+    slug: "slack-as-mission-control-payroll",
+    date: "Jan 2026",
+    category: "Internal Operations",
+    title: "Slack as Mission Control: Automating employee time tracking without SaaS bloat.",
+    readTime: "5 min read",
+    summary: "Instead of forcing field staff onto complex standalone attendance software, we built an n8n pipeline that turns natural Slack check-ins into audit-ready payroll files.",
+  },
+  {
+    slug: "fastapi-for-operations-software",
+    date: "Nov 2025",
+    category: "Software Architecture",
+    title: "Python & FastAPI for operations software: building for longevity over short-lived trends.",
+    readTime: "8 min read",
+    summary: "A practical look at why clean REST APIs, explicit data validation (Pydantic), and PostgreSQL schema boundaries produce internal tools that survive years of scaling.",
+  },
+  {
+    slug: "dispatch-and-order-processing-bottlenecks",
+    date: "Sep 2025",
+    category: "E-Commerce Ops",
+    title: "Refusing dashboards: designing quiet dispatch & order fulfillment workflows.",
+    readTime: "7 min read",
+    summary: "Dashboards often add visual noise. The best operational software ingests emails, updates the backend quietly, and hands operators actionable itineraries.",
   },
 ];
 
@@ -190,38 +367,38 @@ export const experiences = [
     company: "Rahisisha Tech",
     location: "Nairobi, Kenya",
     duration: "2025 - Present",
-    description: "Building scalable web applications and implementing backend services that drive business operations.",
+    description: "Architecting modular web applications and backend automation services that streamline day-to-day business operations.",
     achievements: [
-      "Designed and implemented modular backend services to improve system maintainability and scalability.",
-      "Optimized database queries and caching, reducing load times and improving the end-user experience.",
-      "Collaborated with cross-functional teams to deliver new product features focused on operational efficiency."
+      "Designed clean modular backend services that improved system maintainability and data throughput.",
+      "Optimized SQL query performance and caching strategies, reducing load times for core business modules.",
+      "Collaborated directly with operating teams to ship custom features focused on operational efficiency.",
     ],
   },
   {
-    title: "Intern Backend Engineer",
-    company: "ALX",
+    title: "Backend Engineer",
+    company: "ALX Africa",
     location: "Remote",
     duration: "2024 - 2025",
-    description: "Assisted in building backend systems and supporting product development for startup projects.",
+    description: "Engineered core backend systems, database schemas, and microservice APIs.",
     achievements: [
-      "Developed core modules for an MVP used in initial user testing.",
-      "Wrote automated tests that improved code reliability and reduced recurring bugs."
+      "Developed core authentication and API modules for MVP platforms.",
+      "Wrote comprehensive automated tests that improved code reliability and reduced regression bugs.",
     ],
   },
 ];
 
 export const education = [
   {
-    degree: "Software Engineering & AI",
+    degree: "Software Engineering & AI Architecture",
     institution: "ALX Africa",
-    year: "",
-    description: "Intensive 12-month program covering modern software development stack.",
+    year: "2024",
+    description: "Intensive 12-month software engineering program covering full-stack architecture, systems design, and backend engineering.",
   },
   {
     degree: "Bachelor of Science in Telecommunications & IT",
     institution: "Kenyatta University",
-    year: "",
-    description: "Focused on algorithms, and modern technologies.",
+    year: "2023",
+    description: "Comprehensive foundation in network systems, algorithm analysis, software engineering principles, and databases.",
   },
 ];
 
@@ -229,127 +406,15 @@ export const skills = [
   "Python",
   "FastAPI",
   "PostgreSQL",
-  "Node.js",
-  "Next.js",
+  "n8n Automation",
   "TypeScript",
-  "n8n",
-  "make.com",
+  "Next.js / React",
+  "Node.js",
   "Docker",
-  "AWS",
   "REST APIs",
-  "Microservices",
-];
-
-export const clientAchievements = [
-  "Eliminate repetitive manual work",
-  "Improve operational efficiency",
-  "Connect disconnected business systems",
-  "Reduce administrative workload",
-  "Improve customer response times",
-  "Build software tailored to business workflows",
-];
-
-export const services = [
-  {
-    icon: "Zap",
-    title: "Workflow Automation",
-    description: "Eliminate repetitive tasks and connect the tools your team already uses.",
-    cta: "Find Automation Opportunities",
-    features: [
-      "Lead follow-up automation",
-      "CRM updates",
-      "WhatsApp workflows",
-      "Reporting automation",
-    ],
-  },
-  {
-    icon: "Code",
-    title: "Custom Software Development",
-    description: "Build software tailored to your business instead of forcing your business into generic tools.",
-    cta: "Discuss Your Project",
-    features: [
-      "Internal dashboards",
-      "Booking systems",
-      "Client portals",
-      "Operations management tools",
-    ],
-  },
-  {
-    icon: "Bot",
-    title: "AI Solutions",
-    description: "Use AI to automate customer support, document processing, and business operations.",
-    cta: "Explore AI Solutions",
-    features: [
-      "AI chatbots",
-      "Knowledge assistants",
-      "Proposal generators",
-      "Document analysis",
-    ],
-  },
-  {
-    icon: "Puzzle",
-    title: "API & Systems Integration",
-    description: "Connect your systems so data flows automatically.",
-    cta: "Integrate Your Systems",
-    features: [
-      "CRM integration",
-      "Payment integration",
-      "ERP integration",
-      "Third-party APIs",
-    ],
-  },
-];
-
-export const industries = [
-  {
-    title: "Travel Agencies",
-    features: [
-      "Flight inquiry automation",
-      "Booking workflow systems",
-      "Customer communication automation",
-    ],
-  },
-  {
-    title: "Logistics & Delivery",
-    features: [
-      "Delivery tracking systems",
-      "Operations dashboards",
-      "Workflow automation",
-    ],
-  },
-  {
-    title: "NGOs & Foundations",
-    features: [
-      "Donor management systems",
-      "Reporting tools",
-      "Volunteer coordination solutions",
-    ],
-  },
-  {
-    title: "Service Businesses",
-    features: [
-      "Lead capture automation",
-      "Customer onboarding",
-      "Appointment management",
-    ],
-  },
-];
-
-export const faqData = [
-  {
-    question: "How do you identify what processes to automate?",
-    answer: "We start with a Free Business Automation Audit. We map out your current workflows, identify bottlenecks and repetitive tasks, and prioritize automations that will save the most time or generate the most revenue.",
-  },
-  {
-    question: "Which technologies do you use?",
-    answer: "I focus on the right tool for the job. For software, I use Python (FastAPI), React/Next.js, and SQL databases. For automation, I leverage n8n, Make, Zapier, and custom API scripts.",
-  },
-  {
-    question: "Can you integrate with my existing tools?",
-    answer: "Yes. I can connect CRMs, payment systems, Google Workspace, WhatsApp, and most major APIs or third-party services so you don't have to change your current toolset.",
-  },
-  {
-    question: "What does an engagement look like?",
-    answer: "Every business has unique requirements. We begin with a discovery call, after which I propose a tailored solution—whether it's a one-off custom build or an ongoing automation partnership.",
-  },
+  "OpenAI API",
+  "Shopify API",
+  "Slack API",
+  "Git & GitHub",
+  "Make.com",
 ];

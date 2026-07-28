@@ -15,6 +15,8 @@ interface FormErrors {
 
 export const useContactForm = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
@@ -34,6 +36,7 @@ export const useContactForm = () => {
     if (formErrors[name]) {
       setFormErrors((prev) => ({ ...prev, [name]: "" }));
     }
+    if (submitError) setSubmitError(null);
   };
 
   const validateForm = () => {
@@ -56,6 +59,7 @@ export const useContactForm = () => {
     }
 
     setIsLoading(true);
+    setSubmitError(null);
 
     try {
       const res = await fetch("/api/contact", {
@@ -68,21 +72,31 @@ export const useContactForm = () => {
 
       setFormData({ name: "", email: "", message: "" });
       setFormErrors({});
-      alert("Message sent successfully!");
+      setIsSubmitted(true);
     } catch (err) {
       console.error(err);
-      alert("Something went wrong. Please try again.");
+      setSubmitError("Something went wrong. Please try again.");
     } finally {
       setIsLoading(false);
     }
   };
 
+  const resetForm = () => {
+    setIsSubmitted(false);
+    setSubmitError(null);
+    setFormData({ name: "", email: "", message: "" });
+    setFormErrors({});
+  };
+
   return {
     isLoading,
+    isSubmitted,
+    submitError,
     formData,
     formErrors,
     handleCTAClick,
     handleInputChange,
     handleSubmit,
+    resetForm,
   };
 };
