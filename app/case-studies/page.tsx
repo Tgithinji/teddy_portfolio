@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { selectedSystems } from "@/data/portfolio";
 import { ArrowUpRight, ExternalLink, Play, CheckCircle2 } from "lucide-react";
+import { ProjectImageCarousel } from "@/components/ProjectImageCarousel";
 
 export const metadata: Metadata = {
   title: "Selected Systems & Case Studies — Teddy Githinji",
@@ -104,6 +105,11 @@ export default function CaseStudiesPage() {
                 {/* Metrics & Media Links */}
                 <div className="col-span-12 lg:col-span-5 flex flex-col justify-between">
                   <div className="space-y-6">
+                    {/* Image / Carousel Showcase (Above Measurable Impact) */}
+                    {sys.images && sys.images.length > 0 && (
+                      <ProjectImageCarousel images={sys.images} title={sys.title} />
+                    )}
+
                     <div className="rounded-xl border border-[color:var(--color-hairline)] bg-background/60 p-6">
                       <h3 className="text-xs uppercase tracking-wider text-[color:var(--color-subtle)] font-mono mb-4">
                         Measurable Impact

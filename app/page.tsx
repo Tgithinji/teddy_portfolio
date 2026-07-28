@@ -303,14 +303,14 @@ export default function Home() {
                 href="/case-studies"
                 className="link-underline text-sm font-medium text-foreground hover:text-primary"
               >
-                <span className="link-underline-line">View All Case Studies</span>
+                <span className="link-underline-line">Explore All Case Studies</span>
                 <ArrowUpRight className="h-4 w-4" />
               </Link>
             </div>
           </div>
         </Shell>
 
-        {/* Editorial Alternating System Rows */}
+        {/* Editorial Alternating System Rows (3 Featured Systems) */}
         {featuredSystems.map((sys, idx) => {
           const isEven = idx % 2 === 1;
           const imageOrder = isEven ? "md:order-last" : "md:order-first";
@@ -328,7 +328,7 @@ export default function Home() {
                             src={sys.thumbnail}
                             alt={sys.title}
                             loading="lazy"
-                            className="h-full w-full object-cover object-top transition-transform duration-[1000ms] ease-out group-hover:scale-[1.03]"
+                            className="h-full w-full object-cover object-center transition-transform duration-[1000ms] ease-out group-hover:scale-[1.03]"
                           />
                         ) : (
                           <div className="flex h-full w-full items-center justify-center bg-card text-muted-foreground">
@@ -343,7 +343,7 @@ export default function Home() {
                   {/* Editorial Narrative & Outcomes Block */}
                   <div className="col-span-12 md:col-span-5">
                     <div className="flex items-center gap-4 text-[11px] uppercase tracking-[0.22em] text-[color:var(--color-subtle)]">
-                      <span className="font-mono">{sys.index}</span>
+                      <span className="font-mono">{`0${idx + 1}`}</span>
                       <span className="h-px w-8 bg-[color:var(--color-hairline)]" />
                       <span>{sys.category}</span>
                       <span className="ml-auto font-mono text-[color:var(--color-subtle)]">
@@ -359,23 +359,31 @@ export default function Home() {
                       {sys.impactBadge}
                     </p>
 
-                    <div className="mt-8 space-y-5 text-sm leading-relaxed text-[color:var(--color-muted-foreground)]">
+                    {/* Concise Challenge → Solution → Outcome Narrative */}
+                    <div className="mt-8 space-y-4 text-xs leading-relaxed text-[color:var(--color-muted-foreground)]">
                       <div>
-                        <span className="mr-2 text-[color:var(--color-subtle)] font-medium">
-                          Problem —
+                        <span className="font-mono uppercase text-[10px] tracking-wider text-[color:var(--color-subtle)] block mb-1">
+                          Challenge
                         </span>
                         {sys.challenge}
                       </div>
                       <div>
-                        <span className="mr-2 text-[color:var(--color-subtle)] font-medium">
-                          Outcome —
+                        <span className="font-mono uppercase text-[10px] tracking-wider text-[color:var(--color-subtle)] block mb-1">
+                          Solution
+                        </span>
+                        {sys.solutionBullets[0]}
+                      </div>
+                      <div>
+                        <span className="font-mono uppercase text-[10px] tracking-wider text-[color:var(--color-primary)] block mb-1">
+                          Business Outcome
                         </span>
                         {sys.results[0]}
                       </div>
                     </div>
 
-                    <dl className="mt-10 grid grid-cols-3 gap-x-4 border-t border-[color:var(--color-hairline)] pt-6">
-                      {sys.metrics.map((m) => (
+                    {/* 2-3 Measurable Metrics */}
+                    <dl className="mt-8 grid grid-cols-3 gap-x-4 border-t border-[color:var(--color-hairline)] pt-6">
+                      {sys.metrics.slice(0, 3).map((m) => (
                         <div key={m.label}>
                           <dt className="text-[10px] uppercase tracking-[0.18em] text-[color:var(--color-subtle)] font-mono">
                             {m.label}
@@ -387,12 +395,12 @@ export default function Home() {
                       ))}
                     </dl>
 
-                    <div className="mt-10 flex items-center gap-6">
+                    <div className="mt-8 flex items-center gap-6">
                       <Link
                         href={`/case-studies#${sys.slug}`}
                         className="link-underline text-sm font-medium text-foreground hover:text-primary"
                       >
-                        <span className="link-underline-line">Read the case study</span>
+                        <span className="link-underline-line">Read full case study</span>
                         <ArrowUpRight className="h-4 w-4" />
                       </Link>
                       {sys.demo && (
@@ -402,7 +410,7 @@ export default function Home() {
                           rel="noopener noreferrer"
                           className="text-xs text-[color:var(--color-subtle)] hover:text-foreground underline underline-offset-4 font-mono"
                         >
-                          Watch Demo Video
+                          Watch Demo
                         </a>
                       )}
                     </div>
@@ -412,66 +420,157 @@ export default function Home() {
             </article>
           );
         })}
+
+        {/* Section Ending CTA: Explore All Case Studies */}
+        <div className="hairline-t py-16">
+          <Shell>
+            <div className="flex flex-col items-center text-center">
+              <p className="font-mono text-xs uppercase tracking-[0.22em] text-[color:var(--color-subtle)]">
+                Executive Overview Complete
+              </p>
+              <h3 className="mt-3 text-xl md:text-2xl font-light text-foreground max-w-xl">
+                Ready to review technical architectures, workflow diagrams, and full build specs?
+              </h3>
+              <Link
+                href="/case-studies"
+                className="mt-8 inline-flex items-center gap-3 rounded-full border border-primary/40 bg-primary/10 px-8 py-3.5 text-sm font-medium text-foreground hover:bg-primary/20 hover:border-primary transition-colors group"
+              >
+                <span>Explore All Case Studies</span>
+                <ArrowUpRight className="h-4 w-4 text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              </Link>
+            </div>
+          </Shell>
+        </div>
       </section>
 
       {/* -------------------------------------------------------------------------- */}
-      {/*  03 — SERVICES OVERVIEW                                                    */}
+      {/*  03 — THE BUSINESS SYSTEM STACK                                            */}
       {/* -------------------------------------------------------------------------- */}
-      <section className="hairline-t py-24 md:py-32">
+      <section className="hairline-t py-24 md:py-36">
         <Shell>
           <div className="grid grid-cols-12 gap-x-6 gap-y-12">
-            <div className="col-span-12 md:col-span-4">
-              <SectionLabel index="03">Capabilities</SectionLabel>
-              <h2 className="mt-6 text-[clamp(2rem,3.5vw,2.75rem)] font-light leading-[1.1] tracking-[-0.02em]">
-                Focused on business outcomes,{" "}
+            {/* Left Header Column */}
+            <div className="col-span-12 md:col-span-4 md:sticky md:top-32 md:self-start">
+              <SectionLabel index="03">Business System Stack</SectionLabel>
+              <h2 className="mt-6 text-[clamp(2rem,3.5vw,2.75rem)] font-light leading-[1.08] tracking-[-0.02em]">
+                Four connected layers.{" "}
                 <span className="font-serif italic text-[color:var(--color-primary)]">
-                  not complexity.
+                  One unified system.
                 </span>
               </h2>
               <p className="mt-4 text-sm leading-relaxed text-[color:var(--color-muted-foreground)]">
-                Whether replacing messy spreadsheets or deploying sub-minute AI lead intake engines, every engagement is engineered for clarity and ROI.
+                Rather than isolated tools, your business operates as a cohesive stack where public touchpoints, internal software, AI automation, and database infrastructure work in unison.
               </p>
+
               <div className="mt-8">
                 <Link
                   href="/services"
                   className="link-underline text-sm font-medium text-foreground hover:text-primary"
                 >
-                  <span className="link-underline-line">Explore All Services</span>
+                  <span className="link-underline-line">Explore All Capabilities</span>
                   <ArrowUpRight className="h-4 w-4" />
                 </Link>
               </div>
             </div>
 
-            <div className="col-span-12 md:col-span-8">
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                {services.map((srv) => (
-                  <div
-                    key={srv.id}
-                    className="flex flex-col justify-between rounded-xl border border-[color:var(--color-hairline)] bg-[color:var(--color-card)]/40 p-6 transition-colors hover:border-[color:var(--color-border)]"
-                  >
-                    <div>
-                      <span className="font-mono text-xs text-[color:var(--color-subtle)]">
-                        {srv.number}
-                      </span>
-                      <h3 className="mt-3 text-lg font-medium text-foreground">
-                        {srv.title}
-                      </h3>
-                      <p className="mt-2 text-xs leading-relaxed text-[color:var(--color-muted-foreground)]">
-                        {srv.outcome}
-                      </p>
-                    </div>
+            {/* Right Stack Column — Architectural Stacked Layers */}
+            <div className="col-span-12 md:col-span-8 space-y-6">
+              {[
+                {
+                  layer: "LAYER 01",
+                  title: "Customer Experience",
+                  subtitle: "Modern Websites & Digital Front-Doors",
+                  outcome: "Turns visitor traffic into qualified lead data and triggers instant intake.",
+                  description: "High-performance digital front-doors engineered to capture high-intent inquiries, build executive credibility, and feed lead data directly into your backend workflow.",
+                  deliverables: [
+                    "High-converting Next.js Web Apps",
+                    "SEO & Dynamic Metadata Architecture",
+                    "Automated Lead Capture Triggers",
+                  ],
+                },
+                {
+                  layer: "LAYER 02",
+                  title: "Operations",
+                  subtitle: "Internal Software & Operational Dashboards",
+                  outcome: "Replaces spreadsheet chaos with custom tools tailored to how your team works.",
+                  description: "Custom internal portals and operational dashboards built specifically for your team's workflow—giving management real-time visibility without manual status updates.",
+                  deliverables: [
+                    "Custom Internal Portals & Admin Panels",
+                    "Role-Based Access & Task Tracking",
+                    "Real-Time Operational Visibility",
+                  ],
+                },
+                {
+                  layer: "LAYER 03",
+                  title: "Automation",
+                  subtitle: "AI Intake & Workflow Automation",
+                  outcome: "Eliminates manual data entry and executes sub-minute client triage.",
+                  description: "Automated pipelines that handle inquiry triage, extract key details from documents, format client briefs, and keep Slack/Email notifications instantly updated.",
+                  deliverables: [
+                    "Sub-Minute AI Lead Briefing Pipelines",
+                    "Multi-Step Webhook & n8n Workflows",
+                    "Instant Slack, WhatsApp & Email Alerts",
+                  ],
+                },
+                {
+                  layer: "LAYER 04",
+                  title: "Infrastructure",
+                  subtitle: "Custom APIs & Database Integrations",
+                  outcome: "Bridges disconnected tools into a single, reliable source of truth.",
+                  description: "High-reliability backend services, secure database schemas, and custom API bridges that connect third-party platforms and ensure seamless data flow across the business.",
+                  deliverables: [
+                    "Custom Python / FastAPI Microservices",
+                    "PostgreSQL & Database Schema Design",
+                    "Stripe, Square & Webhook Integration",
+                  ],
+                },
+              ].map((stackLayer, idx) => (
+                <div
+                  key={stackLayer.layer}
+                  className="group relative rounded-2xl border border-[color:var(--color-border)] bg-[color:var(--color-card)]/40 p-8 transition-all duration-300 hover:border-primary/40 hover:bg-[color:var(--color-card)]/70"
+                >
+                  <div className="flex flex-wrap items-center justify-between gap-3 text-xs font-mono text-[color:var(--color-subtle)]">
+                    <span className="rounded bg-background/80 px-2.5 py-1 border border-[color:var(--color-hairline)] text-[color:var(--color-primary)] font-medium">
+                      {stackLayer.layer}
+                    </span>
+                    <span className="text-[11px] uppercase tracking-wider text-[color:var(--color-subtle)]">
+                      {stackLayer.subtitle}
+                    </span>
+                  </div>
 
-                    <ul className="mt-6 space-y-2 text-xs text-[color:var(--color-muted-foreground)] border-t border-[color:var(--color-hairline)] pt-4">
-                      {srv.deliverables.slice(0, 3).map((d) => (
-                        <li key={d} className="flex items-center gap-2">
+                  <h3 className="mt-5 text-2xl font-light text-foreground group-hover:text-primary transition-colors">
+                    {stackLayer.title}
+                  </h3>
+
+                  <p className="mt-3 text-sm font-medium text-[color:var(--color-primary)]">
+                    Outcome — {stackLayer.outcome}
+                  </p>
+
+                  <p className="mt-3 text-xs leading-relaxed text-[color:var(--color-muted-foreground)]">
+                    {stackLayer.description}
+                  </p>
+
+                  <div className="mt-6 border-t border-[color:var(--color-hairline)] pt-4">
+                    <ul className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-[color:var(--color-muted-foreground)]">
+                      {stackLayer.deliverables.map((item) => (
+                        <li key={item} className="flex items-center gap-2 font-mono text-[11px]">
                           <CheckCircle2 className="h-3.5 w-3.5 text-primary flex-shrink-0" />
-                          <span>{d}</span>
+                          <span>{item}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
-                ))}
-              </div>
+
+                  {/* Connecting indicator line to next layer */}
+                  {idx < 3 && (
+                    <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 z-10 hidden md:flex items-center justify-center">
+                      <span className="text-[10px] font-mono text-[color:var(--color-subtle)] bg-background px-2 py-0.5 rounded border border-[color:var(--color-hairline)]">
+                        ↓ Feeds Next Layer
+                      </span>
+                    </div>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
         </Shell>

@@ -22,18 +22,18 @@ export default function ServicesPage() {
         {/* Header */}
         <div className="max-w-3xl border-b border-[color:var(--color-hairline)] pb-12">
           <div className="flex items-center gap-3 text-[11px] uppercase tracking-[0.22em] text-[color:var(--color-subtle)]">
-            <span className="font-mono">02</span>
+            <span className="font-mono">03</span>
             <span>—</span>
-            <span>Capabilities &amp; Offerings</span>
+            <span>The Business System Stack</span>
           </div>
           <h1 className="mt-4 text-[clamp(2.5rem,5vw,4.5rem)] font-light leading-[1.05] tracking-[-0.03em] text-foreground">
-            Services Built for{" "}
+            Four Connected Layers.{" "}
             <span className="font-serif italic text-[color:var(--color-primary)]">
-              Business Outcomes.
+              One Operating Architecture.
             </span>
           </h1>
           <p className="mt-6 text-base leading-relaxed text-[color:var(--color-muted-foreground)]">
-            I help companies eliminate repetitive admin, bridge disconnected tools, and deploy sub-minute AI intake engines that convert silence into structured execution.
+            Rather than selling isolated agency services, every engagement is structured as an interconnected layer of your business operating stack—from high-converting client front-doors to automated AI intake and resilient custom backend infrastructure.
           </p>
         </div>
 

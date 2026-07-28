@@ -72,9 +72,6 @@ export function Nav() {
               href="/contact"
               className="group inline-flex items-center gap-2.5 text-sm text-foreground"
             >
-              <span className="hidden text-xs uppercase tracking-wider text-[color:var(--color-subtle)] lg:inline">
-                Available — Q1/Q2 2026
-              </span>
               <span className="rounded-full border border-[color:var(--color-border)] bg-card/40 px-3.5 py-1.5 transition-colors group-hover:border-primary group-hover:text-primary">
                 Start a project
               </span>

@@ -111,7 +111,7 @@ export const selectedSystems: SelectedSystem[] = [
     thumbnail: "/PI_law_n8n.png",
     demo: "https://www.loom.com/share/21381e666bfe47ee86c10b5f1a9da1cb",
     testimonial: "The AI intake flow turned instant inquiries into informed first-call starts.",
-    featured: true,
+    featured: false,
   },
   {
     id: "ecommerce-fulfillment",
